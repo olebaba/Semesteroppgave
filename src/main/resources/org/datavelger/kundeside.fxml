@@ -1,27 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: E4FDFF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Text layoutX="245.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VELG KOMPONENT">
          <font>
             <Font size="36.0" />
          </font>
       </Text>
-      <RadioButton layoutX="123.0" layoutY="233.0" mnemonicParsing="false" text="Graphiccard" />
-      <RadioButton layoutX="236.0" layoutY="233.0" mnemonicParsing="false" text="Harddrive" />
-      <RadioButton layoutX="458.0" layoutY="233.0" mnemonicParsing="false" text="Keyboard" />
-      <RadioButton layoutX="347.0" layoutY="233.0" mnemonicParsing="false" text="Memory" />
-      <RadioButton layoutX="567.0" layoutY="233.0" mnemonicParsing="false" text="Monitor" />
-      <RadioButton layoutX="673.0" layoutY="233.0" mnemonicParsing="false" text="Motherboard" />
-      <RadioButton layoutX="21.0" layoutY="233.0" mnemonicParsing="false" text="Processor" />
-      <Button layoutX="662.0" layoutY="533.0" mnemonicParsing="false" text="SØK KOMPONENT" />
-      <Button layoutX="27.0" layoutY="533.0" mnemonicParsing="false" text="BACK" />
+      <RadioButton layoutX="126.0" layoutY="316.0" mnemonicParsing="false" text="Graphiccard" />
+      <RadioButton layoutX="269.0" layoutY="233.0" mnemonicParsing="false" text="Harddrive" />
+      <RadioButton layoutX="439.0" layoutY="233.0" mnemonicParsing="false" text="Keyboard" />
+      <RadioButton layoutX="273.0" layoutY="316.0" mnemonicParsing="false" text="Memory" />
+      <RadioButton layoutX="439.0" layoutY="316.0" mnemonicParsing="false" text="Monitor" />
+      <RadioButton layoutX="570.0" layoutY="233.0" mnemonicParsing="false" text="Motherboard" />
+      <RadioButton layoutX="126.0" layoutY="233.0" mnemonicParsing="false" text="Processor" />
+      <Button layoutX="662.0" layoutY="533.0" mnemonicParsing="false" text="SØK KOMPONENT">
+         <effect>
+            <DropShadow radius="17.25" width="50.0" />
+         </effect>
+      </Button>
+      <Button layoutX="27.0" layoutY="533.0" mnemonicParsing="false" text="BACK">
+         <effect>
+            <DropShadow radius="17.25" width="50.0" />
+         </effect>
+      </Button>
+      <ChoiceBox layoutX="325.0" layoutY="429.0" prefWidth="150.0" />
+      <Text layoutX="287.0" layoutY="399.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VELG PC-TYPE">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

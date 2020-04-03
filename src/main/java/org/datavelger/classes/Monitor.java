@@ -15,4 +15,9 @@ public class Monitor extends Component {
     public void setSize(int size) {
         this.size = size;
     }
+
+    @Override
+    public String toString() {
+        return String.format("Monitor{%d,%s,%s}", getPrice(), getName(), getSize());
+    }
 }

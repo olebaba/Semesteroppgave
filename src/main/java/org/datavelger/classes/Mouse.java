@@ -1,9 +1,9 @@
 package org.datavelger.classes;
 
-public class Keyboard extends Component {
-    private boolean rgb;
+public class Mouse extends Component {
+    boolean rgb;
 
-    public Keyboard(int price, String name, boolean rgb) {
+    public Mouse(int price, String name, boolean rgb) {
         super(price, name);
         this.rgb = rgb;
     }
@@ -18,6 +18,6 @@ public class Keyboard extends Component {
 
     @Override
     public String toString() {
-        return String.format("Keyboard{%d,%s,%b}", getPrice(), getName(), isRgb());
+        return String.format("Mouse{%d,%s,%b}", getPrice(), getName(), isRgb());
     }
 }

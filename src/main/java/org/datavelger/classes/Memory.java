@@ -15,4 +15,9 @@ public class Memory extends Component {
     public void setSpeed(String speed) {
         this.speed = speed;
     }
+
+    @Override
+    public String toString() {
+        return String.format("Memory{%d,%s,%s}", getPrice(), getName(), getSpeed());
+    }
 }

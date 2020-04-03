@@ -8,27 +8,28 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: E4FDFF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
+            prefWidth="800.0" style="-fx-background-color: E4FDFF;" xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Text layoutX="245.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VELG KOMPONENT">
+      <Text layoutX="225.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VELG KOMPONENTER">
          <font>
             <Font size="36.0" />
          </font>
       </Text>
-      <RadioButton layoutX="126.0" layoutY="316.0" mnemonicParsing="false" text="Graphiccard" />
-      <RadioButton layoutX="269.0" layoutY="233.0" mnemonicParsing="false" text="Harddrive" />
-      <RadioButton layoutX="439.0" layoutY="233.0" mnemonicParsing="false" text="Keyboard" />
-      <RadioButton layoutX="273.0" layoutY="316.0" mnemonicParsing="false" text="Memory" />
-      <RadioButton layoutX="439.0" layoutY="316.0" mnemonicParsing="false" text="Monitor" />
-      <RadioButton layoutX="570.0" layoutY="233.0" mnemonicParsing="false" text="Motherboard" />
-      <RadioButton layoutX="126.0" layoutY="233.0" mnemonicParsing="false" text="Processor" />
+      <RadioButton layoutX="49.0" layoutY="190.0" mnemonicParsing="false" text="Grafikkort" />
+      <RadioButton layoutX="200.0" layoutY="106.0" mnemonicParsing="false" text="Harddisk" />
+      <RadioButton layoutX="339.0" layoutY="106.0" mnemonicParsing="false" text="Tastatur" />
+      <RadioButton layoutX="199.0" layoutY="190.0" mnemonicParsing="false" text="Minne" />
+      <RadioButton layoutX="336.0" layoutY="190.0" mnemonicParsing="false" text="Skjerm" />
+      <RadioButton layoutX="474.0" layoutY="106.0" mnemonicParsing="false" text="Hovedkort" />
+      <RadioButton layoutX="50.0" layoutY="106.0" mnemonicParsing="false" text="Prosessor" />
       <Button layoutX="662.0" layoutY="533.0" mnemonicParsing="false" text="SØK KOMPONENT">
          <effect>
             <DropShadow radius="17.25" width="50.0" />
          </effect>
       </Button>
-      <Button layoutX="27.0" layoutY="533.0" mnemonicParsing="false" text="BACK">
+      <Button fx:id="back" layoutX="27.0" layoutY="533.0" mnemonicParsing="false" text="BACK">
          <effect>
             <DropShadow radius="17.25" width="50.0" />
          </effect>
@@ -39,5 +40,16 @@
             <Font size="36.0" />
          </font>
       </Text>
+      <Button fx:id="choose" layoutX="673.0" layoutY="127.0" mnemonicParsing="false" prefHeight="125.0"
+              prefWidth="93.0" text="Velg" />
+      <ChoiceBox fx:id="processor" layoutX="50.0" layoutY="137.0" prefHeight="26.0" prefWidth="115.0" />
+      <ChoiceBox fx:id="harddrive" layoutX="199.0" layoutY="137.0" prefHeight="26.0" prefWidth="115.0" />
+      <ChoiceBox fx:id="keyboard" layoutX="336.0" layoutY="137.0" prefHeight="26.0" prefWidth="115.0" />
+      <ChoiceBox fx:id="motherboard" layoutX="475.0" layoutY="137.0" prefHeight="26.0" prefWidth="115.0" />
+      <ChoiceBox fx:id="graphicscard" layoutX="49.0" layoutY="223.0" prefHeight="26.0" prefWidth="115.0" />
+      <ChoiceBox fx:id="memory" layoutX="199.0" layoutY="223.0" prefHeight="26.0" prefWidth="115.0" />
+      <ChoiceBox fx:id="monitor" layoutX="336.0" layoutY="223.0" prefHeight="26.0" prefWidth="115.0" />
+      <RadioButton layoutX="475.0" layoutY="190.0" mnemonicParsing="false" text="Mus" />
+      <ChoiceBox fx:id="mouse" layoutX="475.0" layoutY="223.0" prefHeight="26.0" prefWidth="115.0" />
    </children>
 </AnchorPane>

@@ -16,4 +16,9 @@ public class Processor extends Component{
     public void setType(String type) {
         this.type = type;
     }
+
+    @Override
+    public String toString() {
+        return String.format("Harddrive{%d,%s,%s}", getPrice(), getName(), getType());
+    }
 }

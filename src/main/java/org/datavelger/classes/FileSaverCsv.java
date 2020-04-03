@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class FileSaverCsv implements FileSaver {
     @Override
-    public void saveCsv(Computer computer, boolean semicolon) throws IOException {
+    public void saveFile(Computer computer, boolean semicolon) throws IOException {
         String delimiter = ",";
         if(semicolon) delimiter = ";";
 
@@ -19,8 +19,8 @@ public class FileSaverCsv implements FileSaver {
         writer.append(computer.getMemory().getName()).append(delimiter);
         writer.append(computer.getMonitor().getName()).append(delimiter);
         writer.append(computer.getMotherboard().getName()).append(delimiter);
-        writer.append(computer.getProcessor().getName()).append(delimiter);
         writer.append(computer.getMouse().getName()).append(delimiter);
+        writer.append(computer.getProcessor().getName()).append(delimiter);
         writer.close();
     }
 }

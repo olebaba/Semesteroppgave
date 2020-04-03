@@ -26,4 +26,9 @@ public class Harddrive extends Component{
     public void setCapasity(int capasity) {
         this.capasity = capasity;
     }
+
+    @Override
+    public String toString() {
+        return String.format("Harddrive{%d,%s,%.2f,%d}", getPrice(), getName(), getSize(), getCapasity());
+    }
 }

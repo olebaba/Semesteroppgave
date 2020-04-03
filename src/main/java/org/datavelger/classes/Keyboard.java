@@ -15,4 +15,9 @@ public class Keyboard extends Component {
     public void setRgb(boolean rgb) {
         this.rgb = rgb;
     }
+
+    @Override
+    public String toString() {
+        return String.format("Keyboard{%d,%s,%b}", getPrice(), getName(), isRgb());
+    }
 }

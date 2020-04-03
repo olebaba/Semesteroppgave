@@ -12,19 +12,19 @@ public class Computer {
     private Memory memory;
     private Monitor monitor;
     private Motherboard motherboard;
-    private Processor processor;
     private Mouse mouse;
+    private Processor processor;
 
     public Computer(GraphicsCard graphicsCard, Harddrive harddrive, Keyboard keyboard, Memory memory, Monitor monitor,
-                    Motherboard motherboard, Processor processor, Mouse mouse) {
+                    Motherboard motherboard, Mouse mouse, Processor processor) {
         this.graphicsCard = graphicsCard;
         this.harddrive = harddrive;
         this.keyboard = keyboard;
         this.memory = memory;
         this.monitor = monitor;
         this.motherboard = motherboard;
-        this.processor = processor;
         this.mouse = mouse;
+        this.processor = processor;
     }
 
     public GraphicsCard getGraphicsCard() {
@@ -89,5 +89,18 @@ public class Computer {
 
     public void setMouse(Mouse mouse) {
         this.mouse = mouse;
+    }
+
+    @Override
+    public String toString() {
+        return "Computer{" + graphicsCard.toString() +
+                "," + harddrive.toString() +
+                "," + keyboard.toString() +
+                "," + memory.toString() +
+                "," + monitor.toString() +
+                "," + motherboard.toString() +
+                "," + mouse.toString() +
+                "," + processor.toString() +
+                '}';
     }
 }

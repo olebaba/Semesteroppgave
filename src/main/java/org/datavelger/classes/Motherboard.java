@@ -16,4 +16,9 @@ public class Motherboard extends Component{
     public void setType(String type) {
         this.type = type;
     }
+
+    @Override
+    public String toString() {
+        return String.format("Motherboard{%d,%s,%s}", getPrice(), getName(), getType());
+    }
 }

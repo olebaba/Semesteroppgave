@@ -4,8 +4,6 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class FileSaverCsvTest {
 
     Computer computer = new Computer(new GraphicsCard(3000, "GTX1080"),
@@ -14,12 +12,12 @@ class FileSaverCsvTest {
                     new Memory(1200, "Kingston", "2444MHz"),
                     new Monitor(2500, "Asus TUF", 27),
                     new Motherboard(2000, "ROG STRIX", "AMD"),
-                    new Processor(2340, "Ryzen 5 3600X", "AMD"),
-                    new Mouse(699, "Logitech G502", false));
+                    new Mouse(699, "Logitech G502", false),
+                    new Processor(2340, "Ryzen 5 3600X", "AMD"));
 
     @Test
     void saveCsv() throws IOException {
         FileSaverCsv saverCsv = new FileSaverCsv();
-        saverCsv.saveCsv(computer, false);
+        saverCsv.saveFile(computer, false);
     }
 }

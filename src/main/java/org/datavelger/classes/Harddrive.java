@@ -1,21 +1,21 @@
 package org.datavelger.classes;
 
 public class Harddrive extends Component{
-    private int size;
+    private double size;
     private int capasity;
 
 
-    public Harddrive(int price, String name, int size, int capasity) {
+    public Harddrive(int price, String name, double size, int capasity) {
         super(price, name);
         this.size = size;
         this.capasity = capasity;
     }
 
-    public int getSize() {
+    public double getSize() {
         return size;
     }
 
-    public void setSize(int size) {
+    public void setSize(double size) {
         this.size = size;
     }
 

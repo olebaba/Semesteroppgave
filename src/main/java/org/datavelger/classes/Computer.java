@@ -3,6 +3,7 @@ package org.datavelger.classes;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.module.ModuleDescriptor;
 
 public class Computer {
     private GraphicsCard graphicsCard;
@@ -26,21 +27,67 @@ public class Computer {
         this.mouse = mouse;
     }
 
+    public GraphicsCard getGraphicsCard() {
+        return graphicsCard;
+    }
 
+    public void setGraphicsCard(GraphicsCard graphicsCard) {
+        this.graphicsCard = graphicsCard;
+    }
 
-    public void toCSV(boolean semicolon) throws IOException {
-        String delimiter = ",";
-        if(semicolon) delimiter = ";";
+    public Harddrive getHarddrive() {
+        return harddrive;
+    }
 
-        File file = new File("resources/file.csv");
-        FileWriter writer = new FileWriter(file);
-        writer.append(graphicsCard.getName()).append(delimiter);
-        writer.append(harddrive.getName()).append(delimiter);
-        writer.append(keyboard.getName()).append(delimiter);
-        writer.append(memory.getName()).append(delimiter);
-        writer.append(monitor.getName()).append(delimiter);
-        writer.append(motherboard.getName()).append(delimiter);
-        writer.append(processor.getName()).append(delimiter);
-        writer.append(mouse.getName()).append(delimiter);
+    public void setHarddrive(Harddrive harddrive) {
+        this.harddrive = harddrive;
+    }
+
+    public Keyboard getKeyboard() {
+        return keyboard;
+    }
+
+    public void setKeyboard(Keyboard keyboard) {
+        this.keyboard = keyboard;
+    }
+
+    public Memory getMemory() {
+        return memory;
+    }
+
+    public void setMemory(Memory memory) {
+        this.memory = memory;
+    }
+
+    public Monitor getMonitor() {
+        return monitor;
+    }
+
+    public void setMonitor(Monitor monitor) {
+        this.monitor = monitor;
+    }
+
+    public Motherboard getMotherboard() {
+        return motherboard;
+    }
+
+    public void setMotherboard(Motherboard motherboard) {
+        this.motherboard = motherboard;
+    }
+
+    public Processor getProcessor() {
+        return processor;
+    }
+
+    public void setProcessor(Processor processor) {
+        this.processor = processor;
+    }
+
+    public Mouse getMouse() {
+        return mouse;
+    }
+
+    public void setMouse(Mouse mouse) {
+        this.mouse = mouse;
     }
 }

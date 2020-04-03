@@ -1,4 +1,4 @@
-package org.datavelger.classes;
+package org.datavelger;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -36,4 +36,4 @@ public class MainController implements Initializable {
             }
         }
     }
-}
+}*/

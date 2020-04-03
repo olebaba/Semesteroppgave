@@ -31,16 +31,17 @@ public class KundesideController implements Initializable{
         });
 
         choose.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
+            innerPane.getChildren().clear();
             addChosenComps(checkSelected());
         });
     }
 
     private Boolean[] checkSelected(){ //finner hvilke knapper som er trykket
-        System.out.println(radioComps[6].getText());
+        //System.out.println(radioComps[6].getText());
         Boolean[] selectedComps = new Boolean[radioComps.length];
         int i = 0;
         for (RadioButton rb : radioComps){
-            if(rb.isSelected()) selectedComps[i++] = true;
+             selectedComps[i++] = rb.isSelected();
         }
         return selectedComps;
     }
@@ -53,6 +54,7 @@ public class KundesideController implements Initializable{
         for (Boolean b : booleans){
             if (b != null && b) {
                 labelText = radioComps[i].getText();
+                System.out.println(i);
 
                 Label label = new Label(labelText);
                 label.setLayoutY(positionY);

@@ -1,5 +1,5 @@
-package org.datavelger.classes;
+package org.datavelger;
 
 public class KundesideController {
-@
+
 }

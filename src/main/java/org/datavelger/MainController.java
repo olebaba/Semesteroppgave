@@ -15,20 +15,23 @@ public class MainController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         kunde.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
             try {
-                switchToKunde();
+                App.setRoot("kundeside2");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+        admin.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
+            try {
+                App.setRoot("addKomponent");
             } catch (IOException e) {
                 e.printStackTrace();
             }
         });
     }
 
-    public void switchToKunde() throws IOException {
-        App.setRoot("kundeside2");
-    }
-
     @FXML
     Button admin, kunde;
-
 }
 
 

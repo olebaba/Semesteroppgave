@@ -6,7 +6,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class FileSaverCsv extends Task<String> implements FileSaver {
+public class FileSaverCsv implements FileSaver {
     @Override
     public void saveFile(Parts parts, boolean semicolon) throws IOException {
         String delimiter = ",";
@@ -29,10 +29,5 @@ public class FileSaverCsv extends Task<String> implements FileSaver {
         writer.close();
 
 
-    }
-
-    @Override
-    protected String call() throws Exception {
-        return null;
     }
 }

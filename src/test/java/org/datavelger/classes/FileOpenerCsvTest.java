@@ -8,7 +8,7 @@ class FileOpenerCsvTest {
 
     @Test
     void openCsv() throws IOException {
-        FileOpenerCsv openerCsv = new FileOpenerCsv();
+        FileOpenerCsv openerCsv = new FileOpenerCsv("file.csv", false);
         openerCsv.openFile("file.csv", false);
     }
 }

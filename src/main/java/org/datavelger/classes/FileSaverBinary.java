@@ -11,10 +11,9 @@ public class FileSaverBinary implements FileSaver {
     @Override
     public void saveFile(Parts parts, boolean semicolon) throws IOException {
         Path path = Paths.get("binaryfile.txt");
-        byte[] bytes = parts.toString().getBytes(StandardCharsets.UTF_8);
 
         try {
-            Files.write(path, bytes);
+            Files.writeString(path, parts.toString());
         }catch (IOException e){
             e.printStackTrace();
         }

@@ -18,6 +18,6 @@ public class Mouse extends Component {
 
     @Override
     public String toString() {
-        return String.format("Mouse{%d,%s,%b}", getPrice(), getName(), isRgb());
+        return String.format("Mouse{ %d %s %b}", getPrice(), getName(), isRgb());
     }
 }

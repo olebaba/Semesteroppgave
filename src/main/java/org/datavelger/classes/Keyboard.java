@@ -18,6 +18,6 @@ public class Keyboard extends Component {
 
     @Override
     public String toString() {
-        return String.format("Keyboard{%d,%s,%b}", getPrice(), getName(), isRgb());
+        return String.format("Keyboard{ %d %s %b}", getPrice(), getName(), isRgb());
     }
 }

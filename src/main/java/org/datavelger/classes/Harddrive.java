@@ -29,6 +29,6 @@ public class Harddrive extends Component{
 
     @Override
     public String toString() {
-        return String.format("Harddrive{%d,%s,%.2f,%d}", getPrice(), getName(), getSize(), getCapasity());
+        return String.format("Harddrive{ %d %s %.2f %d}", getPrice(), getName(), getSize(), getCapasity());
     }
 }

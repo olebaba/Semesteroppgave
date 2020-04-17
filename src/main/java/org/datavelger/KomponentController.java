@@ -16,25 +16,18 @@ import java.util.ResourceBundle;
 
 public class KomponentController implements Initializable {
 
-        @FXML
-        private TableView<Component> table;
-
-        @FXML
-        private TableColumn<Component, String> namecol;
-
-        @FXML
-        private TableColumn<Component, Integer> pricecol;
-
-        @FXML
-        private TextField txt_name;
-
-        @FXML
-        private TextField txt_price;
-
-        @FXML
-        private Button btn_add;
-
-
+    @FXML
+    private TableView<Component> table;
+    @FXML
+    private TableColumn<Component, String> namecol;
+    @FXML
+    private TableColumn<Component, Integer> pricecol;
+    @FXML
+    private TextField txt_name;
+    @FXML
+    private TextField txt_price;
+    @FXML
+    private Button btn_add;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

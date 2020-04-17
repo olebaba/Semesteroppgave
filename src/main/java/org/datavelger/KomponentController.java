@@ -51,13 +51,12 @@ public class KomponentController implements Initializable {
         txt_name.clear();
         txt_price.clear();
     }
-    ObservableList<Component> getComponentList()
-    {
+    ObservableList<Component> getComponentList() {
         ObservableList<Component> components= FXCollections.observableArrayList();
-        components.add(new Component(123,"Keybord") );
+        components.add(new Component(123,"Keyboard") );
         components.add(new Component(1000,"harddrive") );
         components.add(new Component(2000,"Mouse") );
-        components.add(new Component(123,"Keybord") );
+        components.add(new Component(123,"Keyboard") );
 
         return components;
     }

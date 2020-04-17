@@ -4,10 +4,8 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class FileSaverBinaryTest {
-    Computer computer = new Computer(new GraphicsCard(3000, "GTX1080"),
+    Parts parts = new Parts(new GraphicsCard(3000, "GTX1080"),
             new Harddrive(400, "Seagate 5400", 2.5, 2),
             new Keyboard(400, "Corsair K70", true),
             new Memory(1200, "Kingston", "2444MHz"),
@@ -15,10 +13,13 @@ class FileSaverBinaryTest {
             new Motherboard(2000, "ROG STRIX", "AMD"),
             new Mouse(699, "Logitech G502", false),
             new Processor(2340, "Ryzen 5 3600X", "AMD"));
+    Parts parts2 = new Parts();
+
 
     @Test
     void saveFile() throws IOException {
+        parts2.setKeyboard(new Keyboard(300, "Logitech g30", false));
         FileSaverBinary saverBinary = new FileSaverBinary();
-        saverBinary.saveFile(computer, false);
+        saverBinary.saveFile(parts2, false);
     }
 }

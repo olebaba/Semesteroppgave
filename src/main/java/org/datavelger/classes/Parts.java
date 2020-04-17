@@ -5,7 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.module.ModuleDescriptor;
 
-public class Computer {
+public class Parts {
     private GraphicsCard graphicsCard;
     private Harddrive harddrive;
     private Keyboard keyboard;
@@ -15,8 +15,8 @@ public class Computer {
     private Mouse mouse;
     private Processor processor;
 
-    public Computer(GraphicsCard graphicsCard, Harddrive harddrive, Keyboard keyboard, Memory memory, Monitor monitor,
-                    Motherboard motherboard, Mouse mouse, Processor processor) {
+    public Parts(GraphicsCard graphicsCard, Harddrive harddrive, Keyboard keyboard, Memory memory, Monitor monitor,
+                 Motherboard motherboard, Mouse mouse, Processor processor) {
         this.graphicsCard = graphicsCard;
         this.harddrive = harddrive;
         this.keyboard = keyboard;
@@ -25,6 +25,10 @@ public class Computer {
         this.motherboard = motherboard;
         this.mouse = mouse;
         this.processor = processor;
+    }
+
+    public Parts(){
+
     }
 
     public GraphicsCard getGraphicsCard() {
@@ -91,16 +95,39 @@ public class Computer {
         this.mouse = mouse;
     }
 
+    public boolean isComplete(){ //sjekker om det er en komplett pc
+        return this.getGraphicsCard() != null &&
+                this.getHarddrive() != null &&
+                this.getKeyboard() != null &&
+                this.getMemory() != null &&
+                this.getMonitor() != null &&
+                this.getMotherboard() != null &&
+                this.getMouse() != null &&
+                this.getProcessor() != null;
+    }
+
     @Override
     public String toString() {
-        return "Computer{" + graphicsCard.toString() +
-                "," + harddrive.toString() +
-                "," + keyboard.toString() +
-                "," + memory.toString() +
-                "," + monitor.toString() +
-                "," + motherboard.toString() +
-                "," + mouse.toString() +
-                "," + processor.toString() +
-                '}';
+        StringBuilder out = new StringBuilder();
+        if (this.isComplete()) {
+            System.out.println("Is complete");
+            out.append("Computer{");
+        }else out.append("Parts{");
+
+        try {
+            out.append(this.getGraphicsCard() == null ? "null," : this.getGraphicsCard()).
+                    append(this.getHarddrive() == null ? "null," : this.getHarddrive()).
+                    append(this.getKeyboard() == null ? "null," : this.getKeyboard()).
+                    append(this.getMemory() == null ? "null," : this.getMemory()).
+                    append(this.getMonitor() == null ? "null," : this.getMonitor()).
+                    append(this.getMotherboard() == null ? "null," : this.getMotherboard()).
+                    append(this.getMouse() == null ? "null," : this.getMouse()).
+                    append(this.getProcessor() == null ? "null" : this.getProcessor());
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        out.append("}");
+        return out.toString();
     }
 }

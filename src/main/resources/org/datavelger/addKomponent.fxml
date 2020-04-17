@@ -6,6 +6,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
+
 <AnchorPane prefHeight="556.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.datavelger.KomponentController">
    <children>
       <TableView fx:id="table" layoutX="20.0" layoutY="14.0" prefHeight="269.0" prefWidth="542.0">
@@ -20,6 +21,5 @@
       <TextField fx:id="txt_name" layoutX="61.0" layoutY="362.0" promptText="Navn" />
       <TextField fx:id="txt_price" layoutX="61.0" layoutY="416.0" promptText="Pris" />
       <Button fx:id="btn_add" layoutX="83.0" layoutY="465.0" mnemonicParsing="false" onAction="#AddRecord" text="Bekreft" />
-      <Button fx:id="avbryt" layoutX="35.0" layoutY="510.0" mnemonicParsing="false" text="Avbryt" />
    </children>
 </AnchorPane>

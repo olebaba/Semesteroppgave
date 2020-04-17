@@ -10,6 +10,6 @@ public class GraphicsCard extends Component{
 
     @Override
     public String toString() {
-        return String.format("GraphicsCard{%d,%s}", getPrice(), getName());
+        return String.format("GraphicsCard{ %d %s}", getPrice(), getName());
     }
 }

@@ -4,40 +4,38 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import org.datavelger.classes.Component;
+import org.datavelger.classes.FileOpenerCsv;
+import org.datavelger.classes.Mouse;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class KomponentController implements Initializable {
+    private FileOpenerCsv fileOpenerCsv;
 
-        @FXML
-        private TableView<Component> table;
-
-        @FXML
-        private TableColumn<Component, String> namecol;
-
-        @FXML
-        private TableColumn<Component, Integer> pricecol;
-
-        @FXML
-        private TextField txt_name;
-
-        @FXML
-        private TextField txt_price;
-
-        @FXML
-        private Button btn_add;
-
-
+    @FXML
+    private TableView<Component> table;
+    @FXML
+    private TableColumn<Component, String> namecol;
+    @FXML
+    private TableColumn<Component, Integer> pricecol;
+    @FXML
+    private TextField txt_name, txt_price;
+    @FXML
+    private Button btn_add, btnLoadAll;
+    @FXML
+    private Label labInfo;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        btnLoadAll.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
+            LoadOrders();
+        });
+
         namecol.setCellValueFactory(new PropertyValueFactory<>("price"));
         pricecol.setCellValueFactory(new PropertyValueFactory<>("name"));
         table.setItems(getComponentList());
@@ -60,4 +58,43 @@ public class KomponentController implements Initializable {
 
         return components;
     }
+
+    public void LoadOrders(){
+        fileOpenerCsv = new FileOpenerCsv("file.csv", false);
+        fileOpenerCsv.setOnSucceeded(event -> {
+            //legg til verdiene i Tableview med :
+            fileOpenerCsv.getValue();
+            enableGUI(false);
+            labInfo.setText("Filen er lastet inn.");
+        });
+        //om filen ikke blir funnet
+        fileOpenerCsv.setOnFailed(event -> {
+            try {
+                throw event.getSource().getException();
+            } catch (Throwable throwable) {
+                throwable.printStackTrace();
+            }
+            enableGUI(false);
+            labInfo.setText("Fant ikke angitt fil.");
+            System.out.println("Fant ikke angitt fil.");
+        });
+
+        Thread thread = new Thread(fileOpenerCsv);
+        thread.setDaemon(true);
+        enableGUI(true);
+        thread.start();
+    }
+
+    public void enableGUI(boolean enable){
+        if (enable){
+            txt_name.setDisable(true);
+            txt_price.setDisable(true);
+            table.setDisable(true);
+        }else {
+            txt_name.setDisable(false);
+            txt_price.setDisable(false);
+            table.setDisable(false);
+        }
+    }
+
 }

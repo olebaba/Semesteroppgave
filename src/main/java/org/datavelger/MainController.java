@@ -23,7 +23,7 @@ public class MainController implements Initializable {
 
         admin.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
             try {
-                App.setRoot("addKomponent");
+                App.setRoot("adminLoggInn");
             } catch (IOException e) {
                 e.printStackTrace();
             }

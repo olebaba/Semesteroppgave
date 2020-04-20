@@ -8,18 +8,18 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="556.0" prefWidth="657.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.datavelger.KomponentController">
+<AnchorPane prefHeight="732.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.datavelger.KomponentController">
    <children>
-      <TabPane prefHeight="556.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane prefHeight="556.0" prefWidth="792.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="Innlagte bestillinger">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="597.0" prefWidth="700.0">
                      <children>
                         <TextField fx:id="txt_name" layoutX="54.0" layoutY="305.0" prefHeight="36.0" prefWidth="149.0" promptText="Navn" />
                         <TextField fx:id="txt_price" layoutX="54.0" layoutY="370.0" prefHeight="35.0" prefWidth="149.0" promptText="Pris" />
                         <Button fx:id="btn_add" layoutX="54.0" layoutY="429.0" mnemonicParsing="false" onAction="#AddRecord" text="Bekreft" />
-                        <TableView fx:id="table" layoutX="27.0" prefHeight="269.0" prefWidth="600.0">
+                        <TableView fx:id="table" prefHeight="269.0" prefWidth="800.0">
                           <columns>
                             <TableColumn fx:id="namecol" prefWidth="75.0" text="Navn" />
                             <TableColumn fx:id="pricecol" prefWidth="75.0" text="Pris" />
@@ -28,13 +28,27 @@
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                            </columnResizePolicy>
                         </TableView>
+                        <Button fx:id="txtavbryt" layoutX="54.0" layoutY="500.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" style="-fx-background-color: FB5D18;" text="Avbryt" />
                      </children>
                   </AnchorPane>
             </content>
           </Tab>
-          <Tab text="Mottatte bestillinger">
+          <Tab text="Innkommende bestillinger">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="527.0" prefWidth="633.0">
+                     <children>
+                        <TableView fx:id="table1" prefHeight="269.0" prefWidth="800.0">
+                           <columns>
+                              <TableColumn fx:id="namecol1" prefWidth="75.0" text="ID" />
+                              <TableColumn fx:id="pricecol1" prefWidth="75.0" text="Produkttype" />
+                              <TableColumn fx:id="namecol11" prefWidth="75.0" text="Merke" />
+                              <TableColumn fx:id="namecol111" prefWidth="75.0" text="Pris" />
+                           </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </TableView>
+                     </children></AnchorPane>
             </content>
           </Tab>
         </tabs>

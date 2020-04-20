@@ -11,4 +11,9 @@
       </profile>
     </annotationProcessing>
   </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Semesteroppgave" options="--add-exports jdk.compiler/com.sun.tools.javac.util=org.datavelger" />
+    </option>
+  </component>
 </project>

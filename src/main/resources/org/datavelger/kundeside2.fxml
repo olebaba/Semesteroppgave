@@ -2,8 +2,6 @@
 
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -29,28 +27,19 @@
       <RadioButton fx:id="comp6" layoutX="200.0" layoutY="130.0" mnemonicParsing="false" styleClass="radio" text="Hovedkort" />
       <RadioButton fx:id="comp4" layoutX="500.0" layoutY="102.0" mnemonicParsing="false" styleClass="radio" text="Prosessor" />
       <RadioButton fx:id="comp8" layoutX="500.0" layoutY="132.0" mnemonicParsing="false" styleClass="radio" text="Mus" />
-      <Button layoutX="662.0" layoutY="533.0" mnemonicParsing="false" text="SØK KOMPONENT">
+      <Button fx:id="back" layoutX="23.0" layoutY="535.0" mnemonicParsing="false" text="Tilbake til forsiden">
          <effect>
             <DropShadow radius="17.25" width="50.0" />
          </effect>
       </Button>
-      <Button fx:id="back" layoutX="50.0" layoutY="533.0" mnemonicParsing="false" text="BACK">
+      <Button fx:id="choose" layoutX="665.0" layoutY="106.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="108.0" text="Søk" />
+      <Pane fx:id="innerPane" layoutX="52.0" layoutY="197.0" prefHeight="247.0" prefWidth="720.0" styleClass="radio" />
+      <Button layoutX="634.0" layoutY="529.0" mnemonicParsing="false" text="Videre til bestilling">
          <effect>
             <DropShadow radius="17.25" width="50.0" />
          </effect>
       </Button>
-      <Button fx:id="choose" layoutX="665.0" layoutY="106.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="109.0" text="Velg" />
-      <Pane fx:id="innerPane" layoutX="52.0" layoutY="197.0" prefHeight="247.0" prefWidth="720.0" styleClass="radio">
-         <children>
-             <!--
-            <Label layoutY="13.0" styleClass="radio" text="Grafikkort" />
-            <ChoiceBox fx:id="brand" layoutX="150.0" layoutY="14.0" prefHeight="26.0" prefWidth="109.0" />
-            <ChoiceBox fx:id="type" layoutX="300.0" layoutY="14.0" prefHeight="26.0" prefWidth="109.0" />
-            <ChoiceBox fx:id="size" layoutX="450.0" layoutY="14.0" prefHeight="26.0" prefWidth="109.0" />
-            <Button fx:id="choose1" layoutX="615.0" layoutY="13.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="110.0" text="Velg" />
-            -->
-         </children>
-      </Pane>
+      <Button fx:id="previousConf" layoutX="20.0" layoutY="496.0" mnemonicParsing="false" text="Vis tidligere konfigurerte PC-er" />
 
    </children>
 </AnchorPane>

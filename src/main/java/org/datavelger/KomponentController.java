@@ -29,6 +29,8 @@ public class KomponentController implements Initializable {
     private Button btn_add, btnLoadAll;
     @FXML
     private Label labInfo;
+    @FXML
+    private ChoiceBox <String> komponent;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -40,6 +42,7 @@ public class KomponentController implements Initializable {
         pricecol.setCellValueFactory(new PropertyValueFactory<>("name"));
         table.setItems(getComponentList());
     }
+
 
     public void AddRecord(){
         Component comp = new Component();

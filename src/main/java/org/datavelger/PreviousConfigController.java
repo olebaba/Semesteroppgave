@@ -8,10 +8,14 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import org.datavelger.classes.DataCollection;
 import org.datavelger.classes.FileOpenerCsv;
+import org.datavelger.classes.GraphicsCard;
 import org.datavelger.classes.Parts;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class PreviousConfigController implements Initializable{
@@ -31,7 +35,7 @@ public class PreviousConfigController implements Initializable{
     private TableColumn<DataCollection, String> nameCol, graphicsCol,screenCol, keyboardCol,
             processorCol, harddriveCol, motherboardCol;
     @FXML
-    private TableView<Parts> tableView;
+    private TableView<List<String>> tableView;
 
     DataCollection collection = new DataCollection();
 
@@ -40,7 +44,12 @@ public class PreviousConfigController implements Initializable{
         fileOpenerCsv = new FileOpenerCsv("file.csv", false);
         fileOpenerCsv.setOnSucceeded(event -> {
             //legg til verdiene i Tableview med :
-            fileOpenerCsv.getValue();
+            List<List<String>> list = fileOpenerCsv.getValue();
+            for(int i = 1; i<list.size(); i++){
+                collection.addElement(list.get(i));
+                System.out.println(list.get(i));
+            }
+            //System.out.println(list.get(1).get(4));
             enableGUI(false);
             labInfo.setText("Filen er lastet inn.");
         });
@@ -68,13 +77,13 @@ public class PreviousConfigController implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        nameCol.setCellValueFactory(new PropertyValueFactory<DataCollection, String>("name"));
-        nameCol.setCellValueFactory(new PropertyValueFactory<DataCollection, String>("graphics"));
-        nameCol.setCellValueFactory(new PropertyValueFactory<DataCollection, String>("screen"));
-        nameCol.setCellValueFactory(new PropertyValueFactory<DataCollection, String>("keyboard"));
-        nameCol.setCellValueFactory(new PropertyValueFactory<DataCollection, String>("processor"));
-        nameCol.setCellValueFactory(new PropertyValueFactory<DataCollection, String>("harddrive"));
-        nameCol.setCellValueFactory(new PropertyValueFactory<DataCollection, String>("motherboard"));
+        nameCol.setCellValueFactory(new PropertyValueFactory<DataCollection, String>("Navn"));
+        graphicsCol.setCellValueFactory(new PropertyValueFactory<DataCollection, String>("Grafikkort"));
+        screenCol.setCellValueFactory(new PropertyValueFactory<DataCollection, String>("Skjerm"));
+        keyboardCol.setCellValueFactory(new PropertyValueFactory<DataCollection, String>("Tastatur"));
+        processorCol.setCellValueFactory(new PropertyValueFactory<DataCollection, String>("Prosessor"));
+        harddriveCol.setCellValueFactory(new PropertyValueFactory<DataCollection, String>("Harddisk"));
+        motherboardCol.setCellValueFactory(new PropertyValueFactory<DataCollection, String>("Hovedkort"));
 
         collection.attachTableView(tableView);
 

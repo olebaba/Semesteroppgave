@@ -4,19 +4,21 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableView;
 
+import java.util.List;
+
 public class DataCollection {
 
-    private ObservableList<Parts> list = FXCollections.observableArrayList();
+    private ObservableList<List<String>> list = FXCollections.observableArrayList();
 
-    public void attachTableView(TableView<Parts> tv) {
+    public void attachTableView(TableView<List<String>> tv) {
         tv.setItems(list);
     }
 
-    public void addElement(Parts obj) {
-        list.add(obj);
+    public void addElement(List<String> string) {
+        list.add(string);
     }
 
-    public ObservableList<Parts> getList(){
+    public ObservableList<List<String>> getList(){
         return list;
     }
 

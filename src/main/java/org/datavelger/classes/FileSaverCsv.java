@@ -17,7 +17,7 @@ public class FileSaverCsv implements FileSaver {
         FileWriter writer = new FileWriter(file, true);
         Scanner scanner = new Scanner(file);
         if(!scanner.hasNext()){
-            writer.append("Graphics, Harddrive, Keyboard, Memory, Monitor, Motherboard, Mouse, Processor");
+            writer.append("Graphics,Harddrive,Keyboard,Memory,Monitor,Motherboard,Mouse,Processor");
             scanner.close();
         }
         writer.append(System.lineSeparator());

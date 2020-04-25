@@ -18,6 +18,6 @@ public class Memory extends Component {
 
     @Override
     public String toString() {
-        return String.format("Memory{ %d %s %s}", getPrice(), getName(), getSpeed());
+        return String.format("Memory{%d;%s;%s}", getPrice(), getName(), getSpeed());
     }
 }

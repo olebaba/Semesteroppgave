@@ -28,7 +28,8 @@
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                            </columnResizePolicy>
                         </TableView>
-                        <Button fx:id="txtavbryt" layoutX="54.0" layoutY="500.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" style="-fx-background-color: FB5D18;" text="Avbryt" />
+                        <Button fx:id="btnAvbryt" layoutX="54.0" layoutY="500.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" style="-fx-background-color: FB5D18;" text="Avbryt" />
+                        <Button fx:id="btnLoadAll" layoutX="590.0" layoutY="303.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="109.0" text="Vis alle" />
                      </children>
                   </AnchorPane>
             </content>

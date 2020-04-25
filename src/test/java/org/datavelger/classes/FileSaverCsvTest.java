@@ -21,6 +21,6 @@ class FileSaverCsvTest {
     void saveCsv() throws IOException {
         parts2.setMemory(new Memory(900, "GSkill", "3666MHz"));
         FileSaverCsv saverCsv = new FileSaverCsv();
-        saverCsv.saveFile(parts2, false);
+        saverCsv.saveFile(parts, false);
     }
 }

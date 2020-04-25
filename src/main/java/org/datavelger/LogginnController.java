@@ -62,7 +62,7 @@ public class LogginnController implements Initializable {
             }
         }
         else{
-            Kommentar.setText("Feil brukernavn eller passord");
+            Kommentar.setText("Feil brukernavn eller passord!");
         }
     }
 }

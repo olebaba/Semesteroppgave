@@ -9,7 +9,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import org.datavelger.classes.Component;
 import org.datavelger.classes.FileOpenerCsv;
-import org.datavelger.classes.Mouse;
 
 import java.io.IOException;
 import java.net.URL;
@@ -34,7 +33,7 @@ public class KomponentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         btnLoadAll.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
-            LoadOrders();
+            loadComponents();
         });
 
         btnAvbryt.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
@@ -68,7 +67,7 @@ public class KomponentController implements Initializable {
         return components;
     }
 
-    public void LoadOrders(){
+    public void loadComponents(){
         fileOpenerCsv = new FileOpenerCsv("file.csv", false);
         fileOpenerCsv.setOnSucceeded(event -> {
             //legg til verdiene i Tableview med :

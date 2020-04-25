@@ -22,15 +22,20 @@ public class FileOpenerCsv extends Task<String> implements FileOpener {
     public String openFile(String path, boolean semicolon) throws IOException {
         String delimiter = ",";
         if(semicolon) delimiter = ";";
-
-        File file = new File(path);
-        Scanner scanner = new Scanner(file);
-        scanner.useDelimiter(delimiter);
         StringBuilder out = new StringBuilder();
-        while (scanner.hasNext()){
-            out.append(scanner.next());
+        File file = new File("file.csv");
+
+        try (Scanner scanner = new Scanner(file)){
+            scanner.useDelimiter(delimiter);
+
+            while (scanner.hasNext()){
+                //if(scanner.next().equals(System.lineSeparator())) out.append(System.lineSeparator());
+                out.append(scanner.next());
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
         }
-        scanner.close();
         return out.toString();
     }
 

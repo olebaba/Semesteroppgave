@@ -5,10 +5,11 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 
 class FileOpenerCsvTest {
+    FileOpener fileOpenerCsv;
 
     @Test
     void openCsv() throws IOException {
-        FileOpenerCsv openerCsv = new FileOpenerCsv("file.csv", false);
-        openerCsv.openFile("file.csv", false);
+        fileOpenerCsv = new FileOpenerCsv("file.csv", false);
+        System.out.println(fileOpenerCsv.openFile("file.csv", false));
     }
 }

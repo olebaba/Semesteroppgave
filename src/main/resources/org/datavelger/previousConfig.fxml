@@ -16,18 +16,19 @@
           <MenuItem mnemonicParsing="false" text="Pris (lav til høy)" />
         </items>
       </MenuButton>
-      <TableView layoutX="14.0" layoutY="110.0" prefHeight="210.0" prefWidth="577.0">
+      <TableView fx:id="tableView" layoutX="14.0" layoutY="110.0" prefHeight="210.0" prefWidth="577.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="Navn" />
-          <TableColumn prefWidth="75.0" text="Grafikkort" />
-            <TableColumn prefWidth="75.0" text="Skjerm" />
-            <TableColumn prefWidth="75.0" text="Tastatur" />
-            <TableColumn prefWidth="75.0" text="Prosessor" />
-            <TableColumn prefWidth="75.0" text="Harddisk" />
-            <TableColumn prefWidth="75.0" text="Hovedkort" />
+          <TableColumn fx:id="nameCol" prefWidth="75.0" text="Navn" />
+          <TableColumn fx:id="graphicsCol" prefWidth="75.0" text="Grafikkort" />
+            <TableColumn fx:id="screenCol" prefWidth="75.0" text="Skjerm" />
+            <TableColumn fx:id="keyboardCol" prefWidth="75.0" text="Tastatur" />
+            <TableColumn fx:id="processorCol" prefWidth="75.0" text="Prosessor" />
+            <TableColumn fx:id="harddriveCol" prefWidth="75.0" text="Harddisk" />
+            <TableColumn fx:id="motherboardCol" prefWidth="75.0" text="Hovedkort" />
         </columns>
       </TableView>
       <Button fx:id="back" layoutX="27.0" layoutY="354.0" mnemonicParsing="false" text="Tilbake" />
       <Label fx:id="sorting" layoutX="40.0" layoutY="93.0" prefHeight="17.0" prefWidth="188.0" />
+      <Label fx:id="labInfo" layoutX="413.0" layoutY="345.0" prefHeight="18.0" prefWidth="102.0" />
    </children>
 </AnchorPane>

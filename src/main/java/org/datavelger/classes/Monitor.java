@@ -18,6 +18,6 @@ public class Monitor extends Component {
 
     @Override
     public String toString() {
-        return String.format("Monitor{ %d %s %s}", getPrice(), getName(), getSize());
+        return String.format("Monitor{%d;%s;%s}", getPrice(), getName(), getSize());
     }
 }

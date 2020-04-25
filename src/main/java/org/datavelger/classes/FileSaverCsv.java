@@ -15,8 +15,6 @@ public class FileSaverCsv implements FileSaver {
 
         File file = new File("file.csv");
         FileWriter writer = new FileWriter(file);
-        writer.append(parts.toString());
-        /*
         writer.append(parts.getGraphicsCard().getName()).append(delimiter);
         writer.append(parts.getHarddrive().getName()).append(delimiter);
         writer.append(parts.getKeyboard().getName()).append(delimiter);
@@ -25,7 +23,6 @@ public class FileSaverCsv implements FileSaver {
         writer.append(parts.getMotherboard().getName()).append(delimiter);
         writer.append(parts.getMouse().getName()).append(delimiter);
         writer.append(parts.getProcessor().getName()).append(delimiter);
-        */
         writer.close();
 
 

@@ -115,14 +115,14 @@ public class Parts {
         }else out.append("Parts{");
 
         try {
-            out.append(this.getGraphicsCard() == null ? "null," : this.getGraphicsCard()).
-                    append(this.getHarddrive() == null ? "null," : this.getHarddrive()).
-                    append(this.getKeyboard() == null ? "null," : this.getKeyboard()).
-                    append(this.getMemory() == null ? "null," : this.getMemory()).
-                    append(this.getMonitor() == null ? "null," : this.getMonitor()).
-                    append(this.getMotherboard() == null ? "null," : this.getMotherboard()).
-                    append(this.getMouse() == null ? "null," : this.getMouse()).
-                    append(this.getProcessor() == null ? "null" : this.getProcessor());
+            out.append(this.getGraphicsCard() == null ? "null{}" : this.getGraphicsCard()).
+                    append(this.getHarddrive() == null ? "null{}" : this.getHarddrive()).
+                    append(this.getKeyboard() == null ? "null{}" : this.getKeyboard()).
+                    append(this.getMemory() == null ? "null{}" : this.getMemory()).
+                    append(this.getMonitor() == null ? "null{}" : this.getMonitor()).
+                    append(this.getMotherboard() == null ? "null{}" : this.getMotherboard()).
+                    append(this.getMouse() == null ? "null{}" : this.getMouse()).
+                    append(this.getProcessor() == null ? "null{}" : this.getProcessor());
 
         }catch (Exception e){
             e.printStackTrace();

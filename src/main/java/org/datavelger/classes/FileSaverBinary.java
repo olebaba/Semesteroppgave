@@ -1,11 +1,10 @@
 package org.datavelger.classes;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.List;
+import java.nio.file.StandardOpenOption;
 
 public class FileSaverBinary implements FileSaver {
     @Override
@@ -13,7 +12,8 @@ public class FileSaverBinary implements FileSaver {
         Path path = Paths.get("binaryfile.txt");
 
         try {
-            Files.writeString(path, parts.toString());
+            if(!Files.exists(path)) Files.createFile(path);
+            Files.writeString(path, parts.toString() + System.lineSeparator(), StandardOpenOption.APPEND);
         }catch (IOException e){
             e.printStackTrace();
         }

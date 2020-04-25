@@ -11,6 +11,7 @@ import org.datavelger.classes.Component;
 import org.datavelger.classes.FileOpenerCsv;
 import org.datavelger.classes.Mouse;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -26,7 +27,7 @@ public class KomponentController implements Initializable {
     @FXML
     private TextField txt_name, txt_price;
     @FXML
-    private Button btn_add, btnLoadAll;
+    private Button btn_add, btnLoadAll, btnAvbryt;
     @FXML
     private Label labInfo;
     @FXML
@@ -36,6 +37,14 @@ public class KomponentController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         btnLoadAll.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
             LoadOrders();
+        });
+
+        btnAvbryt.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
+            try {
+                App.setRoot("main");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         });
 
         namecol.setCellValueFactory(new PropertyValueFactory<>("price"));

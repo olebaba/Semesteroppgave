@@ -19,6 +19,6 @@ public class Motherboard extends Component{
 
     @Override
     public String toString() {
-        return String.format("Motherboard{ %d %s %s}", getPrice(), getName(), getType());
+        return String.format("Motherboard{%d;%s;%s}", getPrice(), getName(), getType());
     }
 }

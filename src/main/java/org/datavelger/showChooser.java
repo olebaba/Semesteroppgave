@@ -21,7 +21,7 @@ public class showChooser {
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle(pressedButton);
         Label label = new Label();
-        label.setText("Velg ønsket grafikkort");
+        label.setText("Velg ønsket "+pressedButton);
 /*
         TableView table = new TableView<>();
         TableColumn name = new TableColumn("Navn");
@@ -30,10 +30,10 @@ public class showChooser {
         table.getColumns().addAll(name,series,price);
         table.setOnMouseClicked((MouseEvent event)->{
             //TODO: Sjekke hvilken entry som er klikket på i tableview
-        });
+        });*/
 
-    */    Label valgt = new Label();
-        valgt.setText("Du har valgt følgende grafikkort:");
+         Label valgt = new Label();
+        valgt.setText("Du har valgt følgende "+pressedButton);
         //TODO: skrive ut valgt grafikkort basert på tableview
 
         Button closeButton = new Button("Tilbake");

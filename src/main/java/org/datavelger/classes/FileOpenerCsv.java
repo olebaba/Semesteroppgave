@@ -4,12 +4,11 @@ import javafx.concurrent.Task;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
-public class FileOpenerCsv extends Task<String> implements FileOpener {
+public class FileOpenerCsv extends Task<List<List<String>>> implements FileOpener {
     private String path;
     private boolean semicolon;
 
@@ -19,33 +18,42 @@ public class FileOpenerCsv extends Task<String> implements FileOpener {
     }
 
     @Override
-    public String openFile(String path, boolean semicolon) throws IOException {
-        String delimiter = ",";
-        if(semicolon) delimiter = ";";
-
-        File file = new File(path);
-        Scanner scanner = new Scanner(file);
-        scanner.useDelimiter(delimiter);
-        StringBuilder out = new StringBuilder();
-        while (scanner.hasNext()){
-            out.append(scanner.next());
-        }
-        scanner.close();
-        return out.toString();
+    public String openFile(String path, boolean semicolon) {
+        return path;
     }
 
     @Override
-    protected String call() throws Exception {
+    protected List<List<String>> call() throws Exception {
+        List<List<String>> list = new ArrayList<>(1);
+
         try{
             Thread.sleep(3000); //vise at GUI blir slått av
         }catch (InterruptedException e){
         }
-        String out;
-        try {
-            out = openFile(path, semicolon);
-        }catch (FileNotFoundException e){
-            throw new FileNotFoundException("Fant ingen fil med det navnet.");
+
+        String delimiter = ",";
+        if(semicolon) delimiter = ";";
+
+        File file = new File("file.csv");
+
+        try (Scanner lineScanner = new Scanner(file)){
+            int number = 0;
+            while (lineScanner.hasNextLine()){
+                list.add(new ArrayList<>());
+                String line = lineScanner.nextLine();
+                Scanner scanner = new Scanner(line);
+                scanner.useDelimiter(delimiter);
+                while (scanner.hasNext()){
+                    list.get(number).add(scanner.next());
+                }
+
+                System.out.println("new line");
+                number++;
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
         }
-        return out;
+        return list;
     }
 }

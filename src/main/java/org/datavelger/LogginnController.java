@@ -36,23 +36,11 @@ public class LogginnController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         btnLogin.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
-            if(Login()) {
-                try {
-                    App.setRoot("addKomponent");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
+            Login();
         });
         password.setOnKeyPressed(keyEvent -> {
             if(keyEvent.getCode().equals(KeyCode.ENTER)){
-                if(Login()) {
-                    try {
-                        App.setRoot("addKomponent");
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
+                Login();
             }
         });
 
@@ -65,14 +53,16 @@ public class LogginnController implements Initializable {
         });
 
     }
-    public boolean Login(){
+    public void Login(){
         if(username.getText().equals("Admin") && password.getText().equals("Admin")) {
-            Kommentar.setText("Logget inn");
-            return true;
+            try {
+                App.setRoot("addKomponent");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         else{
-            Kommentar.setText("Feil brukernavn eller passord");
-            return false;
+            Kommentar.setText("Feil brukernavn eller passord!");
         }
     }
 }

@@ -54,6 +54,11 @@ public class KomponentController implements Initializable {
 
 
     public void AddRecord(){
+        ChoiceBox<String> komponent = new ChoiceBox<>();
+        komponent.getItems().addAll( "Komponent", "Grafikkkort", "Harddisk", "Tastatur", "Prosessor", "Skjerm", "Hovedkort", "Minne", "Mus");
+
+        komponent.setValue("Komponent");
+
         Component comp = new Component();
         comp.setPrice(Integer.parseInt(txt_price.getText()));
         comp.setName(txt_name.getText());

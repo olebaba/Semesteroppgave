@@ -9,15 +9,16 @@ import java.util.Scanner;
 
 public class FileSaverCsv implements FileSaver {
     @Override
-    public void saveFile(Parts parts, boolean semicolon) throws IOException {
+    public void saveFile(String filepath, Parts parts, boolean semicolon) throws IOException {
         String delimiter = ",";
         if(semicolon) delimiter = ";";
 
-        File file = new File("file.csv");
+        File file = new File(filepath);
         FileWriter writer = new FileWriter(file, true);
         Scanner scanner = new Scanner(file);
         if(!scanner.hasNext()){
-            writer.append("Graphics,Harddrive,Keyboard,Memory,Monitor,Motherboard,Mouse,Processor");
+            writer.append(String.format("Graphics%sHarddrive%sKeyboard%sMemory%sMonitor%sMotherboard%sMouse%sProcessor"
+                    , delimiter, delimiter, delimiter, delimiter, delimiter, delimiter, delimiter));
             scanner.close();
         }
         writer.append(System.lineSeparator());

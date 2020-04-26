@@ -8,8 +8,8 @@ import java.nio.file.StandardOpenOption;
 
 public class FileSaverBinary implements FileSaver {
     @Override
-    public void saveFile(Parts parts, boolean semicolon) throws IOException {
-        Path path = Paths.get("binaryfile.txt");
+    public void saveFile(String filepath, Parts parts, boolean semicolon) throws IOException {
+        Path path = Paths.get(filepath);
 
         try {
             if(!Files.exists(path)) Files.createFile(path);

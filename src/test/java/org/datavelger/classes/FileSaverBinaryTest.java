@@ -20,6 +20,7 @@ class FileSaverBinaryTest {
     void saveFile() throws IOException {
         parts2.setKeyboard(new Keyboard(300, "Logitech g30", false));
         FileSaverBinary saverBinary = new FileSaverBinary();
-        saverBinary.saveFile(parts2, false);
+        String path = "file.csv";
+        saverBinary.saveFile(path, parts2, false);
     }
 }

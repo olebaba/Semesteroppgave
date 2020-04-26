@@ -21,6 +21,7 @@ class FileSaverCsvTest {
     void saveCsv() throws IOException {
         parts2.setMemory(new Memory(900, "GSkill", "3666MHz"));
         FileSaverCsv saverCsv = new FileSaverCsv();
-        saverCsv.saveFile(parts, false);
+        String path = "fileforexcel.csv";
+        saverCsv.saveFile(path, parts, true);
     }
 }

@@ -34,9 +34,10 @@ public class KomponentController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        btnLoadAll.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
+        /*btnLoadAll.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
             loadComponents();
         });
+        */
 
         btnAvbryt.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
             try {

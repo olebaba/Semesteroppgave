@@ -1,6 +1,5 @@
 package org.datavelger;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -8,7 +7,6 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
@@ -20,21 +18,19 @@ public class LogginnController implements Initializable {
 
     @FXML
     private Text Kommentar;
-
     @FXML
     private TextField username;
-
     @FXML
     private PasswordField password;
-
     @FXML
     private Button btnLogin;
-
     @FXML
     private Hyperlink avbryt;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+
         btnLogin.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
             Login();
         });

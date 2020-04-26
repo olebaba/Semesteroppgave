@@ -19,7 +19,7 @@ public class FileOpenerCsv extends Task<List<List<String>>> implements FileOpene
 
     @Override
     public String openFile(String path, boolean semicolon) {
-        return path;
+        return null;
     }
 
     @Override
@@ -34,7 +34,7 @@ public class FileOpenerCsv extends Task<List<List<String>>> implements FileOpene
         String delimiter = ",";
         if(semicolon) delimiter = ";";
 
-        File file = new File("file.csv");
+        File file = new File(path);
 
         try (Scanner lineScanner = new Scanner(file)){
             int number = 0;

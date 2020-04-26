@@ -6,7 +6,8 @@ import java.io.IOException;
 
 class FileSaverCsvTest {
 
-    Parts parts = new Parts(new GraphicsCard(3000, "GTX1080"),
+    Order order = new Order(new String("Ole"),
+                    new GraphicsCard(3000, "GTX1080"),
                     new Harddrive(400, "Seagate 5400", 2.5, 2),
                     new Keyboard(400, "Corsair K70", true),
                     new Memory(1200, "Kingston", "2444MHz"),
@@ -15,13 +16,13 @@ class FileSaverCsvTest {
                     new Mouse(699, "Logitech G502", false),
                     new Processor(2340, "Ryzen 5 3600X", "AMD"));
 
-    Parts parts2 = new Parts();
+    Order order2 = new Order();
 
     @Test
     void saveCsv() throws IOException {
-        parts2.setMemory(new Memory(900, "GSkill", "3666MHz"));
-        FileSaverCsv saverCsv = new FileSaverCsv();
-        String path = "fileforexcel.csv";
-        saverCsv.saveFile(path, parts, true);
+        order2.setMemory(new Memory(900, "GSkill", "3666MHz").getName());
+        FileSaverCsv saverCsv = new FileSaverCsv(order,true);
+        String path = "file.csv";
+        saverCsv.saveFile(path);
     }
 }

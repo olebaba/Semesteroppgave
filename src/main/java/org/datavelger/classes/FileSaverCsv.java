@@ -1,15 +1,21 @@
 package org.datavelger.classes;
 
-import javafx.concurrent.Task;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
 public class FileSaverCsv implements FileSaver {
+    private final boolean semicolon;
+    private final Order order;
+
+    public FileSaverCsv(Order order, boolean semicolon){
+        this.order = order;
+        this.semicolon = semicolon;
+    }
+
     @Override
-    public void saveFile(String filepath, Parts parts, boolean semicolon) throws IOException {
+    public void saveFile(String filepath) throws IOException {
         String delimiter = ",";
         if(semicolon) delimiter = ";";
 
@@ -17,19 +23,21 @@ public class FileSaverCsv implements FileSaver {
         FileWriter writer = new FileWriter(file, true);
         Scanner scanner = new Scanner(file);
         if(!scanner.hasNext()){
-            writer.append(String.format("Graphics%sHarddrive%sKeyboard%sMemory%sMonitor%sMotherboard%sMouse%sProcessor"
-                    , delimiter, delimiter, delimiter, delimiter, delimiter, delimiter, delimiter));
+            writer.append(String.format("Name%sGraphicscard%sHarddrive%sKeyboard%sMemory" +
+                            "%sMonitor%sMotherboard%sMouse%sProcessor"
+                    , delimiter, delimiter, delimiter, delimiter, delimiter, delimiter, delimiter, delimiter));
             scanner.close();
         }
         writer.append(System.lineSeparator());
-        writer.append(parts.getGraphicsCard().getName()).append(delimiter);
-        writer.append(parts.getHarddrive().getName()).append(delimiter);
-        writer.append(parts.getKeyboard().getName()).append(delimiter);
-        writer.append(parts.getMemory().getName()).append(delimiter);
-        writer.append(parts.getMonitor().getName()).append(delimiter);
-        writer.append(parts.getMotherboard().getName()).append(delimiter);
-        writer.append(parts.getMouse().getName()).append(delimiter);
-        writer.append(parts.getProcessor().getName());
+        writer.append(order.getName()).append(delimiter);
+        writer.append(order.getGraphicsCard()).append(delimiter);
+        writer.append(order.getHarddrive()).append(delimiter);
+        writer.append(order.getKeyboard()).append(delimiter);
+        writer.append(order.getMemory()).append(delimiter);
+        writer.append(order.getMonitor()).append(delimiter);
+        writer.append(order.getMotherboard()).append(delimiter);
+        writer.append(order.getMouse()).append(delimiter);
+        writer.append(order.getProcessor());
         writer.flush();
         writer.close();
 

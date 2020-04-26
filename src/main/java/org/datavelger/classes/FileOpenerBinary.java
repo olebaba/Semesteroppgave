@@ -11,8 +11,7 @@ public class FileOpenerBinary implements FileOpener {
         File file = new File(path);
         List<String> lines = Files.readAllLines(file.toPath());
         StringBuilder sb = new StringBuilder();
-        String regex = "^Computer\\{([\\w]*\\{[\\d]*;[\\w ]*(;\\d,\\d*;\\d)?(;\\w*)?}){8}}" +
-                "|^Parts\\{(([\\w]*\\{[\\d]*;?[\\w ]*(;\\d,\\d*;\\d)?(;\\w*)?}){8})?}";
+        String regex = "^([\\w]*\\{[\\d]*;[\\w ]*(;\\d,\\d*;\\d)?(;\\w*)?})";
         for (String line : lines){
             if(line.matches(regex)) sb.append(line).append(System.lineSeparator());
             else throw new IOException("File is corrupt.");

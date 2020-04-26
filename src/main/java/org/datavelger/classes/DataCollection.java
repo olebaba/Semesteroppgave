@@ -8,17 +8,17 @@ import java.util.List;
 
 public class DataCollection {
 
-    private ObservableList<List<String>> list = FXCollections.observableArrayList();
+    private ObservableList<Order> list = FXCollections.observableArrayList();
 
-    public void attachTableView(TableView<List<String>> tv) {
+    public void attachTableView(TableView<Order> tv) {
         tv.setItems(list);
     }
 
-    public void addElement(List<String> string) {
+    public void addElement(Order string) {
         list.add(string);
     }
 
-    public ObservableList<List<String>> getList(){
+    public ObservableList<Order> getList(){
         return list;
     }
 

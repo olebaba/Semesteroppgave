@@ -8,13 +8,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import org.datavelger.classes.DataCollection;
 import org.datavelger.classes.FileOpenerCsv;
-import org.datavelger.classes.GraphicsCard;
-import org.datavelger.classes.Parts;
+import org.datavelger.classes.Order;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -35,19 +32,33 @@ public class PreviousConfigController implements Initializable{
     private TableColumn<DataCollection, String> nameCol, graphicsCol,screenCol, keyboardCol,
             processorCol, harddriveCol, motherboardCol;
     @FXML
-    private TableView<List<String>> tableView;
+    private TableView<Order> tableView;
 
     DataCollection collection = new DataCollection();
 
+    public Order createOrder(List<String> orderlist){
+        Order order = new Order();
+        order.setName(orderlist.get(0));
+        order.setGraphicsCard(orderlist.get(1));
+        order.setHarddrive(orderlist.get(2));
+        order.setKeyboard(orderlist.get(3));
+        order.setMemory(orderlist.get(4));
+        order.setMonitor(orderlist.get(5));
+        order.setMotherboard(orderlist.get(6));
+        order.setMouse(orderlist.get(7));
+        order.setProcessor(orderlist.get(8));
+        return order;
+    }
 
     public void loadOrders(){
-        fileOpenerCsv = new FileOpenerCsv("file.csv", false);
+        fileOpenerCsv = new FileOpenerCsv("file.csv", true);
         fileOpenerCsv.setOnSucceeded(event -> {
-            //legg til verdiene i Tableview med :
+            //legg til verdiene i Tableview
             List<List<String>> list = fileOpenerCsv.getValue();
-            for(int i = 1; i<list.size(); i++){
-                collection.addElement(list.get(i));
-                System.out.println(list.get(i));
+            for(int i = 1; i<list.size(); i++){ //første linje er headers
+                System.out.println(list.get(i).get(3)); //test
+                collection.addElement(createOrder(list.get(i)));
+
             }
             //System.out.println(list.get(1).get(4));
             enableGUI(false);
@@ -77,13 +88,13 @@ public class PreviousConfigController implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        nameCol.setCellValueFactory(new PropertyValueFactory<DataCollection, String>("Navn"));
-        graphicsCol.setCellValueFactory(new PropertyValueFactory<DataCollection, String>("Grafikkort"));
-        screenCol.setCellValueFactory(new PropertyValueFactory<DataCollection, String>("Skjerm"));
-        keyboardCol.setCellValueFactory(new PropertyValueFactory<DataCollection, String>("Tastatur"));
-        processorCol.setCellValueFactory(new PropertyValueFactory<DataCollection, String>("Prosessor"));
-        harddriveCol.setCellValueFactory(new PropertyValueFactory<DataCollection, String>("Harddisk"));
-        motherboardCol.setCellValueFactory(new PropertyValueFactory<DataCollection, String>("Hovedkort"));
+        nameCol.setCellValueFactory(new PropertyValueFactory<DataCollection, String>("Name"));
+        graphicsCol.setCellValueFactory(new PropertyValueFactory<DataCollection, String>("GraphicsCard"));
+        screenCol.setCellValueFactory(new PropertyValueFactory<DataCollection, String>("Monitor"));
+        keyboardCol.setCellValueFactory(new PropertyValueFactory<DataCollection, String>("Keyboard"));
+        processorCol.setCellValueFactory(new PropertyValueFactory<DataCollection, String>("Processor"));
+        harddriveCol.setCellValueFactory(new PropertyValueFactory<DataCollection, String>("Harddrive"));
+        motherboardCol.setCellValueFactory(new PropertyValueFactory<DataCollection, String>("Motherboard"));
 
         collection.attachTableView(tableView);
 

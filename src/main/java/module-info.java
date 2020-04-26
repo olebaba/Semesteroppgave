@@ -5,4 +5,5 @@ module org.datavelger {
     opens org.datavelger to javafx.fxml;
     opens org.datavelger.classes to javafx.base;
     exports org.datavelger;
+    exports org.datavelger.classes;
 }

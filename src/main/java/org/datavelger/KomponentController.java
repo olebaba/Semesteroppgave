@@ -60,6 +60,7 @@ public class KomponentController implements Initializable {
         komponent.setValue("Komponent");
 
         Component comp = new Component();
+
         comp.setPrice(Integer.parseInt(txt_price.getText()));
         comp.setName(txt_name.getText());
         table.getItems().add(comp);

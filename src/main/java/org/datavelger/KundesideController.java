@@ -75,13 +75,13 @@ public class KundesideController implements Initializable {
         for (Boolean b : booleans){
             if (b != null && b) {
                 labelText = radioComps[i].getText();
-                System.out.println(i);
+                //System.out.println(i);
 
                 Label label = new Label(labelText);
                 label.setLayoutY(positionY);
                 nodes.add(label);
                 String lowerCase = labelText.toLowerCase();
-                System.out.println("Du har valgt "+lowerCase);
+                //System.out.println("Du har valgt "+lowerCase);
                 Button add = new Button("Velg "+lowerCase);
                 Button remove = new Button("Fjern valgt "+lowerCase);
                 nodes.add(add);
@@ -90,10 +90,9 @@ public class KundesideController implements Initializable {
                 remove.setLayoutX(300);
                 add.setLayoutY(positionY);
                 remove.setLayoutY(positionY);
-                String finalLabelText = lowerCase;
 
                 //Kaller på metoden i showChooser med navnet på knappen som er valgt
-                add.setOnAction(event -> showChooser.pressedButton(finalLabelText));
+                add.setOnAction(event -> showChooser.pressedButton(lowerCase));
 
                  /* System.out.println("Du har valgt grafikkort");
                     Button graphics = new Button("Velg grafikkort");

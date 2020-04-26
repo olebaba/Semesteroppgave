@@ -46,7 +46,10 @@ public class KomponentController implements Initializable {
                 e.printStackTrace();
             }
         });
+        ChoiceBox<String> komponent = new ChoiceBox<>();
+        komponent.getItems().addAll( "Komponent", "Grafikkkort", "Harddisk", "Tastatur", "Prosessor", "Skjerm", "Hovedkort", "Minne", "Mus");
 
+        komponent.setValue("Komponent");
         namecol.setCellValueFactory(new PropertyValueFactory<>("price"));
         pricecol.setCellValueFactory(new PropertyValueFactory<>("name"));
         table.setItems(getComponentList());
@@ -54,10 +57,7 @@ public class KomponentController implements Initializable {
 
 
     public void AddRecord(){
-        ChoiceBox<String> komponent = new ChoiceBox<>();
-        komponent.getItems().addAll( "Komponent", "Grafikkkort", "Harddisk", "Tastatur", "Prosessor", "Skjerm", "Hovedkort", "Minne", "Mus");
 
-        komponent.setValue("Komponent");
 
         Component comp = new Component();
 

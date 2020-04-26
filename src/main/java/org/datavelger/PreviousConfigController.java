@@ -53,14 +53,11 @@ public class PreviousConfigController implements Initializable{
     public void loadOrders(){
         fileOpenerCsv = new FileOpenerCsv("file.csv", true);
         fileOpenerCsv.setOnSucceeded(event -> {
-            //legg til verdiene i Tableview
+            //henter tidligere konfigurerte pcer og legger dem i tableview
             List<List<String>> list = fileOpenerCsv.getValue();
             for(int i = 1; i<list.size(); i++){ //første linje er headers
-                //System.out.println(list.get(i).get(3)); //test
                 collection.addElement(createOrder(list.get(i)));
-
             }
-            //System.out.println(list.get(1).get(4));
             enableGUI(false);
             labInfo.setText("Filen er lastet inn.");
         });
@@ -83,7 +80,8 @@ public class PreviousConfigController implements Initializable{
     }
 
     public void enableGUI(boolean enable){
-        //TODO disable elements
+        if (enable) anchorPane.setDisable(true);
+        else anchorPane.setDisable(false);
     }
 
     @Override

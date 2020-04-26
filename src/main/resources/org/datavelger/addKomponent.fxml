@@ -9,7 +9,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="732.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.datavelger.KomponentController">
+<AnchorPane fx:id="anchorpane" prefHeight="732.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.datavelger.KomponentController">
    <children>
       <TabPane prefHeight="556.0" prefWidth="792.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>

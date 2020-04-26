@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import org.datavelger.classes.Component;
 import org.datavelger.classes.FileOpenerCsv;
 
@@ -31,6 +32,8 @@ public class KomponentController implements Initializable {
     private Label labInfo;
     @FXML
     private ChoiceBox <String> komponent;
+    @FXML
+    private AnchorPane anchorPane;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -104,15 +107,8 @@ public class KomponentController implements Initializable {
     }
 
     public void enableGUI(boolean enable){
-        if (enable){
-            txt_name.setDisable(true);
-            txt_price.setDisable(true);
-            table.setDisable(true);
-        }else {
-            txt_name.setDisable(false);
-            txt_price.setDisable(false);
-            table.setDisable(false);
-        }
+        if (enable) anchorPane.setDisable(true);
+        else anchorPane.setDisable(false);
     }
 
 }

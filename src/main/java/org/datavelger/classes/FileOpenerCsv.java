@@ -47,7 +47,7 @@ public class FileOpenerCsv extends Task<List<List<String>>> implements FileOpene
                     list.get(number).add(scanner.next());
                 }
 
-                System.out.println("new line");
+                //System.out.println("new line");
                 number++;
             }
 

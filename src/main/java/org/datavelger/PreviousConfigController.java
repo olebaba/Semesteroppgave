@@ -56,7 +56,7 @@ public class PreviousConfigController implements Initializable{
             //legg til verdiene i Tableview
             List<List<String>> list = fileOpenerCsv.getValue();
             for(int i = 1; i<list.size(); i++){ //første linje er headers
-                System.out.println(list.get(i).get(3)); //test
+                //System.out.println(list.get(i).get(3)); //test
                 collection.addElement(createOrder(list.get(i)));
 
             }

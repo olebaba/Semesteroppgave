@@ -1,5 +1,7 @@
 package org.datavelger.classes;
 
+import javafx.collections.ObservableList;
+
 public class Component {
     private int price;
     private String name;
@@ -25,5 +27,8 @@ public class Component {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setkompononent(ObservableList<String> items) {
     }
 }

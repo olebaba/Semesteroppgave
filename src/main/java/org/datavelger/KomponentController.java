@@ -51,10 +51,12 @@ public class KomponentController implements Initializable {
         });
         ChoiceBox<String> komponent = new ChoiceBox<>();
         komponent.getItems().addAll( "Komponent", "Grafikkkort", "Harddisk", "Tastatur", "Prosessor", "Skjerm", "Hovedkort", "Minne", "Mus");
+        komponent.getSelectionModel().select(0);
 
         komponent.setValue("Komponent");
-        namecol.setCellValueFactory(new PropertyValueFactory<>("price"));
-        pricecol.setCellValueFactory(new PropertyValueFactory<>("name"));
+
+        namecol.setCellValueFactory(new PropertyValueFactory<>("name"));
+        pricecol.setCellValueFactory(new PropertyValueFactory<>("price"));
         table.setItems(getComponentList());
     }
 
@@ -72,7 +74,7 @@ public class KomponentController implements Initializable {
     }
     ObservableList<Component> getComponentList() {
         ObservableList<Component> components= FXCollections.observableArrayList();
-        components.add(new Component(123,"Keyboard") );
+        components.add(new Component( 123,"Keyboard") );
         components.add(new Component(1000,"harddrive") );
         components.add(new Component(2000,"Mouse") );
         components.add(new Component(123,"Keyboard") );

@@ -9,7 +9,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="anchorpane" prefHeight="732.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.datavelger.KomponentController">
+<AnchorPane prefHeight="732.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.datavelger.KomponentController">
    <children>
       <TabPane prefHeight="556.0" prefWidth="792.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -17,11 +17,13 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="597.0" prefWidth="700.0">
                      <children>
+                        <ChoiceBox fx:id="komponent" layoutX="54.0" layoutY="295.0" prefWidth="150.0" />
                         <TextField fx:id="txt_name" layoutX="54.0" layoutY="344.0" prefHeight="36.0" prefWidth="149.0" promptText="Navn" />
                         <TextField fx:id="txt_price" layoutX="54.0" layoutY="395.0" prefHeight="35.0" prefWidth="149.0" promptText="Pris" />
                         <Button fx:id="btn_add" layoutX="54.0" layoutY="451.0" mnemonicParsing="false" onAction="#AddRecord" text="Bekreft" />
                         <TableView fx:id="table" prefHeight="269.0" prefWidth="800.0">
                           <columns>
+                              <TableColumn fx:id="namecol2" prefWidth="75.0" text="Komponent" />
                             <TableColumn fx:id="namecol" prefWidth="75.0" text="Navn" />
                             <TableColumn fx:id="pricecol" prefWidth="75.0" text="Pris" />
                           </columns>
@@ -30,7 +32,6 @@
                            </columnResizePolicy>
                         </TableView>
                         <Button fx:id="btnAvbryt" layoutX="54.0" layoutY="500.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" style="-fx-background-color: FB5D18;" text="Avbryt" />
-                        <ChoiceBox layoutX="54.0" layoutY="295.0" prefWidth="150.0" />
                      </children>
                   </AnchorPane>
             </content>

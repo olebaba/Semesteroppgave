@@ -1,6 +1,8 @@
 package org.datavelger.classes;
 
 import javafx.collections.ObservableList;
+import org.datavelger.Exceptions.InvalidNameException;
+import org.datavelger.Exceptions.InvalidPriceException;
 
 public class Component {
     private int price;
@@ -8,16 +10,17 @@ public class Component {
 
     public Component(){}
 
-    public Component(int price, String name){
-        this.price = price;
-        this.name = name;
+    public Component(int price, String name) throws InvalidPriceException, InvalidNameException {
+        setPrice(price);
+        setName(name);
     }
 
     public int getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(int price) throws InvalidPriceException {
+        if (!Validator.isValidPrice(price)) throw new InvalidPriceException();
         this.price = price;
     }
 
@@ -25,7 +28,8 @@ public class Component {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(String name) throws InvalidNameException {
+        if(!Validator.isValidName(name)) throw new InvalidNameException();
         this.name = name;
     }
 

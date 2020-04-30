@@ -1,5 +1,7 @@
 package org.datavelger.classes;
 
+import org.datavelger.Exceptions.InvalidNameException;
+import org.datavelger.Exceptions.InvalidPriceException;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -16,9 +18,12 @@ class FileSaverBinaryTest {
             new Processor(2340, "Ryzen 5 3600X", "AMD"));
     Order order2 = new Order();
 
+    FileSaverBinaryTest() throws InvalidNameException, InvalidPriceException {
+    }
+
 
     @Test
-    void saveFile() throws IOException {
+    void saveFile() throws IOException, InvalidNameException, InvalidPriceException {
         order2.setKeyboard(new Keyboard(300, "Logitech g30", false).getName());
         FileSaverBinary saverBinary = new FileSaverBinary(new Processor(2999, "i5 7600", "Intel"));
         String path = "components.bin";

@@ -8,6 +8,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import org.datavelger.Exceptions.InvalidNameException;
+import org.datavelger.Exceptions.InvalidPriceException;
 import org.datavelger.classes.Component;
 import org.datavelger.classes.FileOpenerCsv;
 
@@ -50,18 +52,22 @@ public class KomponentController implements Initializable {
             }
         });
         ChoiceBox<String> komponent = new ChoiceBox<>();
-        komponent.getItems().addAll( "Komponent", "Grafikkkort", "Harddisk", "Tastatur", "Prosessor", "Skjerm", "Hovedkort", "Minne", "Mus");
+        komponent.getItems().addAll( "Komponent", "Grafikkort", "Harddisk", "Tastatur", "Prosessor", "Skjerm", "Hovedkort", "Minne", "Mus");
         komponent.getSelectionModel().select(0);
 
         komponent.setValue("Komponent");
 
         namecol.setCellValueFactory(new PropertyValueFactory<>("name"));
         pricecol.setCellValueFactory(new PropertyValueFactory<>("price"));
-        table.setItems(getComponentList());
+        try {
+            table.setItems(getComponentList());
+        } catch (InvalidNameException | InvalidPriceException e) {
+            e.printStackTrace();
+        }
     }
 
 
-    public void AddRecord(){
+    public void AddRecord() throws InvalidPriceException, InvalidNameException {
 
 
         Component comp = new Component();
@@ -72,7 +78,7 @@ public class KomponentController implements Initializable {
         txt_name.clear();
         txt_price.clear();
     }
-    ObservableList<Component> getComponentList() {
+    ObservableList<Component> getComponentList() throws InvalidNameException, InvalidPriceException {
         ObservableList<Component> components= FXCollections.observableArrayList();
         components.add(new Component( 123,"Keyboard") );
         components.add(new Component(1000,"harddrive") );

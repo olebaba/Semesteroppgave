@@ -1,5 +1,7 @@
 package org.datavelger.classes;
 
+import org.datavelger.Exceptions.InvalidNameException;
+import org.datavelger.Exceptions.InvalidPriceException;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -18,8 +20,11 @@ class FileSaverCsvTest {
 
     Order order2 = new Order();
 
+    FileSaverCsvTest() throws InvalidNameException, InvalidPriceException {
+    }
+
     @Test
-    void saveCsv() throws IOException {
+    void saveCsv() throws IOException, InvalidNameException, InvalidPriceException {
         order2.setMemory(new Memory(900, "GSkill", "3666MHz").getName());
         FileSaverCsv saverCsv = new FileSaverCsv(order,true);
         String path = "file.csv";

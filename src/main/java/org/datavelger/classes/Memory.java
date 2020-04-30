@@ -1,9 +1,12 @@
 package org.datavelger.classes;
 
+import org.datavelger.Exceptions.InvalidNameException;
+import org.datavelger.Exceptions.InvalidPriceException;
+
 public class Memory extends Component {
     private String speed;
 
-    public Memory(int price, String name, String speed) {
+    public Memory(int price, String name, String speed) throws InvalidNameException, InvalidPriceException {
         super(price, name);
         this.speed = speed;
     }

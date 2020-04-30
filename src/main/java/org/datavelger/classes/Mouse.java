@@ -1,9 +1,12 @@
 package org.datavelger.classes;
 
+import org.datavelger.Exceptions.InvalidNameException;
+import org.datavelger.Exceptions.InvalidPriceException;
+
 public class Mouse extends Component {
     boolean rgb;
 
-    public Mouse(int price, String name, boolean rgb) {
+    public Mouse(int price, String name, boolean rgb) throws InvalidNameException, InvalidPriceException {
         super(price, name);
         this.rgb = rgb;
     }

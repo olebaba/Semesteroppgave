@@ -6,4 +6,5 @@ module org.datavelger {
     opens org.datavelger.classes to javafx.base;
     exports org.datavelger;
     exports org.datavelger.classes;
+    exports org.datavelger.Exceptions;
 }

@@ -1,11 +1,14 @@
 package org.datavelger.classes;
 
+import org.datavelger.Exceptions.InvalidNameException;
+import org.datavelger.Exceptions.InvalidPriceException;
+
 public class Harddrive extends Component{
     private double size;
     private int capasity;
 
 
-    public Harddrive(int price, String name, double size, int capasity) {
+    public Harddrive(int price, String name, double size, int capasity) throws InvalidNameException, InvalidPriceException {
         super(price, name);
         this.size = size;
         this.capasity = capasity;

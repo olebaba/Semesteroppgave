@@ -126,7 +126,7 @@ public class PreviousConfigController implements Initializable{
                 anchorPane.getChildren().add(sorting);
             }*/
     public void switchToCustomer() throws IOException {
-        App.setRoot("kundeside2");
+        App.setRoot("kundeside");
     }
 
 }

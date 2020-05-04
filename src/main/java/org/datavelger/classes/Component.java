@@ -32,7 +32,4 @@ public class Component {
         if(!Validator.isValidName(name)) throw new InvalidNameException();
         this.name = name;
     }
-
-    public void setkompononent(ObservableList<String> items) {
-    }
 }

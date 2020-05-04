@@ -11,29 +11,30 @@ import javafx.scene.layout.AnchorPane;
 import org.datavelger.Exceptions.InvalidNameException;
 import org.datavelger.Exceptions.InvalidPriceException;
 import org.datavelger.classes.Component;
-import org.datavelger.classes.FileOpenerCsv;
+import org.datavelger.classes.FileOpenerBinary;
+import org.datavelger.classes.fileOpenerBinary;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class KomponentController implements Initializable {
-    private FileOpenerCsv fileOpenerCsv;
+    private FileOpenerBinary fileOpenerBinary;
 
     @FXML
     private TableView<Component> table;
     @FXML
-    private TableColumn<Component, String> namecol;
+    private TableColumn<Component, String> namecol, compCol;
     @FXML
     private TableColumn<Component, Integer> pricecol;
     @FXML
     private TextField txt_name, txt_price;
     @FXML
-    private Button btn_add, btnLoadAll, btnAvbryt;
+    private Button btnAdd, btnLoadAll, btnAvbryt;
     @FXML
     private Label labInfo;
     @FXML
-    private ChoiceBox <String> komponent;
+    private ChoiceBox <String> component;
     @FXML
     private AnchorPane anchorPane;
 
@@ -51,14 +52,18 @@ public class KomponentController implements Initializable {
                 e.printStackTrace();
             }
         });
-        ChoiceBox<String> komponent = new ChoiceBox<>();
-        komponent.getItems().addAll( "Komponent", "Grafikkort", "Harddisk", "Tastatur", "Prosessor", "Skjerm", "Hovedkort", "Minne", "Mus");
-        komponent.getSelectionModel().select(0);
 
-        komponent.setValue("Komponent");
+        component.getItems().addAll("Komponent", "Grafikkort", "Harddisk", "Tastatur", "Minne", "Skjerm",
+                "Hovedkort", "Mus", "Prosessor");
 
-        namecol.setCellValueFactory(new PropertyValueFactory<>("name"));
-        pricecol.setCellValueFactory(new PropertyValueFactory<>("price"));
+        //ikke mulig å gå videre uten å velge type komponent
+        component.getSelectionModel().selectedItemProperty().addListener((observableValue, oldChoice, newChoice) ->
+                btnAdd.setDisable(newChoice.equals(component.getItems().get(0))));
+        component.setValue(component.getItems().get(0));
+
+        namecol.setCellValueFactory(new PropertyValueFactory<>("Name"));
+        pricecol.setCellValueFactory(new PropertyValueFactory<>("Price"));
+
         try {
             table.setItems(getComponentList());
         } catch (InvalidNameException | InvalidPriceException e) {
@@ -78,40 +83,22 @@ public class KomponentController implements Initializable {
         txt_name.clear();
         txt_price.clear();
     }
-    ObservableList<Component> getComponentList() throws InvalidNameException, InvalidPriceException {
-        ObservableList<Component> components= FXCollections.observableArrayList();
+    public ObservableList<Component> getComponentList() throws InvalidNameException, InvalidPriceException {
+        ObservableList<Component> components = FXCollections.observableArrayList();
         components.add(new Component( 123,"Keyboard") );
-        components.add(new Component(1000,"harddrive") );
+        components.add(new Component(1000,"Harddrive") );
         components.add(new Component(2000,"Mouse") );
         components.add(new Component(123,"Keyboard") );
+
+
 
         return components;
     }
 
-    public void loadComponents(){
-        fileOpenerCsv = new FileOpenerCsv("file.csv", false);
-        fileOpenerCsv.setOnSucceeded(event -> {
-            //legg til verdiene i Tableview med :
-            fileOpenerCsv.getValue();
-            enableGUI(false);
-            labInfo.setText("Filen er lastet inn.");
-        });
-        //om filen ikke blir funnet
-        fileOpenerCsv.setOnFailed(event -> {
-            try {
-                throw event.getSource().getException();
-            } catch (Throwable throwable) {
-                throwable.printStackTrace();
-            }
-            enableGUI(false);
-            labInfo.setText("Fant ikke angitt fil.");
-            System.out.println("Fant ikke angitt fil.");
-        });
+    public void loadComponents() throws IOException {
+        fileOpenerBinary = new FileOpenerBinary();
+        fileOpenerBinary.openFile("components.bin", true);
 
-        Thread thread = new Thread(fileOpenerCsv);
-        thread.setDaemon(true);
-        enableGUI(true);
-        thread.start();
     }
 
     public void enableGUI(boolean enable){

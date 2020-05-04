@@ -86,13 +86,13 @@ public class PreviousConfigController implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        nameCol.setCellValueFactory(new PropertyValueFactory<DataCollection, String>("Name"));
-        graphicsCol.setCellValueFactory(new PropertyValueFactory<DataCollection, String>("GraphicsCard"));
-        screenCol.setCellValueFactory(new PropertyValueFactory<DataCollection, String>("Monitor"));
-        keyboardCol.setCellValueFactory(new PropertyValueFactory<DataCollection, String>("Keyboard"));
-        processorCol.setCellValueFactory(new PropertyValueFactory<DataCollection, String>("Processor"));
-        harddriveCol.setCellValueFactory(new PropertyValueFactory<DataCollection, String>("Harddrive"));
-        motherboardCol.setCellValueFactory(new PropertyValueFactory<DataCollection, String>("Motherboard"));
+        nameCol.setCellValueFactory(new PropertyValueFactory<>("Name"));
+        graphicsCol.setCellValueFactory(new PropertyValueFactory<>("GraphicsCard"));
+        screenCol.setCellValueFactory(new PropertyValueFactory<>("Monitor"));
+        keyboardCol.setCellValueFactory(new PropertyValueFactory<>("Keyboard"));
+        processorCol.setCellValueFactory(new PropertyValueFactory<>("Processor"));
+        harddriveCol.setCellValueFactory(new PropertyValueFactory<>("Harddrive"));
+        motherboardCol.setCellValueFactory(new PropertyValueFactory<>("Motherboard"));
 
         collection.attachTableView(tableView);
 

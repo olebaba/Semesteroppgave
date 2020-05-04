@@ -10,7 +10,7 @@ class ComponentTest {
 
     @Test
     void setPrice() throws InvalidNameException, InvalidPriceException {
-        Component component = new Component(200, null);
+        Component component = new Component(200, "null");
     }
 
     @Test

@@ -3,7 +3,6 @@ package org.datavelger.classes;
 import javafx.concurrent.Task;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;

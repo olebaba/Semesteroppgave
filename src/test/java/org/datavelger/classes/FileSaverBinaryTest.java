@@ -26,7 +26,9 @@ class FileSaverBinaryTest {
     void saveFile() throws IOException, InvalidNameException, InvalidPriceException {
         order2.setKeyboard(new Keyboard(300, "Logitech g30", false).getName());
         FileSaverBinary saverBinary = new FileSaverBinary(new Processor(2999, "i5 7600", "Intel"));
-        String path = "components.bin";
-        saverBinary.saveFile(path);
+        FileSaverBinary saverBinary1 = new FileSaverBinary(new Mouse(344, "Logitech", false));
+        String path = "components.json";
+        //saverBinary.saveFile(path);
+        saverBinary1.saveFile(path);
     }
 }

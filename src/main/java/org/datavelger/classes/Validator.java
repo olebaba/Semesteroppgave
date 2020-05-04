@@ -12,7 +12,7 @@ public class Validator {
     public static boolean isValidName(String name){
         return ((name != null)
                 && (!name.equals(""))
-                && (name.matches("[A-Za-z0-9]*")));
+                && (name.matches("[A-Za-z0-9 ]*")));
     }
 
     public static boolean isValidPrice(int price){

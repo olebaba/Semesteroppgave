@@ -12,8 +12,6 @@ import org.datavelger.Exceptions.InvalidNameException;
 import org.datavelger.Exceptions.InvalidPriceException;
 import org.datavelger.classes.Component;
 import org.datavelger.classes.FileOpenerBinary;
-import org.datavelger.classes.fileOpenerBinary;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;

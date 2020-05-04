@@ -1,6 +1,5 @@
 package org.datavelger.classes;
 
-import javafx.collections.ObservableList;
 import org.datavelger.Exceptions.InvalidNameException;
 import org.datavelger.Exceptions.InvalidPriceException;
 
@@ -31,5 +30,10 @@ public class Component {
     public void setName(String name) throws InvalidNameException {
         if(!Validator.isValidName(name)) throw new InvalidNameException();
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("\"Price\":\"%d\",\"Name\":\"%s\"", getPrice(), getName());
     }
 }

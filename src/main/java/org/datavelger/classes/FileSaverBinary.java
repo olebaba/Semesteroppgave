@@ -19,9 +19,12 @@ public class FileSaverBinary implements FileSaver {
 
         try {
             if(!Files.exists(path)) Files.createFile(path);
-            Files.writeString(path, component.toString() + System.lineSeparator(), StandardOpenOption.APPEND);
+            Files.writeString(path, "," + System.lineSeparator() +
+                    "{" + component.toString() +  "}", StandardOpenOption.APPEND);
         }catch (IOException e){
             e.printStackTrace();
         }
+
+
     }
 }

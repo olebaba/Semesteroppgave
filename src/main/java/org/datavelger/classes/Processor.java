@@ -22,6 +22,6 @@ public class Processor extends Component{
 
     @Override
     public String toString() {
-        return String.format("Processor{%d;%s;%s}", getPrice(), getName(), getType());
+        return String.format("\"Processor\":{" + super.toString() + ",\"Type\":\"%s\"}", getType());
     }
 }

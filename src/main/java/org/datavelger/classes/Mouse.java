@@ -4,6 +4,7 @@ import org.datavelger.Exceptions.InvalidNameException;
 import org.datavelger.Exceptions.InvalidPriceException;
 
 public class Mouse extends Component {
+    private static final long serialVersionUID = 1L;
     boolean rgb;
 
     public Mouse(int price, String name, boolean rgb) throws InvalidNameException, InvalidPriceException {
@@ -22,5 +23,10 @@ public class Mouse extends Component {
     @Override
     public String toJSON() {
         return String.format("\"Mouse\":{" + super.toJSON() + ",\"Is RGB\":\"%b\"}", isRgb());
+    }
+
+    @Override
+    public String toString(){
+        return String.format("Mouse: " + super.toString() + ", has RGB = %b", isRgb());
     }
 }

@@ -4,6 +4,7 @@ import org.datavelger.Exceptions.InvalidNameException;
 import org.datavelger.Exceptions.InvalidPriceException;
 
 public class Harddrive extends Component{
+    private static final long serialVersionUID = 1L;
     private double size;
     private int capasity;
 
@@ -33,5 +34,11 @@ public class Harddrive extends Component{
     @Override
     public String toJSON() {
         return String.format("Harddrive{%d;%s;%.2f;%d}", getPrice(), getName(), getSize(), getCapasity());
+    }
+
+    @Override
+    public String toString(){
+        return String.format("Harddrive: " + super.toString() +
+                ", size = %.2f, Capasity = %d", getSize(), getCapasity());
     }
 }

@@ -4,6 +4,7 @@ import org.datavelger.Exceptions.InvalidNameException;
 import org.datavelger.Exceptions.InvalidPriceException;
 
 public class Memory extends Component {
+    private static final long serialVersionUID = 1L;
     private String speed;
 
     public Memory(int price, String name, String speed) throws InvalidNameException, InvalidPriceException {
@@ -22,5 +23,10 @@ public class Memory extends Component {
     @Override
     public String toJSON() {
         return String.format("Memory{%d;%s;%s}", getPrice(), getName(), getSpeed());
+    }
+
+    @Override
+    public String toString(){
+        return String.format("Memory: " + super.toString() + ", speed = %s", getSpeed());
     }
 }

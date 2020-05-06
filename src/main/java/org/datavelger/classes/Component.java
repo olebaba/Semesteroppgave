@@ -3,7 +3,10 @@ package org.datavelger.classes;
 import org.datavelger.Exceptions.InvalidNameException;
 import org.datavelger.Exceptions.InvalidPriceException;
 
-public class Component {
+import java.io.Serializable;
+
+public class Component implements Serializable {
+    private static final long serialVersionUID = 1L;
     private int price;
     private String name;
 
@@ -34,5 +37,10 @@ public class Component {
 
     public String toJSON() {
         return String.format("\"Price\":\"%d\",\"Name\":\"%s\"", getPrice(), getName());
+    }
+
+    @Override
+    public String toString(){
+        return String.format("price = %d, name = %s", getPrice(), getName());
     }
 }

@@ -4,6 +4,8 @@ import org.datavelger.Exceptions.InvalidNameException;
 import org.datavelger.Exceptions.InvalidPriceException;
 
 public class Keyboard extends Component {
+    private static final long serialVersionUID = 1L;
+
     private boolean rgb;
 
     public Keyboard(int price, String name, boolean rgb) throws InvalidNameException, InvalidPriceException {
@@ -22,5 +24,10 @@ public class Keyboard extends Component {
     @Override
     public String toJSON() {
         return String.format("Keyboard{%d;%s;%b}", getPrice(), getName(), isRgb());
+    }
+
+    @Override
+    public String toString(){
+        return String.format("Keyboard: " + super.toString() + ", has RGB = %b", isRgb());
     }
 }

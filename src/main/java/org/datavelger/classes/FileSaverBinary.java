@@ -16,11 +16,23 @@ public class FileSaverBinary implements FileSaver {
     @Override
     public void saveFile(String filepath) throws IOException {
         Path path = Paths.get(filepath);
+        StringBuilder newFile = new StringBuilder();
+
+        if(!Files.exists(path)) Files.createFile(path);
+        else {
+            FileOpenerBinary fileOpenerBinary = new FileOpenerBinary();
+            String prevFile = fileOpenerBinary.openFile(path.toString(), true);
+            String[] prevFileArray = prevFile.split(System.lineSeparator());
+
+            for (int i = 0; i<prevFileArray.length-1; i++){
+                newFile.append(prevFileArray[i]).append(i == prevFileArray.length - 2 ? "" : System.lineSeparator());
+            }
+        }
 
         try {
-            if(!Files.exists(path)) Files.createFile(path);
-            Files.writeString(path, "," + System.lineSeparator() +
-                    "{" + component.toString() +  "}", StandardOpenOption.APPEND);
+
+            Files.writeString(path, newFile + "," + System.lineSeparator() +
+                    "  {" + component.toString() +  "}" + System.lineSeparator() + "]", StandardOpenOption.WRITE);
         }catch (IOException e){
             e.printStackTrace();
         }

@@ -11,6 +11,6 @@ class FileOpenerBinaryTest {
     @Test
     void openFile() throws IOException {
         FileOpenerBinary openerBinary = new FileOpenerBinary();
-        System.out.println(openerBinary.openFile("binaryfile.txt", false));
+        System.out.println(openerBinary.openFile("components.json", true));
     }
 }

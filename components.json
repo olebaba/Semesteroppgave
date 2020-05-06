@@ -1,7 +1,11 @@
 [
-  {"Processor":{"Price":"2999","Name":"i5 7600","Type":"Intel"}},
-  {"Processor":{"Price":"2999","Name":"i5 7600","Type":"Intel"}}
-],
-{"Mouse":{"Price":"344","Name":"Logitech""Is RGB":"false"}},
-{"Mouse":{"Price":"344","Name":"Logitech"",Is RGB":"false"}},
-{"Mouse":{"Price":"344","Name":"Logitech","Is RGB":"false"}}
+  {"Mouse":{"Price":"23","Name":"Logitech","Is RGB":"false"}},
+  {"Mouse":{"Price":"344","Name":"Logitech","Is RGB":"false"}},
+  {"Mouse":{"Price":"344","Name":"Logitech","Is RGB":"false"}},
+  {"Mouse":{"Price":"344","Name":"Logitech","Is RGB":"false"}},
+  {"Mouse":{"Price":"344","Name":"Logitech","Is RGB":"false"}},
+  {"Mouse":{"Price":"344","Name":"Logitech","Is RGB":"false"}},
+  {"Mouse":{"Price":"344","Name":"Logitech","Is RGB":"false"}},
+  {"Mouse":{"Price":"344","Name":"Logitech","Is RGB":"false"}},
+  {"Mouse":{"Price":"344","Name":"Logitech","Is RGB":"false"}}
+]

@@ -20,7 +20,7 @@ public class Mouse extends Component {
     }
 
     @Override
-    public String toString() {
-        return String.format("\"Mouse\":{" + super.toString() + ",\"Is RGB\":\"%b\"}", isRgb());
+    public String toJSON() {
+        return String.format("\"Mouse\":{" + super.toJSON() + ",\"Is RGB\":\"%b\"}", isRgb());
     }
 }

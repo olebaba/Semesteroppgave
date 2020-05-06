@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.List;
 
-public class FileOpenerBinary implements FileOpener {
+public class FileOpenerJSON implements FileOpener {
     @Override
     public String openFile(String path, boolean semicolon) throws IOException {
         File file = new File(path);

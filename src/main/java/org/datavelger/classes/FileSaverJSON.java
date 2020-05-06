@@ -6,10 +6,10 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 
-public class FileSaverBinary implements FileSaver {
+public class FileSaverJSON implements FileSaver {
     private final Component component;
 
-    public FileSaverBinary(Component component){
+    public FileSaverJSON(Component component){
         this.component = component;
     }
 
@@ -20,8 +20,8 @@ public class FileSaverBinary implements FileSaver {
 
         if(!Files.exists(path)) Files.createFile(path);
         else {
-            FileOpenerBinary fileOpenerBinary = new FileOpenerBinary();
-            String prevFile = fileOpenerBinary.openFile(path.toString(), true);
+            FileOpenerJSON fileOpenerJSON = new FileOpenerJSON();
+            String prevFile = fileOpenerJSON.openFile(path.toString(), true);
             String[] prevFileArray = prevFile.split(System.lineSeparator());
 
             for (int i = 0; i<prevFileArray.length-1; i++){
@@ -32,7 +32,7 @@ public class FileSaverBinary implements FileSaver {
         try {
 
             Files.writeString(path, newFile + "," + System.lineSeparator() +
-                    "  {" + component.toString() +  "}" + System.lineSeparator() + "]", StandardOpenOption.WRITE);
+                    "  {" + component.toJSON() +  "}" + System.lineSeparator() + "]", StandardOpenOption.WRITE);
         }catch (IOException e){
             e.printStackTrace();
         }

@@ -20,7 +20,7 @@ public class Keyboard extends Component {
     }
 
     @Override
-    public String toString() {
+    public String toJSON() {
         return String.format("Keyboard{%d;%s;%b}", getPrice(), getName(), isRgb());
     }
 }

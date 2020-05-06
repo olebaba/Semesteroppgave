@@ -32,8 +32,7 @@ public class Component {
         this.name = name;
     }
 
-    @Override
-    public String toString() {
+    public String toJSON() {
         return String.format("\"Price\":\"%d\",\"Name\":\"%s\"", getPrice(), getName());
     }
 }

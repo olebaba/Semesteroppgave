@@ -20,7 +20,7 @@ public class Memory extends Component {
     }
 
     @Override
-    public String toString() {
+    public String toJSON() {
         return String.format("Memory{%d;%s;%s}", getPrice(), getName(), getSpeed());
     }
 }

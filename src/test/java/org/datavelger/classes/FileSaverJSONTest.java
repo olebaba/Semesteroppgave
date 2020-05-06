@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
-class FileSaverBinaryTest {
+class FileSaverJSONTest {
     Order order = new Order(new String("Ole"),
             new GraphicsCard(3000, "GTX1080"),
             new Harddrive(400, "Seagate 5400", 2.5, 2),
@@ -18,15 +18,15 @@ class FileSaverBinaryTest {
             new Processor(2340, "Ryzen 5 3600X", "AMD"));
     Order order2 = new Order();
 
-    FileSaverBinaryTest() throws InvalidNameException, InvalidPriceException {
+    FileSaverJSONTest() throws InvalidNameException, InvalidPriceException {
     }
 
 
     @Test
     void saveFile() throws IOException, InvalidNameException, InvalidPriceException {
         order2.setKeyboard(new Keyboard(300, "Logitech g30", false).getName());
-        FileSaverBinary saverBinary = new FileSaverBinary(new Processor(2999, "i5 7600", "Intel"));
-        FileSaverBinary saverBinary1 = new FileSaverBinary(new Mouse(344, "Logitech", false));
+        FileSaverJSON saverBinary = new FileSaverJSON(new Processor(2999, "i5 7600", "Intel"));
+        FileSaverJSON saverBinary1 = new FileSaverJSON(new Mouse(344, "Logitech", false));
         String path = "components.json";
         //saverBinary.saveFile(path);
         saverBinary1.saveFile(path);

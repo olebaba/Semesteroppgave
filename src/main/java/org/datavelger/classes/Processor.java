@@ -21,7 +21,7 @@ public class Processor extends Component{
     }
 
     @Override
-    public String toString() {
-        return String.format("\"Processor\":{" + super.toString() + ",\"Type\":\"%s\"}", getType());
+    public String toJSON() {
+        return String.format("\"Processor\":{" + super.toJSON() + ",\"Type\":\"%s\"}", getType());
     }
 }

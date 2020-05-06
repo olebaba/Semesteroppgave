@@ -4,13 +4,11 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-class FileOpenerBinaryTest {
+class FileOpenerJSONTest {
 
     @Test
     void openFile() throws IOException {
-        FileOpenerBinary openerBinary = new FileOpenerBinary();
+        FileOpenerJSON openerBinary = new FileOpenerJSON();
         System.out.println(openerBinary.openFile("components.json", true));
     }
 }

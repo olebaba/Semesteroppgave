@@ -11,13 +11,13 @@ import javafx.scene.layout.AnchorPane;
 import org.datavelger.Exceptions.InvalidNameException;
 import org.datavelger.Exceptions.InvalidPriceException;
 import org.datavelger.classes.Component;
-import org.datavelger.classes.FileOpenerBinary;
+import org.datavelger.classes.FileOpenerJSON;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class KomponentController implements Initializable {
-    private FileOpenerBinary fileOpenerBinary;
+    private FileOpenerJSON fileOpenerJSON;
 
     @FXML
     private TableView<Component> table;
@@ -94,8 +94,8 @@ public class KomponentController implements Initializable {
     }
 
     public void loadComponents() throws IOException {
-        fileOpenerBinary = new FileOpenerBinary();
-        fileOpenerBinary.openFile("components.bin", true);
+        fileOpenerJSON = new FileOpenerJSON();
+        fileOpenerJSON.openFile("components.bin", true);
 
     }
 

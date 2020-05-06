@@ -31,7 +31,7 @@ public class Harddrive extends Component{
     }
 
     @Override
-    public String toString() {
+    public String toJSON() {
         return String.format("Harddrive{%d;%s;%.2f;%d}", getPrice(), getName(), getSize(), getCapasity());
     }
 }

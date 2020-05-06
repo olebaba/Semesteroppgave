@@ -20,7 +20,7 @@ public class Monitor extends Component {
     }
 
     @Override
-    public String toString() {
+    public String toJSON() {
         return String.format("Monitor{%d;%s;%s}", getPrice(), getName(), getSize());
     }
 }

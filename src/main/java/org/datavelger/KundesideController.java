@@ -1,5 +1,7 @@
 package org.datavelger;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -7,18 +9,18 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
@@ -31,6 +33,7 @@ import java.util.ResourceBundle;
 
 public class KundesideController implements Initializable {
     Stage window;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -54,7 +57,6 @@ public class KundesideController implements Initializable {
             innerPane.getChildren().clear();
             addChosenComps(checkSelected());
         });
-
     }
 
     private Boolean[] checkSelected(){ //finner hvilke knapper som er trykket
@@ -69,25 +71,32 @@ public class KundesideController implements Initializable {
 
     private void addChosenComps(Boolean[] booleans){ //legger valgte komponenter i programmet
         Collection<Node> nodes = new ArrayList<>();
-        String labelText = "error";
-        int positionY = 63, brandPosition = 150, typePosition = 300, sizePosition = 450;
+        String labelText;
+        int positionY = 15, positionX = 20, positionYchosen = 50;
         int i = 0;
         for (Boolean b : booleans){
             if (b != null && b) {
                 labelText = radioComps[i].getText();
                 //System.out.println(i);
 
-                Label label = new Label(labelText);
+                Label label = new Label(labelText+": ");
                 label.setLayoutY(positionY);
+                label.setLayoutX(positionX);
                 nodes.add(label);
                 String lowerCase = labelText.toLowerCase();
                 //System.out.println("Du har valgt "+lowerCase);
                 Button add = new Button("Velg "+lowerCase);
                 Button remove = new Button("Fjern valgt "+lowerCase);
+                String chosen = "Du har valgt følgende "+lowerCase+" :";
+                Label showChosen = new Label(chosen);
                 nodes.add(add);
                 nodes.add(remove);
+                add.setPrefSize(150,30);
+                remove.setPrefSize(200, 30);
                 add.setLayoutX(150);
-                remove.setLayoutX(300);
+                remove.setLayoutX(325);
+                add.setFont(new Font("Arial",16));
+                remove.setFont(new Font("Arial", 16));
                 add.setLayoutY(positionY);
                 remove.setLayoutY(positionY);
 
@@ -128,12 +137,10 @@ public class KundesideController implements Initializable {
                 sizeBox.setValue(sizeBox.getItems().get(0));
                 nodes.add(sizeBox);*/
 
-                positionY += 50;
+                positionY += 60;
             }
             i++;
         }
-
-
         innerPane.getChildren().addAll(nodes);
     }
 
@@ -165,4 +172,8 @@ public class KundesideController implements Initializable {
     RadioButton[] radioComps;
     @FXML
     Pane innerPane;
+    @FXML
+    AnchorPane anchorPane;
+    @FXML
+    ScrollPane scrolling;
 }

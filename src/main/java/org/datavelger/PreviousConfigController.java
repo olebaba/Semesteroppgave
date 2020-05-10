@@ -30,7 +30,7 @@ public class PreviousConfigController implements Initializable{
     AnchorPane anchorPane;
     @FXML
     private TableColumn<DataCollection, String> nameCol, graphicsCol,screenCol, keyboardCol,
-            processorCol, harddriveCol, motherboardCol;
+            processorCol, harddriveCol, motherboardCol, priceCol;
     @FXML
     private TableView<Order> tableView;
 

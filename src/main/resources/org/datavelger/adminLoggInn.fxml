@@ -21,15 +21,15 @@
             <Font name="Book Antiqua" size="17.0" />
          </font>
       </Text>
-      <TextField fx:id="username" layoutX="172.0" layoutY="112.0" prefHeight="40.0" prefWidth="237.0" promptText="Brukernavn" text="Admin" />
+      <TextField fx:id="username" layoutX="172.0" layoutY="112.0" prefHeight="40.0" prefWidth="237.0" promptText="Brukernavn" style="-fx-border-color: #919e65;" text="Admin" />
       <Text layoutX="171.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Passord" wrappingWidth="106.01246643066406">
          <font>
             <Font name="Book Antiqua" size="17.0" />
          </font>
       </Text>
-      <PasswordField fx:id="password" layoutX="172.0" layoutY="214.0" prefHeight="40.0" prefWidth="237.0" promptText="Passord" text="Admin" />
+      <PasswordField fx:id="password" layoutX="172.0" layoutY="214.0" prefHeight="40.0" prefWidth="237.0" promptText="Passord" style="-fx-border-color: #919e65;" text="Admin" />
       
-      <Button fx:id="btnLogin" layoutX="170.0" layoutY="287.0" mnemonicParsing="false" onAction="#Login" prefHeight="30.0" prefWidth="237.0" style="-fx-background-color: FF5733;" text="Logg inn">
+      <Button fx:id="btnLogin" layoutX="170.0" layoutY="287.0" mnemonicParsing="false" onAction="#Login" prefHeight="30.0" prefWidth="237.0" style="-fx-background-color: #919e65;" text="Logg inn">
          <font>
             <Font name="Book Antiqua" size="14.0" />
          </font>

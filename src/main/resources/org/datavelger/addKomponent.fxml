@@ -18,11 +18,11 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="597.0" prefWidth="700.0">
                      <children>
-                        <ChoiceBox fx:id="component" layoutX="136.0" layoutY="296.0" prefWidth="150.0" />
-                        <TextField fx:id="txt_name" layoutX="136.0" layoutY="345.0" prefHeight="36.0" prefWidth="149.0" promptText="Navn" />
-                        <TextField fx:id="txt_price" layoutX="136.0" layoutY="396.0" prefHeight="35.0" prefWidth="149.0" promptText="Pris" />
-                        <Button fx:id="btnAdd" layoutX="136.0" layoutY="452.0" mnemonicParsing="false" onAction="#AddRecord" text="Bekreft" />
-                        <TableView fx:id="table" prefHeight="269.0" prefWidth="800.0">
+                        <ChoiceBox fx:id="component" layoutX="136.0" layoutY="296.0" prefWidth="150.0" style="-fx-border-color: #919e65;" />
+                        <TextField fx:id="txt_name" layoutX="136.0" layoutY="345.0" prefHeight="36.0" prefWidth="149.0" promptText="Navn" style="-fx-border-color: #919e65;" />
+                        <TextField fx:id="txt_price" layoutX="136.0" layoutY="396.0" prefHeight="35.0" prefWidth="149.0" promptText="Pris" style="-fx-border-color: #919e65;" />
+                        <Button fx:id="btnAdd" layoutX="136.0" layoutY="452.0" mnemonicParsing="false" onAction="#AddRecord" style="-fx-border-color: #919e65;" text="Bekreft" />
+                        <TableView fx:id="table" prefHeight="269.0" prefWidth="800.0" style="-fx-border-color: #919e65;">
                           <columns>
                               <TableColumn fx:id="compCol" prefWidth="75.0" text="Komponent" />
                             <TableColumn fx:id="namecol" prefWidth="75.0" text="Navn" />
@@ -32,7 +32,7 @@
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                            </columnResizePolicy>
                         </TableView>
-                        <Button fx:id="btnAvbryt" layoutX="136.0" layoutY="501.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" style="-fx-background-color: FB5D18;" text="Avbryt" />
+                        <Button fx:id="btnAvbryt" layoutX="136.0" layoutY="501.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" style="-fx-background-color: #919e65;" text="Avbryt" />
                         <Label layoutX="34.5" layoutY="300.0" text="Komponent:" />
                         <Label layoutX="69.6" layoutY="354.0" text="Navn:" />
                         <Label layoutX="79.4" layoutY="405.0" text="Pris:" />
@@ -44,7 +44,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="527.0" prefWidth="633.0">
                      <children>
-                        <TableView fx:id="table1" prefHeight="269.0" prefWidth="800.0">
+                        <TableView fx:id="table1" prefHeight="269.0" prefWidth="800.0" style="-fx-border-color: #919e65;">
                            <columns>
                               <TableColumn fx:id="namecol1" prefWidth="75.0" text="ID" />
                               <TableColumn fx:id="pricecol1" prefWidth="75.0" text="Produkttype" />

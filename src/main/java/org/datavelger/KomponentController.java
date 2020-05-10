@@ -51,7 +51,7 @@ public class KomponentController implements Initializable {
             }
         });
 
-        component.getItems().addAll("Komponent", "Grafikkort", "Harddisk", "Tastatur", "Minne", "Skjerm",
+        component.getItems().addAll(" ", "Grafikkort", "Harddisk", "Tastatur", "Minne", "Skjerm",
                 "Hovedkort", "Mus", "Prosessor");
 
         //ikke mulig å gå videre uten å velge type komponent
@@ -69,6 +69,27 @@ public class KomponentController implements Initializable {
         }
     }
 
+    public static class Validering {
+        public static String validerkomponent(Component komponent){
+            StringBuilder out = new StringBuilder();
+            if (!validernavn(komponent.getName()))out.append("Ugyldig input, ");
+            if (!validerpris(komponent.getPrice()))out.append("Ugyldig input, ");
+
+
+            return out.toString();
+        }
+
+        private static boolean validerpris(int txt_price) {
+            return (txt_price >= 0);
+        }
+
+        private static boolean validernavn(String txt_name) {
+            return ((txt_name != null)
+                    && (!txt_name.equals(""))
+                    && (txt_name.matches("([a-zA-Z0-9_\\-.]+)@([a-zA-Z0-9_\\-.]+)\\.([a-zA-Z]{2,5})")));
+
+        }
+    }
 
     public void AddRecord() throws InvalidPriceException, InvalidNameException {
 
@@ -80,10 +101,11 @@ public class KomponentController implements Initializable {
         table.getItems().add(comp);
         txt_name.clear();
         txt_price.clear();
+
     }
     public ObservableList<Component> getComponentList() throws InvalidNameException, InvalidPriceException {
         ObservableList<Component> components = FXCollections.observableArrayList();
-        components.add(new Component( 123,"Keyboard") );
+        components.add(new Component(  123,"Keyboard") );
         components.add(new Component(1000,"Harddrive") );
         components.add(new Component(2000,"Mouse") );
         components.add(new Component(123,"Keyboard") );

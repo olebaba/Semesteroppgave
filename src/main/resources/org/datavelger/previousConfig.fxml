@@ -9,17 +9,17 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="638.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.datavelger.PreviousConfigController">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.datavelger.PreviousConfigController">
    <children>
-      <MenuButton layoutX="455.0" layoutY="21.0" mnemonicParsing="false" style="-fx-border-color: #919e65;" text="Sorter etter">
+      <MenuButton layoutX="671.0" layoutY="25.0" mnemonicParsing="false" style="-fx-border-color: #919e65;" text="Sorter etter">
         <items>
           <MenuItem mnemonicParsing="false" text="Popularitet" />
           <MenuItem mnemonicParsing="false" text="Pris (lav til høy)" />
         </items>
       </MenuButton>
-      <ScrollPane layoutX="14.0" layoutY="110.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+      <ScrollPane layoutX="67.0" layoutY="190.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
          <content>
-            <TableView fx:id="tableView" prefHeight="210.0" prefWidth="603.0" style="-fx-border-color: #919e65;">
+            <TableView fx:id="tableView" prefHeight="218.0" prefWidth="664.0" style="-fx-border-color: #919e65;">
               <columns>
                 <TableColumn fx:id="nameCol" prefWidth="75.0" text="Navn" />
                 <TableColumn fx:id="graphicsCol" prefWidth="75.0" text="Grafikkort" />
@@ -33,8 +33,8 @@
             </TableView>
          </content>
       </ScrollPane>
-      <Button fx:id="back" layoutX="27.0" layoutY="354.0" mnemonicParsing="false" style="-fx-border-color: #919e65;" text="Tilbake" />
+      <Button fx:id="back" layoutX="26.0" layoutY="548.0" mnemonicParsing="false" style="-fx-border-color: #919e65;" text="Tilbake" />
       <Label fx:id="sorting" layoutX="40.0" layoutY="93.0" prefHeight="17.0" prefWidth="188.0" />
-      <Label fx:id="labInfo" layoutX="413.0" layoutY="345.0" prefHeight="18.0" prefWidth="102.0" />
+      <Label fx:id="labInfo" layoutX="525.0" layoutY="442.0" prefHeight="18.0" prefWidth="102.0" />
    </children>
 </AnchorPane>

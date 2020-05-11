@@ -16,7 +16,7 @@
    <children>
       <TabPane prefHeight="556.0" prefWidth="792.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab text="Innlagte bestillinger">
+          <Tab text="Innlagte komponenter">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="597.0" prefWidth="700.0">
                      <children>
@@ -57,8 +57,8 @@
                               <TableView fx:id="table1" prefHeight="269.0" prefWidth="800.0" style="-fx-border-color: #919e65;">
                                  <columns>
                                     <TableColumn fx:id="namecol1" prefWidth="75.0" text="ID" />
-                                    <TableColumn fx:id="pricecol1" prefWidth="75.0" text="Produkttype" />
-                                    <TableColumn fx:id="namecol11" prefWidth="75.0" text="Merke" />
+                                    <TableColumn fx:id="pricecol1" prefWidth="75.0" text="Komponent" />
+                                    <TableColumn fx:id="namecol11" prefWidth="75.0" text="Navn" />
                                     <TableColumn fx:id="namecol111" prefWidth="75.0" text="Pris" />
                                  </columns>
                                  <columnResizePolicy>
@@ -67,6 +67,7 @@
                               </TableView>
                            </content>
                         </ScrollPane>
+                        <Button fx:id="SlettBestilling" layoutX="69.0" layoutY="320.0" mnemonicParsing="false" onAction="#deleteButtonPushed" prefHeight="25.0" prefWidth="175.0" text="Slett bestilling " />
                      </children></AnchorPane>
             </content>
           </Tab>

@@ -10,6 +10,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 
 <AnchorPane prefHeight="732.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.datavelger.KomponentController">
    <children>
@@ -19,16 +20,18 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="597.0" prefWidth="700.0">
                      <children>
-                        <ChoiceBox fx:id="component" layoutX="136.0" layoutY="296.0" prefWidth="150.0" style="-fx-border-color: #919e65;" />
-                        <TextField fx:id="txt_name" layoutX="136.0" layoutY="345.0" prefHeight="36.0" prefWidth="149.0" promptText="Navn" style="-fx-border-color: #919e65;" />
-                        <TextField fx:id="txt_price" layoutX="136.0" layoutY="396.0" prefHeight="35.0" prefWidth="149.0" promptText="Pris" style="-fx-border-color: #919e65;" />
-                        <Button fx:id="btnAdd" layoutX="136.0" layoutY="452.0" mnemonicParsing="false" onAction="#AddRecord" style="-fx-border-color: #919e65;" text="Bekreft" />
+                        <ChoiceBox fx:id="component" layoutX="136.0" layoutY="296.0" prefWidth="175.0" style="-fx-border-color: #919e65;" />
+                        <TextField fx:id="txt_name" layoutX="136.0" layoutY="345.0" prefHeight="36.0" prefWidth="175.0" promptText="Navn" style="-fx-border-color: #919e65;" />
+                        <TextField fx:id="txt_price" layoutX="136.0" layoutY="396.0" prefHeight="35.0" prefWidth="175.0" promptText="Pris" style="-fx-border-color: #919e65;" />
+                        <HBox prefHeight="100.0" prefWidth="200.0" />
+                        <Button fx:id="btnAdd" layoutX="136.0" layoutY="452.0" mnemonicParsing="false" onAction="#AddRecord" prefWidth="175.0" style="-fx-border-color: #919e65;" text="Add komponent" />
+                        <Button fx:id="Slettkomponent" layoutX="586.0" layoutY="285.0" mnemonicParsing="false" onAction="#deleteButtonPushed" prefHeight="29.0" prefWidth="175.0" text="Slett komponent" />
                         <ScrollPane>
                            <content>
                               <TableView fx:id="table" prefHeight="270.0" prefWidth="792.0" style="-fx-border-color: #919e65;">
                                 <columns>
                                     <TableColumn fx:id="compCol" prefWidth="75.0" text="Komponent" />
-                                  <TableColumn fx:id="namecol" prefWidth="75.0" text="Navn" />
+                                  <TableColumn fx:id="namecol" onEditCommit="#changeNameCellEvent" prefWidth="75.0" text="Navn" />
                                   <TableColumn fx:id="pricecol" prefWidth="75.0" text="Pris" />
                                 </columns>
                                  <columnResizePolicy>
@@ -37,7 +40,7 @@
                               </TableView>
                            </content>
                         </ScrollPane>
-                        <Button fx:id="btnAvbryt" layoutX="136.0" layoutY="501.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" style="-fx-background-color: #919e65;" text="Avbryt" />
+                        <Button fx:id="btnAvbryt" alignment="CENTER" layoutX="136.0" layoutY="501.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" style="-fx-background-color: #919e65;" text="Avbryt" />
                         <Label layoutX="34.5" layoutY="300.0" text="Komponent:" />
                         <Label layoutX="69.6" layoutY="354.0" text="Navn:" />
                         <Label layoutX="79.4" layoutY="405.0" text="Pris:" />

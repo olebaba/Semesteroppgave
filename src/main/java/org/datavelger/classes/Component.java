@@ -1,5 +1,6 @@
 package org.datavelger.classes;
 
+import javafx.beans.property.SimpleStringProperty;
 import org.datavelger.Exceptions.InvalidNameException;
 import org.datavelger.Exceptions.InvalidPriceException;
 

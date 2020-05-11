@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import org.datavelger.Exceptions.InvalidNameException;
@@ -51,6 +52,14 @@ public class KomponentController implements Initializable {
             }
         });
 
+        //for å slette flere rader samtidig
+        table.getSelectionModel().setSelectionMode(
+                SelectionMode.MULTIPLE
+        );
+        //oppdatere tabell for å endre navn
+        table.setEditable(true);
+        namecol.setCellFactory((TextFieldTableCell.forTableColumn()));
+
         component.getItems().addAll(" ", "Grafikkort", "Harddisk", "Tastatur", "Minne", "Skjerm",
                 "Hovedkort", "Mus", "Prosessor");
 
@@ -68,6 +77,26 @@ public class KomponentController implements Initializable {
             e.printStackTrace();
         }
     }
+    //slette rader som  er valgt i tabellen
+    public void deleteButtonPushed()
+    {
+        ObservableList<Component> selectedRows, allcomponent;
+        allcomponent = table.getItems();
+
+        selectedRows = table.getSelectionModel().getSelectedItems();
+
+        for (Component component: selectedRows){
+            allcomponent.remove(component);
+        }
+    }
+    public void changeNameCellEvent(TableColumn.CellEditEvent edditedCell) throws InvalidNameException {
+        Component componentSelected = table.getSelectionModel().getSelectedItem();
+        componentSelected.setName(edditedCell.getNewValue().toString());
+    }
+    /*public void changePriceCellEvent(TableColumn.CellEditEvent edditedCell) throws InvalidPriceException {
+        Component componentSelected = table.getSelectionModel().getSelectedItem();
+        componentSelected.setPrice(edditedCell.getNewValue().toString());
+    }*/
 
     public static class Validering {
         public static String validerkomponent(Component komponent){

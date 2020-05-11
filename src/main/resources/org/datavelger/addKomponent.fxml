@@ -15,7 +15,7 @@
    <children>
       <TabPane prefHeight="556.0" prefWidth="792.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab text="Innlagte bestillinger">
+          <Tab text="Innlagte komponenter">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="597.0" prefWidth="700.0">
                      <children>

@@ -15,7 +15,7 @@
    <children>
       <TabPane prefHeight="556.0" prefWidth="792.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab text="Innlagte bestillinger">
+          <Tab text="Eksisterende komponenter">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="597.0" prefWidth="700.0">
                      <children>
@@ -45,7 +45,7 @@
                   </AnchorPane>
             </content>
           </Tab>
-          <Tab text="Innkommende bestillinger">
+          <Tab text="Bestillinger">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="527.0" prefWidth="633.0">
                      <children>

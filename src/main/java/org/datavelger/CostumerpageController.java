@@ -1,28 +1,13 @@
 package org.datavelger;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Orientation;
-import javafx.geometry.Pos;
-import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
-import javafx.stage.Modality;
-import javafx.stage.Popup;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -34,26 +19,25 @@ import java.util.ResourceBundle;
 public class CostumerpageController implements Initializable {
     Stage window;
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         radioComps = new RadioButton[]{comp1, comp2, comp3, comp4, comp5, comp6, comp7, comp8};
 
-        back.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
+        btnBack.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
             try {
                 switchToMain();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         });
-        previousConf.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
+        btnPreviousConf.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
             try {
                 switchToPreviousConfig();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         });
-        choose.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
+        btnChoose.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
             innerPane.getChildren().clear();
             addChosenComps(checkSelected());
         });
@@ -164,7 +148,7 @@ public class CostumerpageController implements Initializable {
 
 
     @FXML
-    Button back, choose, choose1, previousConf;
+    Button btnBack, btnChoose, btnChoose1, btnPreviousConf;
     @FXML
     ChoiceBox<String> brand, type, size;
     @FXML

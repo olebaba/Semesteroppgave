@@ -44,6 +44,7 @@
                         <Label layoutX="34.5" layoutY="300.0" text="Komponent:" />
                         <Label layoutX="69.6" layoutY="354.0" text="Navn:" />
                         <Label layoutX="79.4" layoutY="405.0" text="Pris:" />
+                        <Button fx:id="KomponentInformasjon" layoutX="586.0" layoutY="330.0" mnemonicParsing="false" onAction="#changeSceneToComponentView" prefHeight="29.0" prefWidth="175.0" text="Komponentinformasjon" />
                      </children>
                   </AnchorPane>
             </content>
@@ -58,7 +59,7 @@
                                  <columns>
                                     <TableColumn fx:id="namecol1" prefWidth="75.0" text="ID" />
                                     <TableColumn fx:id="pricecol1" prefWidth="75.0" text="Komponent" />
-                                    <TableColumn fx:id="namecol11" prefWidth="75.0" text="Navn" />
+                                    <TableColumn fx:id="namecol11" prefWidth="175.0" text="Navn" />
                                     <TableColumn fx:id="namecol111" prefWidth="75.0" text="Pris" />
                                  </columns>
                                  <columnResizePolicy>

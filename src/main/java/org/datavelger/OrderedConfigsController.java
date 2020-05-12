@@ -6,7 +6,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import org.datavelger.classes.DataCollection;
+import org.datavelger.classes.OrderDataCollection;
 import org.datavelger.classes.FileOpenerCsv;
 import org.datavelger.classes.Order;
 
@@ -29,12 +29,12 @@ public class OrderedConfigsController implements Initializable{
     @FXML
     AnchorPane anchorPane;
     @FXML
-    private TableColumn<DataCollection, String> nameCol, graphicsCol,screenCol, keyboardCol,
+    private TableColumn<OrderDataCollection, String> nameCol, graphicsCol,screenCol, keyboardCol,
             processorCol, harddriveCol, motherboardCol, priceCol;
     @FXML
     private TableView<Order> tableView;
 
-    DataCollection collection = new DataCollection();
+    OrderDataCollection collection = new OrderDataCollection();
 
     public Order createOrder(List<String> orderlist){
         Order order = new Order();
@@ -80,8 +80,7 @@ public class OrderedConfigsController implements Initializable{
     }
 
     public void enableGUI(boolean enable){
-        if (enable) anchorPane.setDisable(true);
-        else anchorPane.setDisable(false);
+        anchorPane.setDisable(enable);
     }
 
     @Override

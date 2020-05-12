@@ -9,6 +9,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import org.datavelger.Exceptions.InvalidNameException;
+import org.datavelger.Exceptions.InvalidPriceException;
 
 import java.io.IOException;
 import java.net.URL;
@@ -85,7 +87,13 @@ public class CostumerpageController implements Initializable {
                 remove.setLayoutY(positionY);
 
                 //Kaller på metoden i showChooser med navnet på knappen som er valgt
-                add.setOnAction(event -> showChooser.pressedButton(lowerCase));
+                add.setOnAction(event -> {
+                    try {
+                        showChooser.pressedButton(lowerCase);
+                    } catch (InvalidNameException | InvalidPriceException e) {
+                        e.printStackTrace();
+                    }
+                });
 
                  /* System.out.println("Du har valgt grafikkort");
                     Button graphics = new Button("Velg grafikkort");

@@ -4,9 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableView;
 
-import java.util.List;
-
-public class DataCollection {
+public class OrderDataCollection {
 
     private ObservableList<Order> list = FXCollections.observableArrayList();
 

@@ -1,5 +1,7 @@
 package org.datavelger.classes;
 
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import org.datavelger.Exceptions.InvalidNameException;
 import org.datavelger.Exceptions.InvalidPriceException;
 
@@ -7,8 +9,8 @@ import java.io.Serializable;
 
 public class Component implements Serializable {
     private static final long serialVersionUID = 1L;
-    private int price;
-    private String name;
+    private SimpleIntegerProperty price;
+    private SimpleStringProperty name;
 
     public Component(){}
 
@@ -18,21 +20,21 @@ public class Component implements Serializable {
     }
 
     public int getPrice() {
-        return price;
+        return price.get();
     }
 
     public void setPrice(int price) throws InvalidPriceException {
         if (!Validator.isValidPrice(price)) throw new InvalidPriceException();
-        this.price = price;
+        this.price = new SimpleIntegerProperty(price);
     }
 
     public String getName() {
-        return name;
+        return name.get();
     }
 
     public void setName(String name) throws InvalidNameException {
         if(!Validator.isValidName(name)) throw new InvalidNameException();
-        this.name = name;
+        this.name = new SimpleStringProperty(name);
     }
 
     public String toJSON() {

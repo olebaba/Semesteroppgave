@@ -31,7 +31,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.ResourceBundle;
 
-public class KundesideController implements Initializable {
+public class CostumerpageController implements Initializable {
     Stage window;
 
 
@@ -158,7 +158,7 @@ public class KundesideController implements Initializable {
         App.setRoot("main");
     }
     public void switchToPreviousConfig() throws IOException{
-        App.setRoot("previousConfig");
+        App.setRoot("orderedConfigs");
     }
 
 

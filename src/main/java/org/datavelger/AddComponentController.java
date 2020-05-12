@@ -23,7 +23,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class KomponentController implements Initializable {
+public class AddComponentController implements Initializable {
     private FileOpenerJSON fileOpenerJSON;
 
     @FXML
@@ -35,7 +35,7 @@ public class KomponentController implements Initializable {
     @FXML
     private TextField txt_name, txt_price;
     @FXML
-    private Button btnAdd, btnLoadAll, btnAvbryt, KomponentInformasjon;
+    private Button btnAdd, btnLoadAll, btnAvbryt, btnKomponentInformasjon;
     @FXML
     private Label labInfo;
     @FXML
@@ -57,7 +57,7 @@ public class KomponentController implements Initializable {
                 e.printStackTrace();
             }
         });
-        KomponentInformasjon.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
+        btnKomponentInformasjon.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
             try {
                 App.setRoot("komponentView");
             } catch (IOException e) {
@@ -142,12 +142,12 @@ public class KomponentController implements Initializable {
     public void changeSceneToComponentView (ActionEvent event) throws IOException
     {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("komponentView.fxml"));
+        loader.setLocation(getClass().getResource("componentView.fxml"));
         Parent tableViewParent = loader.load();
 
         Scene tableViewScene = new Scene(tableViewParent);
 
-        KomponentViewController controller = loader.getController();
+        ComponentViewController controller = loader.getController();
         controller.initData(table.getSelectionModel().getSelectedItem());
 
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();

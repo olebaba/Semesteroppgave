@@ -15,7 +15,7 @@ public class MainController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         kunde.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
             try {
-                App.setRoot("kundeside");
+                App.setRoot("costumerView");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -23,7 +23,7 @@ public class MainController implements Initializable {
 
         admin.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
             try {
-                App.setRoot("adminLoggInn");
+                App.setRoot("adminLogin");
             } catch (IOException e) {
                 e.printStackTrace();
             }

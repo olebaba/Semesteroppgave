@@ -14,18 +14,18 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class LogginnController implements Initializable {
+public class AdminLoginController implements Initializable {
 
     @FXML
-    private Text Kommentar;
+    private Text txtComment;
     @FXML
-    private TextField username;
+    private TextField txtUsername;
     @FXML
     private PasswordField password;
     @FXML
     private Button btnLogin;
     @FXML
-    private Hyperlink avbryt;
+    private Hyperlink hypCancel;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -40,7 +40,7 @@ public class LogginnController implements Initializable {
             }
         });
 
-        avbryt.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
+        hypCancel.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
             try {
                 App.setRoot("main");
             } catch (IOException e) {
@@ -50,15 +50,15 @@ public class LogginnController implements Initializable {
 
     }
     public void Login(){
-        if(username.getText().equals("Admin") && password.getText().equals("Admin")) {
+        if(txtUsername.getText().equals("Admin") && password.getText().equals("Admin")) {
             try {
-                App.setRoot("addKomponent");
+                App.setRoot("addComponentView");
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
         else{
-            Kommentar.setText("Feil brukernavn eller passord!");
+            txtComment.setText("Feil brukernavn eller passord!");
         }
     }
 }

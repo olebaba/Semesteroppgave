@@ -15,7 +15,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class PreviousConfigController implements Initializable{
+public class OrderedConfigsController implements Initializable{
     private FileOpenerCsv fileOpenerCsv;
 
     @FXML
@@ -126,7 +126,7 @@ public class PreviousConfigController implements Initializable{
                 anchorPane.getChildren().add(sorting);
             }*/
     public void switchToCustomer() throws IOException {
-        App.setRoot("kundeside");
+        App.setRoot("costumerView");
     }
 
 }

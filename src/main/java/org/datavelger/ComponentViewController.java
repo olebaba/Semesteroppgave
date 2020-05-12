@@ -2,28 +2,22 @@ package org.datavelger;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import org.datavelger.classes.Component;
 import org.datavelger.classes.Harddrive;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class KomponentViewController implements Initializable {
+public class ComponentViewController implements Initializable {
 
     private Component selectedComponent;
 
-    @FXML private Label komponentLabel;
-
-    @FXML private Label navnLabel;
-
-    @FXML private Label PrisLabel;
-
-    @FXML private Label MerkeLabel;
-
-
-
-
+    @FXML private Label komponentLabel, navnLabel, PrisLabel, MerkeLabel;
+    @FXML private Button btnTilbake;
 
     public void initData (Component component)
     {
@@ -34,6 +28,12 @@ public class KomponentViewController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        btnTilbake.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
+            try {
+                App.setRoot("addComponent");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
     }
 }

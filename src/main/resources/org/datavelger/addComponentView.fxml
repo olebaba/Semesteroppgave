@@ -12,7 +12,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-<AnchorPane prefHeight="732.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.datavelger.KomponentController">
+<AnchorPane prefHeight="732.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.datavelger.AddComponentController">
    <children>
       <TabPane prefHeight="556.0" prefWidth="792.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -44,7 +45,7 @@
                         <Label layoutX="34.5" layoutY="300.0" text="Komponent:" />
                         <Label layoutX="69.6" layoutY="354.0" text="Navn:" />
                         <Label layoutX="79.4" layoutY="405.0" text="Pris:" />
-                        <Button fx:id="KomponentInformasjon" layoutX="586.0" layoutY="330.0" mnemonicParsing="false" onAction="#changeSceneToComponentView" prefHeight="29.0" prefWidth="175.0" text="Komponentinformasjon" />
+                        <Button fx:id="btnKomponentInformasjon" layoutX="586.0" layoutY="330.0" mnemonicParsing="false" onAction="#changeSceneToComponentView" prefHeight="29.0" prefWidth="175.0" text="Komponentinformasjon" />
                      </children>
                   </AnchorPane>
             </content>

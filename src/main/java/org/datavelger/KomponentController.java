@@ -2,12 +2,19 @@ package org.datavelger;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import org.datavelger.Exceptions.InvalidNameException;
 import org.datavelger.Exceptions.InvalidPriceException;
 import org.datavelger.classes.Component;
@@ -28,7 +35,7 @@ public class KomponentController implements Initializable {
     @FXML
     private TextField txt_name, txt_price;
     @FXML
-    private Button btnAdd, btnLoadAll, btnAvbryt;
+    private Button btnAdd, btnLoadAll, btnAvbryt, KomponentInformasjon;
     @FXML
     private Label labInfo;
     @FXML
@@ -50,8 +57,25 @@ public class KomponentController implements Initializable {
                 e.printStackTrace();
             }
         });
+        KomponentInformasjon.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
+            try {
+                App.setRoot("komponentView");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
 
-        component.getItems().addAll("Komponent", "Grafikkort", "Harddisk", "Tastatur", "Minne", "Skjerm",
+        //for å slette flere rader samtidig
+        table.getSelectionModel().setSelectionMode(
+                SelectionMode.MULTIPLE
+        );
+        //oppdatere tabell for å endre navn
+        table.setEditable(true);
+        namecol.setCellFactory((TextFieldTableCell.forTableColumn()));
+        //pricecol.setCellFactory(((TextFieldTableCell.forTableColumn());
+
+
+        component.getItems().addAll(" ", "Grafikkort", "Harddisk", "Tastatur", "Minne", "Skjerm",
                 "Hovedkort", "Mus", "Prosessor");
 
         //ikke mulig å gå videre uten å velge type komponent
@@ -68,6 +92,27 @@ public class KomponentController implements Initializable {
             e.printStackTrace();
         }
     }
+    //slette rader som  er valgt i tabellen
+    public void deleteButtonPushed()
+    {
+        ObservableList<Component> selectedRows, allcomponent;
+        allcomponent = table.getItems();
+
+        selectedRows = table.getSelectionModel().getSelectedItems();
+
+        for (Component component: selectedRows){
+            allcomponent.remove(component);
+        }
+    }
+    public void changeNameCellEvent(TableColumn.CellEditEvent edditedCell) throws InvalidNameException {
+        Component componentSelected = table.getSelectionModel().getSelectedItem();
+        componentSelected.setName(edditedCell.getNewValue().toString());
+    }
+    public void changePriceCellEvent(TableColumn.CellEditEvent edditedCell) throws InvalidPriceException {
+        Component componentSelected = table.getSelectionModel().getSelectedItem();
+        componentSelected.setPrice(((Integer) edditedCell.getNewValue()));
+    }
+
 
 
     public void AddRecord() throws InvalidPriceException, InvalidNameException {
@@ -80,18 +125,40 @@ public class KomponentController implements Initializable {
         table.getItems().add(comp);
         txt_name.clear();
         txt_price.clear();
+
     }
     public ObservableList<Component> getComponentList() throws InvalidNameException, InvalidPriceException {
         ObservableList<Component> components = FXCollections.observableArrayList();
-        components.add(new Component( 123,"Keyboard") );
-        components.add(new Component(1000,"Harddrive") );
-        components.add(new Component(2000,"Mouse") );
-        components.add(new Component(123,"Keyboard") );
+        components.add(new Component(  1299,"Keyboard") );
+        components.add(new Component(1315,"Mouse") );
+        components.add(new Component(299,"Motherboard") );
+        components.add(new Component(1490,"Apple Magic Keyboard with Numeric Keypad") );
 
 
 
         return components;
     }
+
+    public void changeSceneToComponentView (ActionEvent event) throws IOException
+    {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("komponentView.fxml"));
+        Parent tableViewParent = loader.load();
+
+        Scene tableViewScene = new Scene(tableViewParent);
+
+        KomponentViewController controller = loader.getController();
+        controller.initData(table.getSelectionModel().getSelectedItem());
+
+        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+
+        window.setScene(tableViewScene);
+        window.show();
+    }
+
+
+
+
 
     public void loadComponents() throws IOException {
         fileOpenerJSON = new FileOpenerJSON();

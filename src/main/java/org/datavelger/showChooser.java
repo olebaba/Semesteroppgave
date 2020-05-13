@@ -22,6 +22,9 @@ public class showChooser {
     static TableView<Component> table = new TableView<>();
     static Component chosenComp;
     static String folderpath = "komponenter";
+    static Label label = new Label();
+    static VBox layout = new VBox(10);
+    static ComponentDataCollection collection = new ComponentDataCollection();
 
     static private void setChosenComp(Component comp){
         chosenComp = comp;
@@ -37,17 +40,44 @@ public class showChooser {
         tableColumn.setResizable(false);
     }
 
-    public static void pressedButton(String pressedButton) throws IOException, ClassNotFoundException {
-        VBox layout = new VBox(10);
+    private static void readComponentofType(String compType){
+        FileOpenerBinary graphicsCardsFolder = new FileOpenerBinary(folderpath + "/" + compType);
+        graphicsCardsFolder.setOnSucceeded(event -> {
+            layout.setDisable(false);
+            List<Component> graphicsCards = graphicsCardsFolder.getValue();
 
-        ComponentDataCollection collection = new ComponentDataCollection();
+            for (Component card : graphicsCards){
+                collection.addElement(card);
+                System.out.println(card.getName());
+            }
+        });
+        graphicsCardsFolder.setOnFailed(event -> {
+            try {
+                throw event.getSource().getException();
+            } catch (Throwable throwable) {
+                throwable.printStackTrace();
+            }
+            layout.setDisable(false);
+            //labInfo.setText("Fant ikke angitt fil.");
+            System.out.println("Fant ikke angitt fil. Har du lagret componenttypen? Har du valgt riktig path?");
+        });
+
+
+        Thread thread = new Thread(graphicsCardsFolder);
+        thread.setDaemon(true);
+        layout.setDisable(true);
+        thread.start();
+    }
+
+    public static void pressedButton(String pressedButton) throws IOException, ClassNotFoundException {
+
         System.out.println("Velger "+pressedButton+"...");
         Stage window = new Stage();
         window.setWidth(400);
         window.setHeight(400);
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle(pressedButton);
-        Label label = new Label();
+
         label.setText("Velg ønsket "+pressedButton);
 
         //table.prefWidthProperty().bind(new SimpleIntegerProperty(350));
@@ -58,71 +88,9 @@ public class showChooser {
         setColProperties(price, "price");
 
         //laster inn filer fra spesifisert mappe
-        System.out.println(pressedButton);
-        switch (pressedButton){
-            case "grafikkort" : {
-
-                FileOpenerBinary graphicsCardsFolder = new FileOpenerBinary(folderpath + "/grafikkort");
-                graphicsCardsFolder.setOnSucceeded(event -> {
-                    layout.setDisable(false);
-                    List<Component> graphicsCards = graphicsCardsFolder.getValue();
-
-                    for (Component card : graphicsCards){
-                        collection.addElement(card);
-                        System.out.println(card.getName());
-                    }
-                });
-                graphicsCardsFolder.setOnFailed(event -> {
-                    try {
-                        throw event.getSource().getException();
-                    } catch (Throwable throwable) {
-                        throwable.printStackTrace();
-                    }
-                    layout.setDisable(false);
-                    //labInfo.setText("Fant ikke angitt fil.");
-                    System.out.println("Fant ikke angitt fil. Har du lagret grafikkort? Har du valgt riktig path?");
-                });
-
-
-                Thread thread = new Thread(graphicsCardsFolder);
-                thread.setDaemon(true);
-                layout.setDisable(true);
-                thread.start();
-            }
-        }
-
-
-        switch (pressedButton){
-            case "harddisk" : {
-
-                FileOpenerBinary HarddriveFolder = new FileOpenerBinary(folderpath+ "/Harddrive");
-                HarddriveFolder.setOnSucceeded(event -> {
-                    layout.setDisable(false);
-                    List<Component> harddrive   = HarddriveFolder.getValue();
-
-                    for (Component hardDrive : harddrive){
-                        collection.addElement(hardDrive);
-                        System.out.println(hardDrive.getName());
-                    }
-                });
-                HarddriveFolder.setOnFailed(event -> {
-                    try {
-                        throw event.getSource().getException();
-                    } catch (Throwable throwable) {
-                        throwable.printStackTrace();
-                    }
-                    layout.setDisable(false);
-                    //labInfo.setText("Fant ikke angitt fil.");
-                    System.out.println("Fant ikke angitt fil.");
-                });
-
-
-                Thread thread = new Thread(HarddriveFolder);
-                thread.setDaemon(true);
-                layout.setDisable(true);
-                thread.start();
-            }
-        }
+        String compType = pressedButton.substring(0, 1).toUpperCase() + pressedButton.substring(1);
+        System.out.println(compType);
+        readComponentofType(compType);
 
         collection.attachTableView(table);
         System.out.println(table.getItems());

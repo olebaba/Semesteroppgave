@@ -104,6 +104,9 @@ public class AddComponentController implements Initializable {
         componentBox.getSelectionModel().selectedItemProperty().addListener((observableValue, oldChoice, newChoice) ->
                 btnAdd.setDisable(newChoice.equals(componentBox.getItems().get(0))));
         componentBox.setValue(componentBox.getItems().get(0));
+
+        //Initialiserer resten //////////////////////////////////////////////////
+
     }
 
     //slette rader som er valgt i tabellen
@@ -112,9 +115,22 @@ public class AddComponentController implements Initializable {
         Component component = table.getSelectionModel().getSelectedItem();
         String filepath = componentPath+"/"+component.getCompType()+"/"+component.getName()+".jobj";
         File file = new File(filepath);
-        if (file.delete()) System.out.println("Fil" + filepath + " ble slettet");
-        else System.out.println("Fil " + filepath +" ikke slettet");
-        collection.deleteElement(component);
+        try {
+            if (file.delete()) {
+                System.out.println("Fil " + filepath + " ble slettet.");
+                labInfo.setText("Fil " + filepath + " ble slettet.");
+                collection.deleteElement(component);
+            }
+            else {
+                System.out.println("Fil " + filepath +" ikke slettet.");
+                labInfo.setText("Fil " + filepath + " ble ikke slettet. Prøv på nytt.");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        //if (file.delete()) System.out.println("Fil" + filepath + " ble slettet");
+        //else System.out.println("Fil " + filepath +" ikke slettet");
+
     }
 
     public void editComponent(){
@@ -144,6 +160,7 @@ public class AddComponentController implements Initializable {
 
         txt_name.clear();
         txt_price.clear();
+        labInfo.setText(comp.getName() + " ble lagt til.");
     }
 
     public void loadComponents() {
@@ -154,7 +171,9 @@ public class AddComponentController implements Initializable {
             ArrayList<Component> components = (ArrayList<Component>) fileOpenerBinary.getValue();
             for (Component comp : components){
                 collection.addElement(comp);
+                labInfo.setText(comp.getName() + " er lastet inn.");
             }
+            labInfo.setText("Komponentene er lastet inn.");
         });
         fileOpenerBinary.setOnFailed(event -> {
             try {
@@ -163,13 +182,14 @@ public class AddComponentController implements Initializable {
                 throwable.printStackTrace();
             }
             enableGUI(false);
-            //labInfo.setText("Fant ikke angitt fil.");
+            labInfo.setText("Fant ikke angitte filer.");
             System.out.println("Fant ikke angitt fil.");
         });
 
         Thread thread = new Thread(fileOpenerBinary);
         thread.setDaemon(true);
         enableGUI(true);
+        labInfo.setText("Komponentene lastes inn.");
         thread.start();
     }
 
@@ -183,6 +203,8 @@ public class AddComponentController implements Initializable {
             System.out.println(pathname);
             fileSaverBinary.saveFile(pathname);
         }
+
+        labInfo.setText("Komponentene er lagret.");
     }
 
     public void enableGUI(boolean enable){

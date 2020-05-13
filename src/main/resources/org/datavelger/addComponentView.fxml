@@ -25,7 +25,7 @@
                         <TextField fx:id="txt_price" layoutX="136.0" layoutY="396.0" prefHeight="35.0" prefWidth="175.0" promptText="Pris" style="-fx-border-color: #919e65;" />
                         <HBox prefHeight="100.0" prefWidth="200.0" />
                         <Button fx:id="btnAdd" layoutX="136.0" layoutY="452.0" mnemonicParsing="false" prefWidth="175.0" style="-fx-border-color: #919e65;" text="Add komponent" />
-                        <Button fx:id="btnDeleteComponent" layoutX="586.0" layoutY="285.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="175.0" text="Slett komponent" />
+                        <Button fx:id="btnDeleteComponent" layoutX="588.0" layoutY="303.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="175.0" text="Slett komponent" />
                         <ScrollPane>
                            <content>
                               <TableView fx:id="table" prefHeight="270.0" prefWidth="792.0" style="-fx-border-color: #919e65;">
@@ -44,8 +44,9 @@
                         <Label layoutX="34.5" layoutY="300.0" text="Komponent:" />
                         <Label layoutX="69.6" layoutY="354.0" text="Navn:" />
                         <Label layoutX="79.4" layoutY="405.0" text="Pris:" />
-                        <Button fx:id="btnEditComp" layoutX="586.0" layoutY="330.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="175.0" text="Endre spesifikasjoner" />
-                        <Button fx:id="btnSaveChanges" layoutX="586.0" layoutY="374.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="175.0" text="Lagre endringer" />
+                        <Button fx:id="btnEditComp" layoutX="588.0" layoutY="348.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="175.0" text="Endre spesifikasjoner" />
+                        <Button fx:id="btnSaveChanges" layoutX="588.0" layoutY="392.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="175.0" text="Lagre endringer" />
+                        <Label fx:id="labInfo" wrapText="true" layoutX="364.0" layoutY="299.0" prefHeight="18.0" prefWidth="174.0" />
                      </children>
                   </AnchorPane>
             </content>

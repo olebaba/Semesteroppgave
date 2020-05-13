@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-<AnchorPane prefHeight="732.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1"
+<AnchorPane fx:id="anchorPane" prefHeight="732.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.datavelger.AddComponentController">
    <children>
       <TabPane prefHeight="556.0" prefWidth="792.0" tabClosingPolicy="UNAVAILABLE">

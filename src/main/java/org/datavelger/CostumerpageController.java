@@ -94,7 +94,7 @@ public class CostumerpageController implements Initializable {
                     try {
                         showChooser.pressedButton(lowerCase);
                         innerPane.getChildren().remove(btnChoose);
-                        Label chosencomp = new Label(showChooser.getChosenComp().getName());
+                        Label chosencomp = new Label(showChooser.getChosenComp() != null ? showChooser.getChosenComp().getName() : "");
                         innerPane.getChildren().addAll(chosencomp);
                     } catch (IOException | ClassNotFoundException e) {
                         e.printStackTrace();

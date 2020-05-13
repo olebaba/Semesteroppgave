@@ -11,8 +11,9 @@ class FileSaverBinaryTest {
     void saveFile() throws InvalidNameException, InvalidPriceException, IOException {
         Keyboard keyboard = new Keyboard(200, "Best keyboard", false);
         Processor processor = new Processor(4000, "i5", "Intel");
-        FileSaverBinary fileSaverBinary = new FileSaverBinary(processor);
-        fileSaverBinary.saveFile("components/processors/" + processor.getName() + ".jobj");
+        GraphicsCard graphicsCard = new GraphicsCard(2999, "RTX 2070 SUPER");
+        FileSaverBinary fileSaverBinary = new FileSaverBinary(graphicsCard);
+        fileSaverBinary.saveFile("components/graphicsCards/" + graphicsCard.getName() + ".jobj");
 
 
     }

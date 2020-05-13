@@ -4,6 +4,9 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.NoSuchElementException;
 import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -13,17 +16,9 @@ class FileOpenerBinaryTest {
 
     @Test
     void openFile() throws IOException, ClassNotFoundException {
-        FileOpenerBinary fileOpenerBinary = new FileOpenerBinary();
-        for (final File file : Objects.requireNonNull(folder.listFiles())){
-            if(file.isDirectory()){
-                //print herfra
-                for (final File fileInDirectory : Objects.requireNonNull(file.listFiles())){
-                    System.out.println(fileOpenerBinary.openFile(fileInDirectory.getPath(), false));
-                }
-            }else {
-                System.out.println(fileOpenerBinary.openFile(file.getPath(), false));
-            }
-        }
-        //System.out.println(fileOpenerBinary.openFile("components/keyboards/*.jobj", false));
+        /*FileOpenerBinary fileOpenerBinary = new FileOpenerBinary("components");
+        for (Component comp : fileOpenerBinary.getValue()){
+            System.out.println(comp);
+        }*/
     }
 }

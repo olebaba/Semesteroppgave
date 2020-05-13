@@ -40,7 +40,7 @@
                               </TableView>
                            </content>
                         </ScrollPane>
-                        <Button fx:id="btnCancel" alignment="CENTER" layoutX="136.0" layoutY="501.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" style="-fx-background-color: #919e65;" text="Avbryt" />
+                        <Button fx:id="btnCancel" alignment="CENTER" layoutX="136.0" layoutY="501.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" style="-fx-background-color: #919e65;" text="Tilbake" />
                         <Label layoutX="34.5" layoutY="300.0" text="Komponent:" />
                         <Label layoutX="69.6" layoutY="354.0" text="Navn:" />
                         <Label layoutX="79.4" layoutY="405.0" text="Pris:" />

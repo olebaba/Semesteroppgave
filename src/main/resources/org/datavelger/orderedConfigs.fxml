@@ -2,23 +2,13 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-            minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.datavelger.OrderedConfigsController">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.datavelger.OrderedConfigsController">
    <children>
-      <MenuButton layoutX="671.0" layoutY="25.0" mnemonicParsing="false" style="-fx-border-color: #919e65;" text="Sorter etter">
-        <items>
-          <MenuItem mnemonicParsing="false" text="Popularitet" />
-          <MenuItem mnemonicParsing="false" text="Pris (lav til høy)" />
-        </items>
-      </MenuButton>
       <ScrollPane layoutX="67.0" layoutY="190.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
          <content>
             <TableView fx:id="tableView" prefHeight="218.0" prefWidth="664.0" style="-fx-border-color: #919e65;">

@@ -6,7 +6,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import org.datavelger.Exceptions.InvalidNameException;
@@ -17,11 +16,11 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Objects;
 import java.util.ResourceBundle;
+import java.util.jar.JarOutputStream;
 
 public class AddComponentController implements Initializable {
-    private FileOpenerJSON fileOpenerJSON;
+    private final String componentPath = "komponenter";
 
     @FXML
     private TableView<Component> table;
@@ -32,11 +31,11 @@ public class AddComponentController implements Initializable {
     @FXML
     private TextField txt_name, txt_price;
     @FXML
-    private Button btnAdd, btnDeleteComponent, btnDeleteOrder, btnCancel, btnComponentInformation;
+    private Button btnAdd, btnDeleteComponent, btnDeleteOrder, btnCancel, btnEditComp, btnSaveChanges;
     @FXML
     private Label labInfo;
     @FXML
-    private ChoiceBox <String> component;
+    private ChoiceBox <String> componentBox;
     @FXML
     private AnchorPane anchorPane;
 
@@ -44,14 +43,21 @@ public class AddComponentController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        try {
-            loadComponents();
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
+        //last inn komponenter og table///////////////////////
+        loadComponents();
         collection.attachTableView(table);
 
+        //for å slette flere rader samtidig
+        table.getSelectionModel().setSelectionMode(
+                SelectionMode.MULTIPLE
+        );
+        //oppdatere tabell for å endre navn
+        compCol.setCellValueFactory(new PropertyValueFactory<>("CompType"));
+        namecol.setCellValueFactory(new PropertyValueFactory<>("Name"));
+        pricecol.setCellValueFactory(new PropertyValueFactory<>("Price"));
+
+
+        //initialisere knapper////////////////////////////////////////////
         btnAdd.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
             try {
                 AddRecord();
@@ -68,6 +74,18 @@ public class AddComponentController implements Initializable {
             }
         });
 
+        btnDeleteComponent.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
+            deleteComponent();
+        });
+
+        btnEditComp.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
+            editComponent();
+        });
+
+        btnSaveChanges.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
+            saveComponents();
+        });
+
         //vise ekstra info om komponent
         /*btnComponentInformation.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
             try {
@@ -78,51 +96,50 @@ public class AddComponentController implements Initializable {
         });
          */
 
-        //for å slette flere rader samtidig
-        table.getSelectionModel().setSelectionMode(
-                SelectionMode.MULTIPLE
-        );
-        //oppdatere tabell for å endre navn
-        table.setEditable(true);
-        //namecol.setCellFactory((TextFieldTableCell.forTableColumn()));
-        //pricecol.setCellFactory(((TextFieldTableCell.forTableColumn());
-
-
-        component.getItems().addAll(" ", "Grafikkort", "Harddisk", "Tastatur", "Minne", "Skjerm",
+        //gjør klar innlegging av komponenter //////////////////////////////////////////////
+        componentBox.getItems().addAll(" ", "Grafikkort", "Harddisk", "Tastatur", "Minne", "Skjerm",
                 "Hovedkort", "Mus", "Prosessor");
 
         //ikke mulig å gå videre uten å velge type komponent
-        component.getSelectionModel().selectedItemProperty().addListener((observableValue, oldChoice, newChoice) ->
-                btnAdd.setDisable(newChoice.equals(component.getItems().get(0))));
-        component.setValue(component.getItems().get(0));
+        componentBox.getSelectionModel().selectedItemProperty().addListener((observableValue, oldChoice, newChoice) ->
+                btnAdd.setDisable(newChoice.equals(componentBox.getItems().get(0))));
+        componentBox.setValue(componentBox.getItems().get(0));
 
-        namecol.setCellValueFactory(new PropertyValueFactory<>("Name"));
-        pricecol.setCellValueFactory(new PropertyValueFactory<>("Price"));
-
-        /*try {
-            table.setItems(getComponentList());
-        } catch (InvalidNameException | InvalidPriceException e) {
-            e.printStackTrace();
-        }*/
-
-        btnDeleteComponent.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
-            deleteButtonPushed();
-        });
+        //Initialiserer resten //////////////////////////////////////////////////
 
     }
 
-    //slette rader som  er valgt i tabellen
-    public void deleteButtonPushed()
+    //slette rader som er valgt i tabellen
+    public void deleteComponent()
     {
-        ObservableList<Component> selectedRows, allcomponent;
-        allcomponent = table.getItems();
-
-        selectedRows = table.getSelectionModel().getSelectedItems();
-
-        for (Component component: selectedRows){
-            allcomponent.remove(component);
+        Component component = table.getSelectionModel().getSelectedItem();
+        String filepath = componentPath+"/"+component.getCompType()+"/"+component.getName()+".jobj";
+        File file = new File(filepath);
+        try {
+            if (file.delete()) {
+                System.out.println("Fil " + filepath + " ble slettet.");
+                labInfo.setText("Fil " + filepath + " ble slettet.");
+                collection.deleteElement(component);
+            }
+            else {
+                System.out.println("Fil " + filepath +" ikke slettet.");
+                labInfo.setText("Fil " + filepath + " ble ikke slettet. Prøv på nytt.");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
+        //if (file.delete()) System.out.println("Fil" + filepath + " ble slettet");
+        //else System.out.println("Fil " + filepath +" ikke slettet");
+
     }
+
+    public void editComponent(){
+        Component editedComp = table.getSelectionModel().getSelectedItem();
+        txt_name.setText(editedComp.getName());
+        txt_price.setText(String.valueOf(editedComp.getPrice()));
+        table.getItems().remove(editedComp);
+    }
+
     public void changeNameCellEvent(TableColumn.CellEditEvent edditedCell) throws InvalidNameException {
         Component componentSelected = table.getSelectionModel().getSelectedItem();
         componentSelected.setName(edditedCell.getNewValue().toString());
@@ -137,34 +154,26 @@ public class AddComponentController implements Initializable {
 
         comp.setPrice(Integer.parseInt(txt_price.getText()));
         comp.setName(txt_name.getText());
+        comp.setCompType(componentBox.getValue());
 
         collection.addElement(comp);
 
         txt_name.clear();
         txt_price.clear();
-
+        labInfo.setText(comp.getName() + " ble lagt til.");
     }
 
-    //eksempel-komponenter
-    public ObservableList<Component> getComponentList() throws InvalidNameException, InvalidPriceException {
-        ObservableList<Component> components = FXCollections.observableArrayList();
-        components.add(new Component(  1299,"Keyboard") );
-        components.add(new Component(1315,"Mouse") );
-        components.add(new Component(299,"Motherboard") );
-        components.add(new Component(1490,"Apple Magic Keyboard with Numeric Keypad") );
-
-        return components;
-    }
-
-    public void loadComponents() throws IOException, ClassNotFoundException {
-        File folder = new File("components");
+    public void loadComponents() {
+        File folder = new File(componentPath);
         FileOpenerBinary fileOpenerBinary = new FileOpenerBinary(folder.getPath());
         fileOpenerBinary.setOnSucceeded(event -> {
             enableGUI(false);
             ArrayList<Component> components = (ArrayList<Component>) fileOpenerBinary.getValue();
             for (Component comp : components){
                 collection.addElement(comp);
+                labInfo.setText(comp.getName() + " er lastet inn.");
             }
+            labInfo.setText("Komponentene er lastet inn.");
         });
         fileOpenerBinary.setOnFailed(event -> {
             try {
@@ -173,14 +182,29 @@ public class AddComponentController implements Initializable {
                 throwable.printStackTrace();
             }
             enableGUI(false);
-            //labInfo.setText("Fant ikke angitt fil.");
+            labInfo.setText("Fant ikke angitte filer.");
             System.out.println("Fant ikke angitt fil.");
         });
 
         Thread thread = new Thread(fileOpenerBinary);
         thread.setDaemon(true);
         enableGUI(true);
+        labInfo.setText("Komponentene lastes inn.");
         thread.start();
+    }
+
+    public void saveComponents(){
+        ArrayList<Component> components = new ArrayList<>(collection.getList());
+        for (Component component : components) {
+
+            FileSaverBinary fileSaverBinary = new FileSaverBinary(component);
+            String pathname = componentPath + "/" + component.getCompType()
+                    + "/" + component.getName() + ".jobj";
+            System.out.println(pathname);
+            fileSaverBinary.saveFile(pathname);
+        }
+
+        labInfo.setText("Komponentene er lagret.");
     }
 
     public void enableGUI(boolean enable){

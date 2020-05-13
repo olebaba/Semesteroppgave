@@ -9,8 +9,8 @@ public class Harddrive extends Component{
     private int capasity;
 
 
-    public Harddrive(int price, String name, double size, int capasity) throws InvalidNameException, InvalidPriceException {
-        super(price, name);
+    public Harddrive(int price, String name, String compType, double size, int capasity) throws InvalidNameException, InvalidPriceException {
+        super(price, name, compType);
         this.size = size;
         this.capasity = capasity;
     }

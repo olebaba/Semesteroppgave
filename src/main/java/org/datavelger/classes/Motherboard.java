@@ -8,8 +8,8 @@ public class Motherboard extends Component{
     private String type;
 
 
-    public Motherboard(int price, String name, String type) throws InvalidNameException, InvalidPriceException {
-        super(price, name);
+    public Motherboard(int price, String name, String compType, String type) throws InvalidNameException, InvalidPriceException {
+        super(price, name, compType);
         this.type = type;
     }
 

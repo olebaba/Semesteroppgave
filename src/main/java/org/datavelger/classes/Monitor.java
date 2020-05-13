@@ -7,8 +7,8 @@ public class Monitor extends Component {
     private static final long serialVersionUID = 1L;
     private int size;
 
-    public Monitor(int price, String name, int size) throws InvalidNameException, InvalidPriceException {
-        super(price, name);
+    public Monitor(int price, String name, String compType, int size) throws InvalidNameException, InvalidPriceException {
+        super(price, name, compType);
         this.size = size;
     }
 

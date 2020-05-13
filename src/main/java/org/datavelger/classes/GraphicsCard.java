@@ -6,8 +6,8 @@ import org.datavelger.Exceptions.InvalidPriceException;
 public class GraphicsCard extends Component{
     private static final long serialVersionUID = 1L;
 
-    public GraphicsCard(int price, String name) throws InvalidNameException, InvalidPriceException {
-        super(price, name);
+    public GraphicsCard(int price, String name, String compType) throws InvalidNameException, InvalidPriceException {
+        super(price, name, compType);
     }
 
     @Override

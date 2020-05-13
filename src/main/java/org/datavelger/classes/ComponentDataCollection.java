@@ -15,6 +15,9 @@ public class ComponentDataCollection {
     public void addElement(Component comp) {
         list.add(comp);
     }
+    public void deleteElement(Component comp) {
+        list.remove(comp);
+    }
 
     public ObservableList<Component> getList(){
         return list;

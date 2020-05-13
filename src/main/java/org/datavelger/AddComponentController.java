@@ -16,6 +16,7 @@ import org.datavelger.classes.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -157,19 +158,29 @@ public class AddComponentController implements Initializable {
 
     public void loadComponents() throws IOException, ClassNotFoundException {
         File folder = new File("components");
-        FileOpenerBinary fileOpenerBinary = new FileOpenerBinary();
-        for (final File file : Objects.requireNonNull(folder.listFiles())){
-            if(file.isDirectory()){
-                //print herfra
-                for (final File fileInDirectory : Objects.requireNonNull(file.listFiles())){
-                    //System.out.println(fileOpenerBinary.openFile(fileInDirectory.getPath(), false));
-                    collection.addElement(fileOpenerBinary.openFile(fileInDirectory.getPath(), false));
-                }
-            }else {
-                //System.out.println(fileOpenerBinary.openFile(file.getPath(), false));
-                collection.addElement(fileOpenerBinary.openFile(file.getPath(), false));
+        FileOpenerBinary fileOpenerBinary = new FileOpenerBinary(folder.getPath());
+        fileOpenerBinary.setOnSucceeded(event -> {
+            enableGUI(false);
+            ArrayList<Component> components = (ArrayList<Component>) fileOpenerBinary.getValue();
+            for (Component comp : components){
+                collection.addElement(comp);
             }
-        }
+        });
+        fileOpenerBinary.setOnFailed(event -> {
+            try {
+                throw event.getSource().getException();
+            } catch (Throwable throwable) {
+                throwable.printStackTrace();
+            }
+            enableGUI(false);
+            //labInfo.setText("Fant ikke angitt fil.");
+            System.out.println("Fant ikke angitt fil.");
+        });
+
+        Thread thread = new Thread(fileOpenerBinary);
+        thread.setDaemon(true);
+        enableGUI(true);
+        thread.start();
     }
 
     public void enableGUI(boolean enable){

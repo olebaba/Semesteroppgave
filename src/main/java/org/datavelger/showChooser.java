@@ -15,6 +15,8 @@ import javafx.stage.Stage;
 import org.datavelger.classes.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class showChooser {
     static TableView<Component> table = new TableView<>();
@@ -35,6 +37,8 @@ public class showChooser {
     }
 
     public static void pressedButton(String pressedButton) throws IOException, ClassNotFoundException {
+        VBox layout = new VBox(10);
+
         ComponentDataCollection collection = new ComponentDataCollection();
         System.out.println("Velger "+pressedButton+"...");
         Stage window = new Stage();
@@ -55,15 +59,41 @@ public class showChooser {
         //TODO: legge til komponenter som passer med type komponent valgt, fra fil
 
         //load files
-        FileOpenerBinary fileOpenerBinary = new FileOpenerBinary();
-        Component aComp = fileOpenerBinary.openFile("components.jobj", true);
-
         System.out.println(pressedButton);
         switch (pressedButton){
-            case "tastatur" : collection.addElement(aComp);
+            case "grafikkort" : {
+
+                FileOpenerBinary graphicsCardsFolder = new FileOpenerBinary("components/GraphicsCards");
+                graphicsCardsFolder.setOnSucceeded(event -> {
+                    layout.setDisable(false);
+                    List<Component> graphicsCards = graphicsCardsFolder.getValue();
+
+                    for (Component card : graphicsCards){
+                        collection.addElement(card);
+                        System.out.println(card.getName());
+                    }
+                });
+                graphicsCardsFolder.setOnFailed(event -> {
+                    try {
+                        throw event.getSource().getException();
+                    } catch (Throwable throwable) {
+                        throwable.printStackTrace();
+                    }
+                    layout.setDisable(false);
+                    //labInfo.setText("Fant ikke angitt fil.");
+                    System.out.println("Fant ikke angitt fil.");
+                });
+
+
+                Thread thread = new Thread(graphicsCardsFolder);
+                thread.setDaemon(true);
+                layout.setDisable(true);
+                thread.start();
+            }
         }
 
         collection.attachTableView(table);
+        System.out.println(table.getItems());
         table.getColumns().setAll(name, price);
 
         table.setOnMouseClicked((MouseEvent event)->{
@@ -85,7 +115,7 @@ public class showChooser {
         });
 
 
-        VBox layout = new VBox(10);
+
         layout.getChildren().addAll(label,valgt, table, chooseButton,closeButton);
         layout.setAlignment(Pos.CENTER);
         Scene scene = new Scene(layout);

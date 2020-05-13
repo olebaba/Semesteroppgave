@@ -92,6 +92,39 @@ public class showChooser {
             }
         }
 
+
+        /*switch (pressedButton){
+            case "harddisk" : {
+
+                FileOpenerBinary HarddriveFolder = new FileOpenerBinary("components/Harddrive");
+                HarddriveFolder.setOnSucceeded(event -> {
+                    layout.setDisable(false);
+                    List<Component> harddrive   = HarddriveFolder.getValue();
+
+                    for (Component hardDrive : ){
+                        collection.addElement(hardDrive);
+                        System.out.println(harddrive.());
+                    }
+                });
+                HarddriveFolder.setOnFailed(event -> {
+                    try {
+                        throw event.getSource().getException();
+                    } catch (Throwable throwable) {
+                        throwable.printStackTrace();
+                    }
+                    layout.setDisable(false);
+                    //labInfo.setText("Fant ikke angitt fil.");
+                    System.out.println("Fant ikke angitt fil.");
+                });
+
+
+                Thread thread = new Thread(HarddriveFolder);
+                thread.setDaemon(true);
+                layout.setDisable(true);
+                thread.start();
+            }
+        }*/
+
         collection.attachTableView(table);
         System.out.println(table.getItems());
         table.getColumns().setAll(name, price);

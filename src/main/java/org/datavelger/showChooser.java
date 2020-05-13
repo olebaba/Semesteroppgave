@@ -1,9 +1,6 @@
 package org.datavelger;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableArray;
-import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -15,15 +12,29 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import org.datavelger.Exceptions.InvalidNameException;
-import org.datavelger.Exceptions.InvalidPriceException;
 import org.datavelger.classes.*;
 
-import java.lang.reflect.Array;
+import java.io.IOException;
 
 public class showChooser {
+    static TableView<Component> table = new TableView<>();
+    static Component chosenComp;
 
-    public static void pressedButton(String pressedButton) throws InvalidNameException, InvalidPriceException {
+    static private void setChosenComp(Component comp){
+        chosenComp = comp;
+    }
+
+    public static Component getChosenComp() {
+        return chosenComp;
+    }
+
+    static private void setColProperties(TableColumn<Component, String> tableColumn, String name){
+        tableColumn.setCellValueFactory(new PropertyValueFactory<>(name));
+        tableColumn.prefWidthProperty().bind(table.widthProperty().multiply(0.5));
+        tableColumn.setResizable(false);
+    }
+
+    public static void pressedButton(String pressedButton) throws IOException, ClassNotFoundException {
         ComponentDataCollection collection = new ComponentDataCollection();
         System.out.println("Velger "+pressedButton+"...");
         Stage window = new Stage();
@@ -34,15 +45,24 @@ public class showChooser {
         Label label = new Label();
         label.setText("Velg ønsket "+pressedButton);
 
-        TableView<Component> table = new TableView<>();
+        //table.prefWidthProperty().bind(new SimpleIntegerProperty(350));
+        table.setEditable(false);
         TableColumn<Component, String> name = new TableColumn<>("Navn");
-        //TableColumn<ComponentDataCollection, String>  series = new TableColumn<>("Serie");
         TableColumn<Component, String> price = new TableColumn<>("Pris");
-        name.setCellValueFactory(new PropertyValueFactory<>("Name"));
-        price.setCellValueFactory(new PropertyValueFactory<>("Price"));
+        setColProperties(name, "name");
+        setColProperties(price, "price");
 
         //TODO: legge til komponenter som passer med type komponent valgt, fra fil
-        collection.addElement(new Keyboard(233, "superduperkeyboard", true));
+
+        //load files
+        FileOpenerBinary fileOpenerBinary = new FileOpenerBinary();
+        Component aComp = fileOpenerBinary.openFile("components.jobj", true);
+
+        System.out.println(pressedButton);
+        switch (pressedButton){
+            case "tastatur" : collection.addElement(aComp);
+        }
+
         collection.attachTableView(table);
         table.getColumns().setAll(name, price);
 
@@ -57,9 +77,16 @@ public class showChooser {
         Button closeButton = new Button("Tilbake");
         closeButton.setOnAction(e -> window.close());
 
+        Button chooseButton = new Button("Velg");
+        chooseButton.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
+            setChosenComp(table.getSelectionModel().getSelectedItem());
+            System.out.println(getChosenComp());
+
+        });
+
 
         VBox layout = new VBox(10);
-        layout.getChildren().addAll(label,valgt, table,closeButton);
+        layout.getChildren().addAll(label,valgt, table, chooseButton,closeButton);
         layout.setAlignment(Pos.CENTER);
         Scene scene = new Scene(layout);
         window.setScene(scene);

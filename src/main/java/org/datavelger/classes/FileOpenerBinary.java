@@ -7,11 +7,10 @@ import java.io.ObjectInputStream;
 public class FileOpenerBinary implements FileOpener {
 
     @Override
-    public String openFile(String path, boolean semicolon) throws IOException, ClassNotFoundException {
+    public Component openFile(String path, boolean semicolon) throws IOException, ClassNotFoundException {
         FileInputStream fileInputStream = new FileInputStream(path);
         ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
 
-        Keyboard keyboard = (Keyboard) objectInputStream.readObject();
-        return keyboard.toString();
+        return (Component) objectInputStream.readObject();
     }
 }

@@ -5,12 +5,15 @@ import javafx.beans.property.SimpleStringProperty;
 import org.datavelger.Exceptions.InvalidNameException;
 import org.datavelger.Exceptions.InvalidPriceException;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
 public class Component implements Serializable {
     private static final long serialVersionUID = 1L;
-    private SimpleIntegerProperty price;
-    private SimpleStringProperty name;
+    private transient SimpleIntegerProperty price;
+    private transient SimpleStringProperty name;
 
     public Component(){}
 
@@ -35,6 +38,18 @@ public class Component implements Serializable {
     public void setName(String name) throws InvalidNameException {
         if(!Validator.isValidName(name)) throw new InvalidNameException();
         this.name = new SimpleStringProperty(name);
+    }
+
+    private void writeObject(ObjectOutputStream s) throws IOException {
+        s.defaultWriteObject();
+        s.writeInt(getPrice());
+        s.writeUTF(getName());
+    }
+
+    private void readObject(ObjectInputStream s) throws IOException, ClassNotFoundException,
+            InvalidPriceException, InvalidNameException {
+        setPrice(s.readInt());
+        setName(s.readUTF());
     }
 
     public String toJSON() {

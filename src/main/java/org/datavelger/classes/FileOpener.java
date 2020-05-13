@@ -4,5 +4,5 @@ import java.io.IOException;
 import java.util.List;
 
 public interface FileOpener {
-    String openFile(String path, boolean semicolon) throws IOException, ClassNotFoundException;
+    Object openFile(String path, boolean semicolon) throws IOException, ClassNotFoundException;
 }

@@ -11,9 +11,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import org.datavelger.classes.Component;
 import org.datavelger.classes.ComponentDataCollection;
 import org.datavelger.classes.FileOpenerBinary;
+import org.datavelger.classes.Order;
 
 import java.io.IOException;
 import java.util.List;
@@ -25,6 +27,8 @@ public class showChooser {
     static Label label = new Label();
     static VBox layout = new VBox(10);
     static ComponentDataCollection collection = new ComponentDataCollection();
+    static public Order order = new Order();
+    static Scene scene = new Scene(layout);
 
     static private void setChosenComp(Component comp){
         chosenComp = comp;
@@ -41,17 +45,17 @@ public class showChooser {
     }
 
     private static void readComponentofType(String compType){
-        FileOpenerBinary graphicsCardsFolder = new FileOpenerBinary(folderpath + "/" + compType);
-        graphicsCardsFolder.setOnSucceeded(event -> {
+        FileOpenerBinary componentFolder = new FileOpenerBinary(folderpath + "/" + compType);
+        componentFolder.setOnSucceeded(event -> {
             layout.setDisable(false);
-            List<Component> graphicsCards = graphicsCardsFolder.getValue();
+            List<Component> components = componentFolder.getValue();
 
-            for (Component card : graphicsCards){
+            for (Component card : components){
                 collection.addElement(card);
                 System.out.println(card.getName());
             }
         });
-        graphicsCardsFolder.setOnFailed(event -> {
+        componentFolder.setOnFailed(event -> {
             try {
                 throw event.getSource().getException();
             } catch (Throwable throwable) {
@@ -63,7 +67,7 @@ public class showChooser {
         });
 
 
-        Thread thread = new Thread(graphicsCardsFolder);
+        Thread thread = new Thread(componentFolder);
         thread.setDaemon(true);
         layout.setDisable(true);
         thread.start();
@@ -73,6 +77,12 @@ public class showChooser {
 
         System.out.println("Velger "+pressedButton+"...");
         Stage window = new Stage();
+        //fjerner children på exit (hindrer duplikate nodes)
+        window.setOnHiding(windowEvent -> {
+            while (layout.getChildren().size()>=1){
+                layout.getChildren().removeAll(layout.getChildren().get(layout.getChildren().size()-1));
+            }
+        });
         window.setWidth(400);
         window.setHeight(400);
         window.initModality(Modality.APPLICATION_MODAL);
@@ -96,17 +106,17 @@ public class showChooser {
         System.out.println(table.getItems());
         table.getColumns().setAll(name, price);
 
+        //vise valgt komponent og legger den i order
+        Label valgt = new Label();
         table.setOnMouseClicked((MouseEvent event)->{
-            //TODO: Sjekke hvilken entry som er klikket på i tableview
+            valgt.setText(table.getSelectionModel().getSelectedItem().getName());
+            //order.setGraphicsCard(table.getSelectionModel().getSelectedItem().getName());
         });
 
-         Label valgt = new Label();
-        valgt.setText("Du har valgt følgende "+pressedButton);
-        //TODO: skrive ut valgt grafikkort basert på tableview
-
         Button closeButton = new Button("Tilbake");
-        closeButton.setOnAction(e -> window.close());
-
+        closeButton.setOnAction(e ->{
+            window.close();
+        });
         Button chooseButton = new Button("Velg");
         chooseButton.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
             setChosenComp(table.getSelectionModel().getSelectedItem());
@@ -114,12 +124,11 @@ public class showChooser {
 
         });
 
-
-
-        layout.getChildren().addAll(label,valgt, table, chooseButton,closeButton);
+        layout.getChildren().addAll(label, valgt, table, chooseButton, closeButton);
         layout.setAlignment(Pos.CENTER);
-        Scene scene = new Scene(layout);
+
         window.setScene(scene);
+
         window.showAndWait();
     }
 }

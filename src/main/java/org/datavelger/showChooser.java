@@ -85,12 +85,11 @@ public class showChooser {
         });
         window.setWidth(400);
         window.setHeight(400);
-        window.initModality(Modality.APPLICATION_MODAL);
+        window.initModality(Modality.APPLICATION_MODAL); //hindrer at man kan gå tilbake til andre vindu
         window.setTitle(pressedButton);
 
         label.setText("Velg ønsket "+pressedButton);
 
-        //table.prefWidthProperty().bind(new SimpleIntegerProperty(350));
         table.setEditable(false);
         TableColumn<Component, String> name = new TableColumn<>("Navn");
         TableColumn<Component, String> price = new TableColumn<>("Pris");
@@ -99,18 +98,18 @@ public class showChooser {
 
         //laster inn filer fra spesifisert mappe
         String compType = pressedButton.substring(0, 1).toUpperCase() + pressedButton.substring(1);
-        System.out.println(compType);
+        //System.out.println(compType); //viser type komponent
         readComponentofType(compType);
 
         collection.attachTableView(table);
-        System.out.println(table.getItems());
+        System.out.println(table.getItems()); //viser innhold av liste til type komponent
         table.getColumns().setAll(name, price);
 
         //vise valgt komponent og legger den i order
         Label valgt = new Label();
         table.setOnMouseClicked((MouseEvent event)->{
             valgt.setText(table.getSelectionModel().getSelectedItem().getName());
-            //order.setGraphicsCard(table.getSelectionModel().getSelectedItem().getName());
+            order.setGraphicsCard(table.getSelectionModel().getSelectedItem().getName());
         });
 
         Button closeButton = new Button("Tilbake");

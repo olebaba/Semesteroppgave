@@ -16,6 +16,7 @@ import org.datavelger.classes.Component;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.ResourceBundle;
 
@@ -60,41 +61,47 @@ public class CostumerpageController implements Initializable {
 
     private void addChosenComps(Boolean[] booleans){ //legger valgte komponenter i programmet
         Collection<Node> nodes = new ArrayList<>();
-        String labelText;
+        String labelText = "";
         int positionY = 15, positionX = 20, positionYchosen = 50;
         int i = 0;
         for (Boolean b : booleans){
             if (b != null && b) {
                 labelText = radioComps[i].getText();
-                //System.out.println(i);
 
-                Label label = new Label(labelText+": ");
-                label.setLayoutY(positionY);
-                label.setLayoutX(positionX);
-                nodes.add(label);
-                String lowerCase = labelText.toLowerCase();
-                //System.out.println("Du har valgt "+lowerCase);
-                Button add = new Button("Velg "+lowerCase);
-                Button remove = new Button("Fjern valgt "+lowerCase);
-                String chosen = "Du har valgt følgende "+lowerCase+" :";
-                Label showChosen = new Label(chosen);
-                nodes.add(add);
-                nodes.add(remove);
+                Label lblComp = new Label(labelText);
+                lblComp.setLayoutX(positionX);
+                lblComp.setDisable(true);
+                Button add = new Button("Velg " + labelText.toLowerCase());
+                Button remove = new Button("Fjern valgt " + labelText.toLowerCase());
+                //String chosen = "Du har valgt følgende " + labelText.toLowerCase() + ": ";
+
+                nodes.addAll(Arrays.asList(lblComp, add, remove));
+                /*for (Node node : nodes){
+                    node.setLayoutY(positionY);
+                }*/
+                lblComp.setLayoutY(positionY);
+                add.setLayoutY(positionY);
+                remove.setLayoutY(positionY);
+
+                //TODO legge dette i css:
+                add.setFont(new Font("Arial",16));
+                remove.setFont(new Font("Arial", 16));
+                //kanskje dette og?
                 add.setPrefSize(150,30);
                 remove.setPrefSize(200, 30);
                 add.setLayoutX(150);
                 remove.setLayoutX(325);
-                add.setFont(new Font("Arial",16));
-                remove.setFont(new Font("Arial", 16));
-                add.setLayoutY(positionY);
-                remove.setLayoutY(positionY);
+
 
                 //Kaller på metoden i showChooser med navnet på knappen som er valgt
+                String finalLabelText = labelText;
                 add.setOnAction(event -> {
                     try {
-                        showChooser.pressedButton(lowerCase);
+                        showChooser.pressedButton(finalLabelText);
                         innerPane.getChildren().remove(btnChoose);
-                        Label chosencomp = new Label(showChooser.getChosenComp() != null ? showChooser.getChosenComp().getName() : "");
+                        lblComp.setDisable(false);
+                        lblComp.setText(showChooser.order != null ?
+                                showChooser.order.getGraphicsCard() : "");
                         //innerPane.getChildren().addAll(chosencomp);
                     } catch (IOException | ClassNotFoundException e) {
                         e.printStackTrace();

@@ -2,10 +2,7 @@ package org.datavelger.classes;
 
 import javafx.concurrent.Task;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -36,16 +33,19 @@ public class FileOpenerBinary extends Task<List<Component>> implements FileOpene
             e.printStackTrace();
         }
 
-        for (final File file : Objects.requireNonNull(new File(folderPath).listFiles())){
-            if(file.isDirectory()){
-                //print herfra
-                for (final File fileInDirectory : Objects.requireNonNull(file.listFiles())){
-                    //System.out.println(fileOpenerBinary.openFile(fileInDirectory.getPath(), false));
-                    components.add(openFile(fileInDirectory.getPath(), false));
+        if (!new File(folderPath).exists()) throw new FileNotFoundException("Ingen slike filer.");
+        else {
+            for (final File file : Objects.requireNonNull(new File(folderPath).listFiles())) {
+                if (file.isDirectory()) {
+                    //print herfra
+                    for (final File fileInDirectory : Objects.requireNonNull(file.listFiles())) {
+                        //System.out.println(fileOpenerBinary.openFile(fileInDirectory.getPath(), false));
+                        components.add(openFile(fileInDirectory.getPath(), false));
+                    }
+                } else {
+                    //System.out.println(fileOpenerBinary.openFile(file.getPath(), false));
+                    components.add(openFile(file.getPath(), false));
                 }
-            }else {
-                //System.out.println(fileOpenerBinary.openFile(file.getPath(), false));
-                components.add(openFile(file.getPath(), false));
             }
         }
 

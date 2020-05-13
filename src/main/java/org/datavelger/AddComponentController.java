@@ -183,7 +183,7 @@ public class AddComponentController implements Initializable {
             }
             enableGUI(false);
             labInfo.setText("Fant ikke angitte filer.");
-            System.out.println("Fant ikke angitt fil.");
+            System.out.println("Fant ikke angitt fil. Har du lagret noen komponenter?");
         });
 
         Thread thread = new Thread(fileOpenerBinary);

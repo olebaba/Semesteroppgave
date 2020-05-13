@@ -1,6 +1,5 @@
 package org.datavelger;
 
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -12,15 +11,17 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import org.datavelger.classes.*;
+import org.datavelger.classes.Component;
+import org.datavelger.classes.ComponentDataCollection;
+import org.datavelger.classes.FileOpenerBinary;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class showChooser {
     static TableView<Component> table = new TableView<>();
     static Component chosenComp;
+    static String folderpath = "komponenter";
 
     static private void setChosenComp(Component comp){
         chosenComp = comp;
@@ -63,7 +64,7 @@ public class showChooser {
         switch (pressedButton){
             case "grafikkort" : {
 
-                FileOpenerBinary graphicsCardsFolder = new FileOpenerBinary("components/GraphicsCards");
+                FileOpenerBinary graphicsCardsFolder = new FileOpenerBinary(folderpath + "/grafikkort");
                 graphicsCardsFolder.setOnSucceeded(event -> {
                     layout.setDisable(false);
                     List<Component> graphicsCards = graphicsCardsFolder.getValue();
@@ -81,7 +82,7 @@ public class showChooser {
                     }
                     layout.setDisable(false);
                     //labInfo.setText("Fant ikke angitt fil.");
-                    System.out.println("Fant ikke angitt fil.");
+                    System.out.println("Fant ikke angitt fil. Har du lagret grafikkort? Har du valgt riktig path?");
                 });
 
 

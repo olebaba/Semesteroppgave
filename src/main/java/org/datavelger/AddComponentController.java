@@ -2,25 +2,21 @@ package org.datavelger;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 import org.datavelger.Exceptions.InvalidNameException;
 import org.datavelger.Exceptions.InvalidPriceException;
-import org.datavelger.classes.Component;
-import org.datavelger.classes.FileOpenerJSON;
+import org.datavelger.classes.*;
+
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class AddComponentController implements Initializable {
@@ -35,7 +31,7 @@ public class AddComponentController implements Initializable {
     @FXML
     private TextField txt_name, txt_price;
     @FXML
-    private Button btnAdd, btnLoadAll, btnAvbryt, btnKomponentInformasjon;
+    private Button btnAdd, btnDeleteComponent, btnDeleteOrder, btnCancel, btnComponentInformation;
     @FXML
     private Label labInfo;
     @FXML
@@ -43,24 +39,43 @@ public class AddComponentController implements Initializable {
     @FXML
     private AnchorPane anchorPane;
 
+    private ComponentDataCollection collection = new ComponentDataCollection();
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        try {
+            loadComponents();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
 
+        collection.attachTableView(table);
 
-        btnAvbryt.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
+        btnAdd.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
+            try {
+                AddRecord();
+            } catch (InvalidPriceException | InvalidNameException e) {
+                e.printStackTrace();
+            }
+        });
+
+        btnCancel.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
             try {
                 App.setRoot("main");
             } catch (IOException e) {
                 e.printStackTrace();
             }
         });
-        btnKomponentInformasjon.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
+
+        //vise ekstra info om komponent
+        /*btnComponentInformation.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
             try {
-                App.setRoot("komponentView");
+                App.setRoot("componentView");
             } catch (IOException e) {
                 e.printStackTrace();
             }
         });
+         */
 
         //for å slette flere rader samtidig
         table.getSelectionModel().setSelectionMode(
@@ -68,7 +83,7 @@ public class AddComponentController implements Initializable {
         );
         //oppdatere tabell for å endre navn
         table.setEditable(true);
-        namecol.setCellFactory((TextFieldTableCell.forTableColumn()));
+        //namecol.setCellFactory((TextFieldTableCell.forTableColumn()));
         //pricecol.setCellFactory(((TextFieldTableCell.forTableColumn());
 
 
@@ -83,12 +98,18 @@ public class AddComponentController implements Initializable {
         namecol.setCellValueFactory(new PropertyValueFactory<>("Name"));
         pricecol.setCellValueFactory(new PropertyValueFactory<>("Price"));
 
-        try {
+        /*try {
             table.setItems(getComponentList());
         } catch (InvalidNameException | InvalidPriceException e) {
             e.printStackTrace();
-        }
+        }*/
+
+        btnDeleteComponent.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
+            deleteButtonPushed();
+        });
+
     }
+
     //slette rader som  er valgt i tabellen
     public void deleteButtonPushed()
     {
@@ -110,20 +131,20 @@ public class AddComponentController implements Initializable {
         componentSelected.setPrice(((Integer) edditedCell.getNewValue()));
     }
 
-
-
     public void AddRecord() throws InvalidPriceException, InvalidNameException {
-
-
         Component comp = new Component();
 
         comp.setPrice(Integer.parseInt(txt_price.getText()));
         comp.setName(txt_name.getText());
-        table.getItems().add(comp);
+
+        collection.addElement(comp);
+
         txt_name.clear();
         txt_price.clear();
 
     }
+
+    //eksempel-komponenter
     public ObservableList<Component> getComponentList() throws InvalidNameException, InvalidPriceException {
         ObservableList<Component> components = FXCollections.observableArrayList();
         components.add(new Component(  1299,"Keyboard") );
@@ -134,34 +155,25 @@ public class AddComponentController implements Initializable {
         return components;
     }
 
-
-
-    public void loadComponents() throws IOException {
-        fileOpenerJSON = new FileOpenerJSON();
-        fileOpenerJSON.openFile("components.bin", true);
-
+    public void loadComponents() throws IOException, ClassNotFoundException {
+        File folder = new File("components");
+        FileOpenerBinary fileOpenerBinary = new FileOpenerBinary();
+        for (final File file : Objects.requireNonNull(folder.listFiles())){
+            if(file.isDirectory()){
+                //print herfra
+                for (final File fileInDirectory : Objects.requireNonNull(file.listFiles())){
+                    //System.out.println(fileOpenerBinary.openFile(fileInDirectory.getPath(), false));
+                    collection.addElement(fileOpenerBinary.openFile(fileInDirectory.getPath(), false));
+                }
+            }else {
+                //System.out.println(fileOpenerBinary.openFile(file.getPath(), false));
+                collection.addElement(fileOpenerBinary.openFile(file.getPath(), false));
+            }
+        }
     }
 
     public void enableGUI(boolean enable){
-        if (enable) anchorPane.setDisable(true);
-        else anchorPane.setDisable(false);
-    }
-
-    public void changeSceneToComponentView (ActionEvent event) throws IOException
-    {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("componentView.fxml"));
-        Parent tableViewParent = loader.load();
-
-        Scene tableViewScene = new Scene(tableViewParent);
-
-        ComponentViewController controller = loader.getController();
-        controller.initData(table.getSelectionModel().getSelectedItem());
-
-        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-
-        window.setScene(tableViewScene);
-        window.show();
+        anchorPane.setDisable(enable);
     }
 
 }

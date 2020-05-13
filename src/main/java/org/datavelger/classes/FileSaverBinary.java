@@ -9,7 +9,7 @@ public class FileSaverBinary implements FileSaver{
         this.component = component;
     }
     @Override
-    public void saveFile(String filepath) throws IOException {
+    public void saveFile(String filepath) {
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(new File(filepath));
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
@@ -21,6 +21,7 @@ public class FileSaverBinary implements FileSaver{
             System.out.println("File not found.");
         }catch (IOException e){
             System.out.println("IO error.");
+            e.printStackTrace();
         }
     }
 }

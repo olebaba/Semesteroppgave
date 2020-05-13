@@ -11,6 +11,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import org.datavelger.Exceptions.InvalidNameException;
 import org.datavelger.Exceptions.InvalidPriceException;
+import org.datavelger.classes.Component;
 
 import java.io.IOException;
 import java.net.URL;
@@ -43,6 +44,8 @@ public class CostumerpageController implements Initializable {
             innerPane.getChildren().clear();
             addChosenComps(checkSelected());
         });
+
+
     }
 
     private Boolean[] checkSelected(){ //finner hvilke knapper som er trykket
@@ -90,10 +93,15 @@ public class CostumerpageController implements Initializable {
                 add.setOnAction(event -> {
                     try {
                         showChooser.pressedButton(lowerCase);
-                    } catch (InvalidNameException | InvalidPriceException e) {
+                        innerPane.getChildren().remove(btnChoose);
+                        Label chosencomp = new Label(showChooser.getChosenComp().getName());
+                        innerPane.getChildren().addAll(chosencomp);
+                    } catch (IOException | ClassNotFoundException e) {
                         e.printStackTrace();
                     }
                 });
+
+
 
                  /* System.out.println("Du har valgt grafikkort");
                     Button graphics = new Button("Velg grafikkort");
@@ -134,6 +142,7 @@ public class CostumerpageController implements Initializable {
             i++;
         }
         innerPane.getChildren().addAll(nodes);
+
     }
 
    /* public void choosenButton(int buttonPick){

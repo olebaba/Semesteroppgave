@@ -11,13 +11,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import org.datavelger.Exceptions.InvalidNameException;
 import org.datavelger.Exceptions.InvalidPriceException;
-import org.datavelger.classes.Component;
-import org.datavelger.classes.ComponentDataCollection;
-import org.datavelger.classes.FileOpenerJSON;
-import org.datavelger.classes.Mouse;
+import org.datavelger.classes.*;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class AddComponentController implements Initializable {
@@ -32,7 +31,7 @@ public class AddComponentController implements Initializable {
     @FXML
     private TextField txt_name, txt_price;
     @FXML
-    private Button btnAdd, btnLoadAll,btnDeleteComponent, btnDeleteOrder, btnCancel, btnComponentInformation;
+    private Button btnAdd, btnDeleteComponent, btnDeleteOrder, btnCancel, btnComponentInformation;
     @FXML
     private Label labInfo;
     @FXML
@@ -44,10 +43,11 @@ public class AddComponentController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        /*btnLoadAll.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
+        try {
             loadComponents();
-        });
-        */
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
 
         collection.attachTableView(table);
 
@@ -155,9 +155,21 @@ public class AddComponentController implements Initializable {
         return components;
     }
 
-    public void loadComponents() throws IOException {
-        fileOpenerJSON = new FileOpenerJSON();
-        fileOpenerJSON.openFile("components.bin", true);
+    public void loadComponents() throws IOException, ClassNotFoundException {
+        File folder = new File("components");
+        FileOpenerBinary fileOpenerBinary = new FileOpenerBinary();
+        for (final File file : Objects.requireNonNull(folder.listFiles())){
+            if(file.isDirectory()){
+                //print herfra
+                for (final File fileInDirectory : Objects.requireNonNull(file.listFiles())){
+                    //System.out.println(fileOpenerBinary.openFile(fileInDirectory.getPath(), false));
+                    collection.addElement(fileOpenerBinary.openFile(fileInDirectory.getPath(), false));
+                }
+            }else {
+                //System.out.println(fileOpenerBinary.openFile(file.getPath(), false));
+                collection.addElement(fileOpenerBinary.openFile(file.getPath(), false));
+            }
+        }
     }
 
     public void enableGUI(boolean enable){

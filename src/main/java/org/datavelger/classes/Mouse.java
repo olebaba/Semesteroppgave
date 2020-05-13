@@ -7,8 +7,8 @@ public class Mouse extends Component {
     private static final long serialVersionUID = 1L;
     boolean rgb;
 
-    public Mouse(int price, String name, boolean rgb) throws InvalidNameException, InvalidPriceException {
-        super(price, name);
+    public Mouse(int price, String name, String compType, boolean rgb) throws InvalidNameException, InvalidPriceException {
+        super(price, name, compType);
         this.rgb = rgb;
     }
 

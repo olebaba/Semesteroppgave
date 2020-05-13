@@ -7,8 +7,8 @@ public class Memory extends Component {
     private static final long serialVersionUID = 1L;
     private String speed;
 
-    public Memory(int price, String name, String speed) throws InvalidNameException, InvalidPriceException {
-        super(price, name);
+    public Memory(int price, String name, String compType, String speed) throws InvalidNameException, InvalidPriceException {
+        super(price, name, compType);
         this.speed = speed;
     }
 

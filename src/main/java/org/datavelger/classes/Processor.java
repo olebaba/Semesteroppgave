@@ -8,8 +8,8 @@ public class Processor extends Component{
     private String type;
 
 
-    public Processor(int price, String name, String type) throws InvalidNameException, InvalidPriceException {
-        super(price, name);
+    public Processor(int price, String name, String compType, String type) throws InvalidNameException, InvalidPriceException {
+        super(price, name, compType);
         this.type = type;
     }
 

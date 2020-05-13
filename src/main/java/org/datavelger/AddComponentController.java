@@ -17,8 +17,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.jar.JarOutputStream;
 
 public class AddComponentController implements Initializable {
+    private final String componentPath = "komponenter";
 
     @FXML
     private TableView<Component> table;
@@ -50,10 +52,9 @@ public class AddComponentController implements Initializable {
                 SelectionMode.MULTIPLE
         );
         //oppdatere tabell for å endre navn
+        compCol.setCellValueFactory(new PropertyValueFactory<>("CompType"));
         namecol.setCellValueFactory(new PropertyValueFactory<>("Name"));
         pricecol.setCellValueFactory(new PropertyValueFactory<>("Price"));
-        namecol.editableProperty().setValue(true);
-        pricecol.editableProperty().setValue(true);
 
 
         //initialisere knapper////////////////////////////////////////////
@@ -108,12 +109,12 @@ public class AddComponentController implements Initializable {
     //slette rader som er valgt i tabellen
     public void deleteComponent()
     {
-        ObservableList<Component> selectedRows;
-        selectedRows = table.getSelectionModel().getSelectedItems();
-
-        for (Component component: selectedRows){
-            table.getItems().remove(component);
-        }
+        Component component = table.getSelectionModel().getSelectedItem();
+        String filepath = componentPath+"/"+component.getCompType()+"/"+component.getName()+".jobj";
+        File file = new File(filepath);
+        if (file.delete()) System.out.println("Fil" + filepath + " ble slettet");
+        else System.out.println("Fil " + filepath +" ikke slettet");
+        collection.deleteElement(component);
     }
 
     public void editComponent(){
@@ -137,6 +138,7 @@ public class AddComponentController implements Initializable {
 
         comp.setPrice(Integer.parseInt(txt_price.getText()));
         comp.setName(txt_name.getText());
+        comp.setCompType(componentBox.getValue());
 
         collection.addElement(comp);
 
@@ -144,19 +146,8 @@ public class AddComponentController implements Initializable {
         txt_price.clear();
     }
 
-    //eksempel-komponenter
-    public ObservableList<Component> getComponentList() throws InvalidNameException, InvalidPriceException {
-        ObservableList<Component> components = FXCollections.observableArrayList();
-        components.add(new Keyboard(1299,"Keyboard",false));
-        components.add(new Component(1315,"Mouse") );
-        components.add(new Component(299,"Motherboard") );
-        components.add(new Component(1490,"Apple Magic Keyboard with Numeric Keypad") );
-
-        return components;
-    }
-
     public void loadComponents() {
-        File folder = new File("components");
+        File folder = new File(componentPath);
         FileOpenerBinary fileOpenerBinary = new FileOpenerBinary(folder.getPath());
         fileOpenerBinary.setOnSucceeded(event -> {
             enableGUI(false);
@@ -185,19 +176,12 @@ public class AddComponentController implements Initializable {
     public void saveComponents(){
         ArrayList<Component> components = new ArrayList<>(collection.getList());
         for (Component component : components) {
-            String folder = "";
-            if(component.getClass().equals(GraphicsCard.class)) folder = "GraphicsCards";
-            if(component.getClass().equals(Harddrive.class)) folder = "Harddrives";
-            if(component.getClass().equals(Keyboard.class)) folder = "Keyboards";
-            if(component.getClass().equals(Memory.class)) folder = "Memory";
-            if(component.getClass().equals(Mouse.class)) folder = "Mice";
-            if(component.getClass().equals(Monitor.class)) folder = "Monitors";
-            if(component.getClass().equals(Motherboard.class)) folder = "Motherboards";
-            if(component.getClass().equals(Processor.class)) folder = "Processord";
 
             FileSaverBinary fileSaverBinary = new FileSaverBinary(component);
-            fileSaverBinary.saveFile("components/" + folder
-                    + "/" + component.getName() + ".jobj");
+            String pathname = componentPath + "/" + component.getCompType()
+                    + "/" + component.getName() + ".jobj";
+            System.out.println(pathname);
+            fileSaverBinary.saveFile(pathname);
         }
     }
 

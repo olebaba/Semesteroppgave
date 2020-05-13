@@ -13,19 +13,19 @@ import java.io.Serializable;
 public class Component implements Serializable {
     private static final long serialVersionUID = 1L;
     private transient SimpleIntegerProperty price;
-    private transient SimpleStringProperty name;
+    private transient SimpleStringProperty name, compType;
 
     public Component(){}
 
-    public Component(int price, String name) throws InvalidPriceException, InvalidNameException {
+    public Component(int price, String name, String compType) throws InvalidPriceException, InvalidNameException {
         setPrice(price);
         setName(name);
+        setCompType(compType);
     }
 
     public int getPrice() {
         return price.get();
     }
-
     public void setPrice(int price) throws InvalidPriceException {
         if (!Validator.isValidPrice(price)) throw new InvalidPriceException();
         this.price = new SimpleIntegerProperty(price);
@@ -34,22 +34,30 @@ public class Component implements Serializable {
     public String getName() {
         return name.get();
     }
-
     public void setName(String name) throws InvalidNameException {
         if(!Validator.isValidName(name)) throw new InvalidNameException();
         this.name = new SimpleStringProperty(name);
+    }
+
+    public String getCompType() {
+        return compType.get();
+    }
+    public void setCompType(String compType) {
+        this.compType = new SimpleStringProperty(compType);
     }
 
     private void writeObject(ObjectOutputStream s) throws IOException {
         s.defaultWriteObject();
         s.writeInt(getPrice());
         s.writeUTF(getName());
+        s.writeUTF(getCompType());
     }
 
     private void readObject(ObjectInputStream s) throws IOException, ClassNotFoundException,
             InvalidPriceException, InvalidNameException {
         setPrice(s.readInt());
         setName(s.readUTF());
+        setCompType(s.readUTF());
     }
 
     public String toJSON() {

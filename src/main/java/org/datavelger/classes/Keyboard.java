@@ -8,8 +8,8 @@ public class Keyboard extends Component {
 
     private boolean rgb;
 
-    public Keyboard(int price, String name, boolean rgb) throws InvalidNameException, InvalidPriceException {
-        super(price, name);
+    public Keyboard(int price, String name, String compType, boolean rgb) throws InvalidNameException, InvalidPriceException {
+        super(price, name, compType);
         this.rgb = rgb;
     }
 

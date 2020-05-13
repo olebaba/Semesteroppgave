@@ -94,17 +94,17 @@ public class showChooser {
         }
 
 
-        /*switch (pressedButton){
+        switch (pressedButton){
             case "harddisk" : {
 
-                FileOpenerBinary HarddriveFolder = new FileOpenerBinary("components/Harddrive");
+                FileOpenerBinary HarddriveFolder = new FileOpenerBinary(folderpath+ "/Harddrive");
                 HarddriveFolder.setOnSucceeded(event -> {
                     layout.setDisable(false);
                     List<Component> harddrive   = HarddriveFolder.getValue();
 
-                    for (Component hardDrive : ){
+                    for (Component hardDrive : harddrive){
                         collection.addElement(hardDrive);
-                        System.out.println(harddrive.());
+                        System.out.println(hardDrive.getName());
                     }
                 });
                 HarddriveFolder.setOnFailed(event -> {
@@ -124,7 +124,7 @@ public class showChooser {
                 layout.setDisable(true);
                 thread.start();
             }
-        }*/
+        }
 
         collection.attachTableView(table);
         System.out.println(table.getItems());

@@ -196,7 +196,6 @@ public class AddComponentController implements Initializable {
     public void saveComponents(){
         ArrayList<Component> components = new ArrayList<>(collection.getList());
         for (Component component : components) {
-
             FileSaverBinary fileSaverBinary = new FileSaverBinary(component);
             String pathname = componentPath + "/" + component.getCompType()
                     + "/" + component.getName() + ".jobj";

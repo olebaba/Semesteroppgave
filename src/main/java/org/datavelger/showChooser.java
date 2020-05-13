@@ -57,9 +57,7 @@ public class showChooser {
         setColProperties(name, "name");
         setColProperties(price, "price");
 
-        //TODO: legge til komponenter som passer med type komponent valgt, fra fil
-
-        //load files
+        //laster inn filer fra spesifisert mappe
         System.out.println(pressedButton);
         switch (pressedButton){
             case "grafikkort" : {

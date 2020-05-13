@@ -25,8 +25,10 @@
             </TableView>
          </content>
       </ScrollPane>
-      <Button fx:id="back" layoutX="26.0" layoutY="548.0" mnemonicParsing="false" style="-fx-border-color: #919e65;" text="Tilbake" />
+      <Button fx:id="back" layoutX="26.0" layoutY="548.0" mnemonicParsing="false" style="-fx-border-color: #919e65;" text="Avbryt" />
       <Label fx:id="sorting" layoutX="40.0" layoutY="93.0" prefHeight="17.0" prefWidth="188.0" />
       <Label fx:id="labInfo" layoutX="525.0" layoutY="442.0" prefHeight="18.0" prefWidth="102.0" />
+      <Button fx:id="back1" layoutX="657.0" layoutY="548.0" mnemonicParsing="false" style="-fx-border-color: #919e65;" text="Videre til bestilling" />
+      <Label layoutX="73.0" layoutY="173.0" prefHeight="17.0" prefWidth="309.0" text="Velg en ferdig konfigurert datamaskin fra listen nedenfor" />
    </children>
 </AnchorPane>

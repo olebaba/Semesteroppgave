@@ -45,10 +45,7 @@ public class AddComponentController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        /*btnLoadAll.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
-            loadComponents();
-        });
-        */
+
 
         btnAvbryt.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
             try {
@@ -134,9 +131,20 @@ public class AddComponentController implements Initializable {
         components.add(new Component(299,"Motherboard") );
         components.add(new Component(1490,"Apple Magic Keyboard with Numeric Keypad") );
 
-
-
         return components;
+    }
+
+
+
+    public void loadComponents() throws IOException {
+        fileOpenerJSON = new FileOpenerJSON();
+        fileOpenerJSON.openFile("components.bin", true);
+
+    }
+
+    public void enableGUI(boolean enable){
+        if (enable) anchorPane.setDisable(true);
+        else anchorPane.setDisable(false);
     }
 
     public void changeSceneToComponentView (ActionEvent event) throws IOException
@@ -154,21 +162,6 @@ public class AddComponentController implements Initializable {
 
         window.setScene(tableViewScene);
         window.show();
-    }
-
-
-
-
-
-    public void loadComponents() throws IOException {
-        fileOpenerJSON = new FileOpenerJSON();
-        fileOpenerJSON.openFile("components.bin", true);
-
-    }
-
-    public void enableGUI(boolean enable){
-        if (enable) anchorPane.setDisable(true);
-        else anchorPane.setDisable(false);
     }
 
 }

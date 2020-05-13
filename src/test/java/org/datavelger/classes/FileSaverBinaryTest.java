@@ -10,8 +10,11 @@ class FileSaverBinaryTest {
     @Test
     void saveFile() throws InvalidNameException, InvalidPriceException, IOException {
         Keyboard keyboard = new Keyboard(200, "Best keyboard", false);
-        FileSaverBinary fileSaverBinary = new FileSaverBinary(keyboard);
-        fileSaverBinary.saveFile("components.jobj");
+        Processor processor = new Processor(4000, "i5", "Intel");
+        FileSaverBinary fileSaverBinary = new FileSaverBinary(processor);
+        fileSaverBinary.saveFile("components/processors/" + processor.getName() + ".jobj");
+
+
     }
 
 }

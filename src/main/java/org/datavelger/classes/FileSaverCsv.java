@@ -24,8 +24,9 @@ public class FileSaverCsv implements FileSaver {
         Scanner scanner = new Scanner(file);
         if(!scanner.hasNext()){
             writer.append(String.format("Name%sGraphicscard%sHarddrive%sKeyboard%sMemory" +
-                            "%sMonitor%sMotherboard%sMouse%sProcessor"
-                    , delimiter, delimiter, delimiter, delimiter, delimiter, delimiter, delimiter, delimiter));
+                            "%sMonitor%sMotherboard%sMouse%sProcessor%sPriceTotal"
+                    , delimiter, delimiter, delimiter, delimiter, delimiter, delimiter,
+                    delimiter, delimiter, delimiter));
             scanner.close();
         }
         writer.append(System.lineSeparator());
@@ -37,7 +38,8 @@ public class FileSaverCsv implements FileSaver {
         writer.append(order.getMonitor()).append(delimiter);
         writer.append(order.getMotherboard()).append(delimiter);
         writer.append(order.getMouse()).append(delimiter);
-        writer.append(order.getProcessor());
+        writer.append(order.getProcessor()).append(delimiter);
+        writer.append(String.valueOf(order.getPriceTotal()));
         writer.flush();
         writer.close();
 

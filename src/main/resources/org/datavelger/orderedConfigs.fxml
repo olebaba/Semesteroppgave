@@ -23,7 +23,7 @@
                   <TableColumn fx:id="motherboardCol" prefWidth="75.0" text="Hovedkort" />
                   <TableColumn fx:id="mouseCol" prefWidth="75.0" text="Mus" />
                   <TableColumn fx:id="memoryCol" prefWidth="75.0" text="Minne" />
-                  <TableColumn fx:id="priceCol" prefWidth="75.0" text="Pris" />
+                  <TableColumn fx:id="priceTotalCol" prefWidth="75.0" text="Pris" />
               </columns>
             </TableView>
          </content>

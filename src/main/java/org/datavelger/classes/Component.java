@@ -67,6 +67,6 @@ public class Component implements Serializable {
 
     @Override
     public String toString(){
-        return String.format("price = %d, name = %s", getPrice(), getName());
+        return String.format("price = %d, name = %s, type = %s", getPrice(), getName(), getCompType());
     }
 }

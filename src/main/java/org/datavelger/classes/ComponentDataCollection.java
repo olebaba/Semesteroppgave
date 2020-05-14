@@ -42,8 +42,6 @@ public class ComponentDataCollection {
     public ObservableList<Component> filterByPrice(String price){
         if(price.isBlank()){
             return null;
-       }else if(price.matches("[A-Åa-å*]")){
-           return null;
         }else {
             String split[] = price.split("-");
 

@@ -216,26 +216,18 @@ public class AddComponentController implements Initializable {
     }
     @FXML
     private void filtering(){
-       if(filter.getText().isBlank() || filterChooser.getValue().equals("Fjern filtrering")) {
-           collection.attachTableView(table);
-        }
-        else if(filterChooser.getValue().equals("Navn")){
-            ObservableList<Component> components = collection.getList().stream()
-                    .filter(x -> x.getName()
-                            .contentEquals(filter.getText())).collect(Collectors.toCollection(FXCollections::observableArrayList));
-            table.setItems(components);
-        }else if(filterChooser.getValue().equals("Komponent")){
-            ObservableList<Component> components = collection.getList().stream()
-                    .filter(x -> x.getCompType()
-                            .contentEquals(filter.getText())).collect(Collectors.toCollection(FXCollections::observableArrayList));
-            table.setItems(components);
-        }else if(filterChooser.getValue().equals("Pris")){
-           ObservableList<Component> components = collection.getList().stream()
-                   .filter(x -> Integer.parseInt(filter.getText()) == (x.getPrice()))
-                           .collect(Collectors.toCollection(FXCollections::observableArrayList));
-           table.setItems(components);
+        ObservableList<Component> result = null;
+         switch (filterChooser.getValue().toLowerCase()){
+           case "komponent" : result = collection.filterByComponent(filter.getText()); break;
+           case "navn" : result = collection.filterByName(filter.getText()); break;
+           case "pris (fra-til)": result = collection.filterByPrice(filter.getText());
        }
-
+        if(filter.getText().isBlank() || filterChooser.getValue().equals("Fjern filtrering")) {
+            collection.attachTableView(table);
+        }else{
+            table.setItems(result);
+        }
     }
+
 }
 

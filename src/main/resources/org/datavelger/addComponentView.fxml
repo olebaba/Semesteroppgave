@@ -55,10 +55,11 @@
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <ChoiceBox fx:id="filterChooser" layoutX="577.0" layoutY="323.0" prefWidth="175.0" style="-fx-border-color: #919e65;">
+                        <ChoiceBox fx:id="filterChooser" layoutX="577.0" layoutY="323.0" prefWidth="175.0" style="-fx-border-color: #919e65;"
+                                   value="Fjern filtrering" >
                             <String fx:value="Komponent"></String>
                             <String fx:value="Navn"></String>
-                            <String fx:value="Pris"></String>
+                            <String fx:value="Pris (fra-til)"></String>
                             <String fx:value="Fjern filtrering"></String>
                         </ChoiceBox>
                         <Button fx:id="filterBtn" layoutX="577.0" layoutY="431.0" mnemonicParsing="false" onAction="#filtering" prefWidth="175.0" style="-fx-border-color: #919e65;" text="Filtrer" />

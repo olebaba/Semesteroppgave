@@ -39,16 +39,13 @@ public class FileOpenerBinary extends Task<List<Component>> implements FileOpene
                 if (file.isDirectory()) {
                     //print herfra
                     for (final File fileInDirectory : Objects.requireNonNull(file.listFiles())) {
-                        //System.out.println(fileOpenerBinary.openFile(fileInDirectory.getPath(), false));
                         components.add(openFile(fileInDirectory.getPath(), false));
                     }
                 } else {
-                    //System.out.println(fileOpenerBinary.openFile(file.getPath(), false));
                     components.add(openFile(file.getPath(), false));
                 }
             }
         }
-
         return components;
     }
 }

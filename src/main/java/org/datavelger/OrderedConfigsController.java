@@ -58,8 +58,6 @@ public class OrderedConfigsController implements Initializable{
             for(int i = 1; i<list.size(); i++){ //første linje er headers
                 collection.addElement(createOrder(list.get(i)));
             }
-            System.out.println(collection.getList().size());
-            System.out.println(collection.getList().get(1));
             enableGUI(false);
             labInfo.setText("Filen er lastet inn.");
         });
@@ -109,40 +107,7 @@ public class OrderedConfigsController implements Initializable{
                 e.printStackTrace();
             }
         });
-       /* popularity.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
-            sortPopularity();
-        });
-        price.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
-            sortPrice();
-        });*/
-     //  popularity.setOnAction(actionEvent -> System.out.println("Sorterer på popularitet"));
-       //price.setOnAction(actionEvent -> System.out.println("Sorterer på pris"));
     }
-/*
-  public void sortPopularity(){
-        System.out.println("Sorterer etter popularitet");
-        sorting.setText("Sorterer etter popularitet");
-        anchorPane.getChildren().add(sorting);
-        int size = tableView.getItems().size();
-        collection.getList().size();
-        collection.getList().get(1);
-        Order comparePopularity = collection.getList().get(0);
-        int comparePopularityCounter = 0;
-        for(int i=1; i<collection.getList().size(); i++){
-            if(collection.getList().get(i) == comparePopularity){
-                comparePopularityCounter++;
-            }
-
-        }
-
-
-    }
-    public void sortPrice(){
-        System.out.println("Sorterer etter pris");
-        sorting.setText("Sorterer etter pris");
-        anchorPane.getChildren().add(sorting);
-        priceCol.setSortType(TableColumn.SortType.ASCENDING);
-    }*/
     public void switchToCustomer() throws IOException {
         App.setRoot("costumerView");
     }

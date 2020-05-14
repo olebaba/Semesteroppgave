@@ -84,13 +84,11 @@ public class CostumerpageController implements Initializable {
                 remove.setLayoutY(positionY);
 
                 //TODO legge dette i css:
-                add.setFont(new Font("Arial",16));
-                remove.setFont(new Font("Arial", 16));
-                //kanskje dette og?
-                add.setPrefSize(150,30);
+
+                /*add.setPrefSize(150,30);
                 remove.setPrefSize(200, 30);
                 add.setLayoutX(150);
-                remove.setLayoutX(325);
+                remove.setLayoutX(325);*/
 
 
                 //Kaller på metoden i showChooser med navnet på knappen som er valgt

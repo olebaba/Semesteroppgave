@@ -75,7 +75,7 @@
                            <content>
                               <TableView fx:id="table1" prefHeight="269.0" prefWidth="800.0" style="-fx-border-color: #919e65;">
                                  <columns>
-                                    <TableColumn fx:id="namecol1" prefWidth="75.0" text="ID" />
+                                    <TableColumn fx:id="namecol1" prefWidth="75.0" text="Navn" />
                                     <TableColumn fx:id="pricecol1" prefWidth="75.0" text="Komponent" />
                                     <TableColumn fx:id="namecol11" prefWidth="175.0" text="Navn" />
                                     <TableColumn fx:id="namecol111" prefWidth="75.0" text="Pris" />

@@ -222,7 +222,8 @@ public class AddComponentController implements Initializable {
            case "navn" : result = collection.filterByName(filter.getText()); break;
            case "pris (fra-til)": result = collection.filterByPrice(filter.getText());
        }
-        if(filter.getText().isBlank() || filterChooser.getValue().equals("Fjern filtrering")) {
+        if(filter.getText().isBlank() || filterChooser.getValue().equals("Fjern filtrering") || result == null) {
+            filter.setText("");
             collection.attachTableView(table);
         }else{
             table.setItems(result);

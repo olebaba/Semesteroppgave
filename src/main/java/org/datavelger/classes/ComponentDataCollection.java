@@ -2,11 +2,17 @@ package org.datavelger.classes;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
+import org.datavelger.ErrorDialog;
 
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -30,23 +36,31 @@ public class ComponentDataCollection {
     //private ComponentDataCollection collection = new ComponentDataCollection();
 
     public ObservableList<Component> filterByComponent(String component){
+        if(component.isBlank()){
+            ErrorDialog.showErrorDialog("Skriv inn søkeord for komponenttypen.");
+        }
         return list.stream().filter(x -> x.getCompType().toLowerCase().
                 matches(String.format("%s%s%s",".*",component.toLowerCase(),".*"))).
                 collect(Collectors.toCollection(FXCollections::observableArrayList));
     }
     public ObservableList<Component> filterByName(String name){
-        return list.stream().filter(x -> x.getName().toLowerCase().
-                matches(String.format("%s%s%s",".*",name.toLowerCase(),".*"))).
-                collect(Collectors.toCollection(FXCollections::observableArrayList));
+        if(name.isBlank()) {
+            ErrorDialog.showErrorDialog("Skriv inn søkeord for navnet på komponentet.");
+            return null;
+        }
+            return list.stream().filter(x -> x.getName().toLowerCase().
+                    matches(String.format("%s%s%s", ".*", name.toLowerCase(), ".*"))).
+                    collect(Collectors.toCollection(FXCollections::observableArrayList));
     }
     public ObservableList<Component> filterByPrice(String price){
-        if(price.isBlank()){
+        if(price.isBlank() || (!price.matches("^[0-9]+(-[0-9]+)"))){
+            ErrorDialog.showErrorDialog("Skriv inn gyldige siffer på formatet \"startverdi-sluttverdi\" (f.eks 1500-2000)");
             return null;
-        }else {
+        }else{
             String split[] = price.split("-");
-
             String firstValue = split[0];
             String lastValue = split[1];
+            //Teste om startverdien og sluttverdien
             return list.stream().filter(x -> Integer.parseInt(firstValue) <= (x.getPrice()) && (x.getPrice() <= Integer.parseInt(lastValue))).
                     collect(Collectors.toCollection(FXCollections::observableArrayList));
         }

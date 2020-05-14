@@ -6,12 +6,13 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.datavelger.OrderedConfigsController">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="664.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.datavelger.OrderedConfigsController">
    <children>
-      <ScrollPane layoutX="67.0" layoutY="190.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+      <ScrollPane layoutX="36.0" layoutY="190.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="241.0" prefWidth="763.0">
          <content>
-            <TableView fx:id="tableView" prefHeight="218.0" prefWidth="664.0" style="-fx-border-color: #919e65;">
+            <TableView fx:id="tableView" prefHeight="241.0" prefWidth="763.0" style="-fx-border-color: #919e65;">
               <columns>
                 <TableColumn fx:id="nameCol" prefWidth="75.0" text="Navn" />
                 <TableColumn fx:id="graphicsCol" prefWidth="75.0" text="Grafikkort" />
@@ -20,6 +21,8 @@
                   <TableColumn fx:id="processorCol" prefWidth="75.0" text="Prosessor" />
                   <TableColumn fx:id="harddriveCol" prefWidth="75.0" text="Harddisk" />
                   <TableColumn fx:id="motherboardCol" prefWidth="75.0" text="Hovedkort" />
+                  <TableColumn fx:id="mouseCol" prefWidth="75.0" text="Mus" />
+                  <TableColumn fx:id="memoryCol" prefWidth="75.0" text="Minne" />
                   <TableColumn fx:id="priceCol" prefWidth="75.0" text="Pris" />
               </columns>
             </TableView>
@@ -29,6 +32,9 @@
       <Label fx:id="sorting" layoutX="40.0" layoutY="93.0" prefHeight="17.0" prefWidth="188.0" />
       <Label fx:id="labInfo" layoutX="525.0" layoutY="442.0" prefHeight="18.0" prefWidth="102.0" />
       <Button fx:id="back1" layoutX="657.0" layoutY="548.0" mnemonicParsing="false" style="-fx-border-color: #919e65;" text="Videre til bestilling" />
-      <Label layoutX="73.0" layoutY="173.0" prefHeight="17.0" prefWidth="309.0" text="Velg en ferdig konfigurert datamaskin fra listen nedenfor" />
+      <Label layoutX="73.0" layoutY="166.0" prefHeight="27.0" prefWidth="397.0" text="Velg en ferdig konfigurert datamaskin fra listen nedenfor">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Label>
    </children>
 </AnchorPane>

@@ -152,15 +152,7 @@ public class CostumerpageController implements Initializable {
 
     }
 
-   /* public void choosenButton(int buttonPick){
 
-        graphics.setLayoutX(150);
-        removeGraphics.setLayoutX(300);
-        graphics.setLayoutY(63);
-        removeGraphics.setLayoutY(63);
-        innerPane.getChildren().addAll(graphics,removeGraphics);
-        graphics.setOnAction(event -> showChooser.pressedGraphics("Velg grafikkort",3));
-    }*/
 
     public void switchToMain() throws IOException {
         App.setRoot("main");

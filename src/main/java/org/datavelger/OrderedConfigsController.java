@@ -30,7 +30,7 @@ public class OrderedConfigsController implements Initializable{
     AnchorPane anchorPane;
     @FXML
     private TableColumn<OrderDataCollection, String> nameCol, graphicsCol,screenCol, keyboardCol,
-            processorCol, harddriveCol, motherboardCol, priceCol;
+            processorCol, harddriveCol, motherboardCol, priceCol, memoryCol, mouseCol;
     @FXML
     private TableView<Order> tableView;
 
@@ -94,6 +94,9 @@ public class OrderedConfigsController implements Initializable{
         processorCol.setCellValueFactory(new PropertyValueFactory<>("Processor"));
         harddriveCol.setCellValueFactory(new PropertyValueFactory<>("Harddrive"));
         motherboardCol.setCellValueFactory(new PropertyValueFactory<>("Motherboard"));
+        mouseCol.setCellValueFactory(new PropertyValueFactory<>("Mouse"));
+        memoryCol.setCellValueFactory(new PropertyValueFactory<>("Memory"));
+
 
         collection.attachTableView(tableView);
 

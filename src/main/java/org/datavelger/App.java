@@ -21,7 +21,7 @@ public class App extends Application {
 
     private void createPaths(){
         ArrayList<String> compTypes = new ArrayList<>(7);
-        compTypes.addAll(Arrays.asList("Grafikkort", "Hovedkort", "Minne", "Mus", "Prosessor", "Skjerm", "Tastatur"));
+        compTypes.addAll(Arrays.asList("Harddisk","Grafikkort", "Hovedkort", "Minne", "Mus", "Prosessor", "Skjerm", "Tastatur"));
         for (String type : compTypes){
             File file = new File(componentPath+"/"+type);
             //Lager mapper om de ikke eksisterer

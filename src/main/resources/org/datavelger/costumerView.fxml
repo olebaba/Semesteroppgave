@@ -30,14 +30,38 @@
             <Font size="36.0" />
          </font>
       </Text>
-      <RadioButton fx:id="comp1" layoutX="50.0" layoutY="100.0" mnemonicParsing="false" styleClass="radio" text="Grafikkort" />
-      <RadioButton fx:id="comp5" layoutX="50.0" layoutY="130.0" mnemonicParsing="false" styleClass="radio" text="Harddisk" />
-      <RadioButton fx:id="comp3" layoutX="350.0" layoutY="102.0" mnemonicParsing="false" styleClass="radio" text="Tastatur" />
-      <RadioButton fx:id="comp7" layoutX="350.0" layoutY="132.0" mnemonicParsing="false" styleClass="radio" text="Minne" />
-      <RadioButton fx:id="comp2" layoutX="200.0" layoutY="100.0" mnemonicParsing="false" styleClass="radio" text="Skjerm" />
-      <RadioButton fx:id="comp6" layoutX="200.0" layoutY="130.0" mnemonicParsing="false" styleClass="radio" text="Hovedkort" />
-      <RadioButton fx:id="comp4" layoutX="500.0" layoutY="102.0" mnemonicParsing="false" styleClass="radio" text="Prosessor" />
-      <RadioButton fx:id="comp8" layoutX="500.0" layoutY="132.0" mnemonicParsing="false" styleClass="radio" text="Mus" />
+      <RadioButton fx:id="comp1" layoutX="50.0" layoutY="100.0" mnemonicParsing="false" text="Grafikkort">
+         <font>
+            <Font size="18.0" />
+         </font></RadioButton>
+      <RadioButton fx:id="comp5" layoutX="50.0" layoutY="130.0" mnemonicParsing="false" styleClass="radio" text="Harddisk">
+         <font>
+            <Font size="18.0" />
+         </font></RadioButton>
+      <RadioButton fx:id="comp3" layoutX="350.0" layoutY="102.0" mnemonicParsing="false" styleClass="radio" text="Tastatur">
+         <font>
+            <Font size="18.0" />
+         </font></RadioButton>
+      <RadioButton fx:id="comp7" layoutX="350.0" layoutY="132.0" mnemonicParsing="false" styleClass="radio" text="Minne">
+         <font>
+            <Font size="18.0" />
+         </font></RadioButton>
+      <RadioButton fx:id="comp2" layoutX="200.0" layoutY="100.0" mnemonicParsing="false" styleClass="radio" text="Skjerm">
+         <font>
+            <Font size="18.0" />
+         </font></RadioButton>
+      <RadioButton fx:id="comp6" layoutX="200.0" layoutY="130.0" mnemonicParsing="false" styleClass="radio" text="Hovedkort">
+         <font>
+            <Font size="18.0" />
+         </font></RadioButton>
+      <RadioButton fx:id="comp4" layoutX="500.0" layoutY="102.0" mnemonicParsing="false" styleClass="radio" text="Prosessor">
+         <font>
+            <Font size="18.0" />
+         </font></RadioButton>
+      <RadioButton fx:id="comp8" layoutX="500.0" layoutY="132.0" mnemonicParsing="false" styleClass="radio" text="Mus">
+         <font>
+            <Font size="18.0" />
+         </font></RadioButton>
       <Button fx:id="btnBack" layoutX="23.0" layoutY="535.0" mnemonicParsing="false" style="-fx-border-color: #919e65;" text="Tilbake til forsiden" textFill="#000000e2">
          <effect>
             <Blend />

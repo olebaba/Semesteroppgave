@@ -85,10 +85,10 @@ public class CostumerpageController implements Initializable {
 
                 //TODO legge dette i css:
 
-                /*add.setPrefSize(150,30);
+                add.setPrefSize(150,30);
                 remove.setPrefSize(200, 30);
                 add.setLayoutX(150);
-                remove.setLayoutX(325);*/
+                remove.setLayoutX(325);
 
 
                 //Kaller på metoden i showChooser med navnet på knappen som er valgt

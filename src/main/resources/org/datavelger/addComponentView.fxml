@@ -11,7 +11,9 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
 
+<?import java.lang.String?>
 <AnchorPane fx:id="anchorPane" prefHeight="732.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.datavelger.AddComponentController">
    <children>
       <TabPane prefHeight="556.0" prefWidth="792.0" tabClosingPolicy="UNAVAILABLE">
@@ -20,12 +22,12 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="597.0" prefWidth="700.0">
                      <children>
-                        <ChoiceBox fx:id="componentBox" layoutX="136.0" layoutY="296.0" prefWidth="175.0" style="-fx-border-color: #919e65;" />
-                        <TextField fx:id="txt_name" layoutX="136.0" layoutY="345.0" prefHeight="36.0" prefWidth="175.0" promptText="Navn" style="-fx-border-color: #919e65;" />
+                        <ChoiceBox fx:id="componentBox" layoutX="136.0" layoutY="286.0" prefWidth="175.0" style="-fx-border-color: #919e65;" />
+                        <TextField fx:id="txt_name" layoutX="136.0" layoutY="336.0" prefHeight="36.0" prefWidth="175.0" promptText="Navn" style="-fx-border-color: #919e65;" />
                         <TextField fx:id="txt_price" layoutX="136.0" layoutY="396.0" prefHeight="35.0" prefWidth="175.0" promptText="Pris" style="-fx-border-color: #919e65;" />
                         <HBox prefHeight="100.0" prefWidth="200.0" />
                         <Button fx:id="btnAdd" layoutX="136.0" layoutY="452.0" mnemonicParsing="false" prefWidth="175.0" style="-fx-border-color: #919e65;" text="Add komponent" />
-                        <Button fx:id="btnDeleteComponent" layoutX="588.0" layoutY="303.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="175.0" text="Slett komponent" />
+                        <Button fx:id="btnDeleteComponent" layoutX="349.0" layoutY="322.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="175.0" text="Slett komponent" />
                         <ScrollPane>
                            <content>
                               <TableView fx:id="table" prefHeight="270.0" prefWidth="792.0" style="-fx-border-color: #919e65;">
@@ -41,12 +43,24 @@
                            </content>
                         </ScrollPane>
                         <Button fx:id="btnCancel" alignment="CENTER" layoutX="136.0" layoutY="501.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" style="-fx-background-color: #919e65;" text="Tilbake" />
-                        <Label layoutX="34.5" layoutY="300.0" text="Komponent:" />
-                        <Label layoutX="69.6" layoutY="354.0" text="Navn:" />
+                        <Label layoutX="58.0" layoutY="292.0" text="Komponent:" />
+                        <Label layoutX="75.0" layoutY="346.0" text="Navn:" />
                         <Label layoutX="79.4" layoutY="405.0" text="Pris:" />
-                        <Button fx:id="btnEditComp" layoutX="588.0" layoutY="348.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="175.0" text="Endre spesifikasjoner" />
-                        <Button fx:id="btnSaveChanges" layoutX="588.0" layoutY="392.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="175.0" text="Lagre endringer" />
-                        <Label fx:id="labInfo" wrapText="true" layoutX="364.0" layoutY="299.0" prefHeight="18.0" prefWidth="174.0" />
+                        <Button fx:id="btnEditComp" layoutX="349.0" layoutY="357.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="175.0" text="Endre spesifikasjoner" />
+                        <Button fx:id="btnSaveChanges" layoutX="349.0" layoutY="399.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="175.0" text="Lagre endringer" />
+                        <Label fx:id="labInfo" layoutX="364.0" layoutY="299.0" prefHeight="18.0" prefWidth="174.0" wrapText="true" />
+                        <TextField fx:id="filter" layoutX="578.0" layoutY="373.0" prefHeight="27.0" prefWidth="173.0" promptText="Filtrer komponenter" style="-fx-border-color: #919e65;" />
+                        <Label layoutX="587.0" layoutY="290.0" prefHeight="17.0" prefWidth="174.0" text="Filtrering:">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <ChoiceBox fx:id="filterChooser" layoutX="577.0" layoutY="323.0" prefWidth="175.0" style="-fx-border-color: #919e65;">
+                            <String fx:value="Komponent"></String>
+                            <String fx:value="Navn"></String>
+                            <String fx:value="Pris"></String>
+                        </ChoiceBox>
+                        <Button fx:id="filterBtn" layoutX="577.0" layoutY="431.0" mnemonicParsing="false" onAction="#filtering" prefWidth="175.0" style="-fx-border-color: #919e65;" text="Filtrer" />
                      </children>
                   </AnchorPane>
             </content>

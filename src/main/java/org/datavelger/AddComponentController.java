@@ -1,7 +1,11 @@
 package org.datavelger;
 
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -18,6 +22,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.jar.JarOutputStream;
+import java.util.stream.Collectors;
 
 public class AddComponentController implements Initializable {
     private final String componentPath = "komponenter";
@@ -29,13 +34,13 @@ public class AddComponentController implements Initializable {
     @FXML
     private TableColumn<Component, Integer> pricecol;
     @FXML
-    private TextField txt_name, txt_price;
+    private TextField txt_name, txt_price, filter;
     @FXML
-    private Button btnAdd, btnDeleteComponent, btnDeleteOrder, btnCancel, btnEditComp, btnSaveChanges;
+    private Button btnAdd, btnDeleteComponent, btnDeleteOrder, btnCancel, btnEditComp, btnSaveChanges, filterBtn;
     @FXML
     private Label labInfo;
     @FXML
-    private ChoiceBox <String> componentBox;
+    private ChoiceBox <String> componentBox, filterChooser;
     @FXML
     private AnchorPane anchorPane;
 
@@ -210,5 +215,27 @@ public class AddComponentController implements Initializable {
     public void enableGUI(boolean enable){
         anchorPane.setDisable(enable);
     }
-
+    @FXML
+    private void filtering(){
+       if(filter.getText().isBlank()) {
+           collection.attachTableView(table);
+        }
+        else if(filterChooser.getValue().equals("Navn")){
+            ObservableList<Component> components = collection.getList().stream()
+                    .filter(x -> x.getName()
+                            .contentEquals(filter.getText())).collect(Collectors.toCollection(FXCollections::observableArrayList));
+            table.setItems(components);
+        }else if(filterChooser.getValue().equals("Komponent")){
+            ObservableList<Component> components = collection.getList().stream()
+                    .filter(x -> x.getCompType()
+                            .contentEquals(filter.getText())).collect(Collectors.toCollection(FXCollections::observableArrayList));
+            table.setItems(components);
+        }else if(filterChooser.getValue().equals("Pris")){
+           ObservableList<Component> components = collection.getList().stream()
+                   .filter(x -> Integer.parseInt(filter.getText()) == (x.getPrice()))
+                           .collect(Collectors.toCollection(FXCollections::observableArrayList));
+           table.setItems(components);
+       }
+    }
 }
+

@@ -73,6 +73,7 @@ public class showChooser {
         thread.start();
     }
 
+
     public static void pressedButton(String pressedButton) throws IOException, ClassNotFoundException {
 
         System.out.println("Velger "+pressedButton+"...");
@@ -83,8 +84,7 @@ public class showChooser {
                 layout.getChildren().removeAll(layout.getChildren().get(layout.getChildren().size()-1));
             }
         });
-        window.setWidth(400);
-        window.setHeight(400);
+
         window.initModality(Modality.APPLICATION_MODAL); //hindrer at man kan gå tilbake til andre vindu
         window.setTitle(pressedButton);
 

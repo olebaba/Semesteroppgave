@@ -6,12 +6,12 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import org.datavelger.classes.OrderDataCollection;
-import org.datavelger.classes.FileOpenerCsv;
-import org.datavelger.classes.Order;
+import org.datavelger.classes.*;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -36,7 +36,24 @@ public class OrderedConfigsController implements Initializable{
 
     OrderDataCollection collection = new OrderDataCollection();
 
-    public Order createOrder(List<String> orderlist){
+    public Order createOrder(List<String> orderlist) throws IOException, ClassNotFoundException {
+
+        List<Component> components = new ArrayList<>();
+        for (int i = 1; i<orderlist.size()-1; i++){ //første og siste er ikke komponenter
+            try {
+                components.add(FileOpenerCsv.findComponent(orderlist.get(i)));
+            }catch (FileNotFoundException e ){
+                labInfo.setText(e.getLocalizedMessage());
+                e.printStackTrace();
+            }
+        }
+
+        try {
+            return new Order(orderlist.get(0), components.get(0), components.get(1), components.get(2),
+                    components.get(3), components.get(4), components.get(5), components.get(6), components.get(7));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         Order order = new Order();
         order.setName(orderlist.get(0));
         order.setGraphicsCard(orderlist.get(1));
@@ -47,17 +64,20 @@ public class OrderedConfigsController implements Initializable{
         order.setMotherboard(orderlist.get(6));
         order.setMouse(orderlist.get(7));
         order.setProcessor(orderlist.get(8));
-        order.setPriceTotal();
         return order;
     }
 
     public void loadOrders(){
-        fileOpenerCsv = new FileOpenerCsv("file.csv", true);
+        fileOpenerCsv = new FileOpenerCsv("orders.csv", true);
         fileOpenerCsv.setOnSucceeded(event -> {
             //henter tidligere konfigurerte pcer og legger dem i tableview
             List<List<String>> list = fileOpenerCsv.getValue();
             for(int i = 1; i<list.size(); i++){ //første linje er headers
-                collection.addElement(createOrder(list.get(i)));
+                try {
+                    collection.addElement(createOrder(list.get(i)));
+                } catch (IOException | ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
             }
             enableGUI(false);
             labInfo.setText("Filen er lastet inn.");
@@ -95,6 +115,7 @@ public class OrderedConfigsController implements Initializable{
         motherboardCol.setCellValueFactory(new PropertyValueFactory<>("Motherboard"));
         mouseCol.setCellValueFactory(new PropertyValueFactory<>("Mouse"));
         memoryCol.setCellValueFactory(new PropertyValueFactory<>("Memory"));
+        priceTotalCol.setCellValueFactory(new PropertyValueFactory<>("PriceTotal"));
 
 
         collection.attachTableView(tableView);

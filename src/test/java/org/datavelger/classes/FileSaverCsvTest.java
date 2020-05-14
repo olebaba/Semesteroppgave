@@ -27,7 +27,7 @@ class FileSaverCsvTest {
     void saveCsv() throws IOException, InvalidNameException, InvalidPriceException {
         order2.setMemory(new Memory(900, "GSkill", "Memory", "3666MHz").getName());
         FileSaverCsv saverCsv = new FileSaverCsv(order,true);
-        String path = "file.csv";
+        String path = "orders.csv";
         saverCsv.saveFile(path);
     }
 }

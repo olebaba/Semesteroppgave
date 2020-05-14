@@ -3,9 +3,9 @@ package org.datavelger.classes;
 import javafx.beans.property.SimpleFloatProperty;
 import javafx.beans.property.SimpleStringProperty;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.io.File;
+import java.io.IOException;
+import java.util.*;
 
 public class Order {
     List<Component> components = new ArrayList<>();
@@ -16,6 +16,26 @@ public class Order {
     public Order(String name, GraphicsCard graphicsCard, Harddrive harddrive,
                  Keyboard keyboard, Memory memory, Monitor monitor,
                  Motherboard motherboard, Mouse mouse, Processor processor) {
+        components.addAll(Arrays.asList(graphicsCard, harddrive, keyboard, memory,
+                monitor, motherboard, mouse, processor));
+
+        this.name = new SimpleStringProperty(name);
+        this.graphicsCard = new SimpleStringProperty(graphicsCard.getName());
+        this.harddrive = new SimpleStringProperty(harddrive.getName());
+        this.keyboard = new SimpleStringProperty(keyboard.getName());
+        this.memory = new SimpleStringProperty(memory.getName());
+        this.monitor = new SimpleStringProperty(monitor.getName());
+        this.motherboard = new SimpleStringProperty(motherboard.getName());
+        this.mouse = new SimpleStringProperty(mouse.getName());
+        this.processor = new SimpleStringProperty(processor.getName());
+        this.priceTotal = new SimpleFloatProperty(graphicsCard.getPrice()+
+                harddrive.getPrice()+keyboard.getPrice()+memory.getPrice()+
+                monitor.getPrice()+motherboard.getPrice()+mouse.getPrice()+processor.getPrice());
+    }
+
+    public Order(String name, Component graphicsCard, Component harddrive,
+                 Component keyboard, Component memory, Component monitor,
+                 Component motherboard, Component mouse, Component processor) {
         components.addAll(Arrays.asList(graphicsCard, harddrive, keyboard, memory,
                 monitor, motherboard, mouse, processor));
 
@@ -48,6 +68,7 @@ public class Order {
     }
 
     public void setPriceTotal(){
+        System.out.println(Collections.singletonList(components));
         float price = 0;
         for (Component comp : components){
             price += comp.getPrice();

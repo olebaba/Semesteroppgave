@@ -30,7 +30,7 @@ public class OrderedConfigsController implements Initializable{
     AnchorPane anchorPane;
     @FXML
     private TableColumn<OrderDataCollection, String> nameCol, graphicsCol,screenCol, keyboardCol,
-            processorCol, harddriveCol, motherboardCol, priceCol, memoryCol, mouseCol;
+             harddriveCol, memoryCol, motherboardCol, mouseCol, processorCol, priceTotalCol;
     @FXML
     private TableView<Order> tableView;
 
@@ -47,6 +47,7 @@ public class OrderedConfigsController implements Initializable{
         order.setMotherboard(orderlist.get(6));
         order.setMouse(orderlist.get(7));
         order.setProcessor(orderlist.get(8));
+        order.setPriceTotal();
         return order;
     }
 

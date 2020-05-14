@@ -1,12 +1,24 @@
 package org.datavelger.classes;
 
+import javafx.beans.property.SimpleFloatProperty;
 import javafx.beans.property.SimpleStringProperty;
 
-public class Order {
-    private SimpleStringProperty name, graphicsCard, harddrive, keyboard, memory, monitor, motherboard, mouse, processor;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
-    public Order(String name, GraphicsCard graphicsCard, Harddrive harddrive, Keyboard keyboard, Memory memory, Monitor monitor,
+public class Order {
+    List<Component> components = new ArrayList<>();
+    private SimpleStringProperty name, graphicsCard, harddrive, keyboard, memory
+            , monitor, motherboard, mouse, processor;
+    private SimpleFloatProperty priceTotal;
+
+    public Order(String name, GraphicsCard graphicsCard, Harddrive harddrive,
+                 Keyboard keyboard, Memory memory, Monitor monitor,
                  Motherboard motherboard, Mouse mouse, Processor processor) {
+        components.addAll(Arrays.asList(graphicsCard, harddrive, keyboard, memory,
+                monitor, motherboard, mouse, processor));
+
         this.name = new SimpleStringProperty(name);
         this.graphicsCard = new SimpleStringProperty(graphicsCard.getName());
         this.harddrive = new SimpleStringProperty(harddrive.getName());
@@ -16,9 +28,32 @@ public class Order {
         this.motherboard = new SimpleStringProperty(motherboard.getName());
         this.mouse = new SimpleStringProperty(mouse.getName());
         this.processor = new SimpleStringProperty(processor.getName());
+        this.priceTotal = new SimpleFloatProperty(graphicsCard.getPrice()+
+                harddrive.getPrice()+keyboard.getPrice()+memory.getPrice()+
+                monitor.getPrice()+motherboard.getPrice()+mouse.getPrice()+processor.getPrice());
     }
 
     public Order(){ }
+
+    public List<Component> getComponents(){
+        return components;
+    }
+
+    public float getPriceTotal(){
+        return priceTotal.get();
+    }
+
+    public void setPriceTotal(float priceTotal){
+        this.priceTotal = new SimpleFloatProperty(priceTotal);
+    }
+
+    public void setPriceTotal(){
+        float price = 0;
+        for (Component comp : components){
+            price += comp.getPrice();
+        }
+        this.priceTotal = new SimpleFloatProperty(price);
+    }
 
     public String getName() {
         return name.get();

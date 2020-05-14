@@ -216,7 +216,7 @@ public class AddComponentController implements Initializable {
     }
     @FXML
     private void filtering(){
-       if(filter.getText().isBlank()) {
+       if(filter.getText().isBlank() || filterChooser.getValue().equals("Fjern filtrering")) {
            collection.attachTableView(table);
         }
         else if(filterChooser.getValue().equals("Navn")){
@@ -235,6 +235,7 @@ public class AddComponentController implements Initializable {
                            .collect(Collectors.toCollection(FXCollections::observableArrayList));
            table.setItems(components);
        }
+
     }
 }
 

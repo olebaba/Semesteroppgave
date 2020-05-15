@@ -88,7 +88,7 @@ public class showChooser {
         window.initModality(Modality.APPLICATION_MODAL); //hindrer at man kan gå tilbake til andre vindu
         window.setTitle(pressedButton);
 
-        label.setText("Velg ønsket "+pressedButton);
+        label.setText("Velg ønsket "+pressedButton.toLowerCase());
 
         table.setEditable(false);
         TableColumn<Component, String> name = new TableColumn<>("Navn");

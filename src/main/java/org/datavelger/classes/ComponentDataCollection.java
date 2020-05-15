@@ -60,9 +60,16 @@ public class ComponentDataCollection {
             String split[] = price.split("-");
             String firstValue = split[0];
             String lastValue = split[1];
-            //Teste om startverdien og sluttverdien
-            return list.stream().filter(x -> Integer.parseInt(firstValue) <= (x.getPrice()) && (x.getPrice() <= Integer.parseInt(lastValue))).
-                    collect(Collectors.toCollection(FXCollections::observableArrayList));
+            int finalFirstValue = Integer.parseInt(firstValue);
+            int finalLastValue = Integer.parseInt(lastValue);
+            if(finalLastValue<finalFirstValue){
+                ErrorDialog.showErrorDialog("Startverdien for søket kan ikke være større enn sluttverdien.");
+                return null;
+            }else {
+                //Teste om startverdien og sluttverdien
+                return list.stream().filter(x -> finalFirstValue <= (x.getPrice()) && (x.getPrice() <= finalLastValue)).
+                        collect(Collectors.toCollection(FXCollections::observableArrayList));
+            }
         }
     }
 }

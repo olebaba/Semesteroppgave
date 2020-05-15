@@ -71,4 +71,12 @@
 .OrderedConfig,.btnAvbryt,.btnvideretilbestilling{
     -fx-border-color: #919e65;
 }
+/*main//////////////////////////////////////////////////
+
+ */
+.admin,.kunde{
+    -fx-border-color: #919e65;
+    -fx-pref-width: 294px;
+    -fx-pref-height: 100px;
+}
 

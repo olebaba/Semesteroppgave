@@ -13,12 +13,12 @@
     </stylesheets>
    <children>
       <ButtonBar layoutX="134.0" layoutY="460.0" prefHeight="40.0" prefWidth="200.0" />
-      <Button fx:id="admin" layoutX="466.0" layoutY="289.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="294.0" style="-fx-border-color: #919e65;" text="Admin">
+      <Button fx:id="admin" layoutX="466.0" layoutY="289.0" mnemonicParsing="false"  styleClass="admin" text="Admin">
          <font>
             <Font size="24.0" />
          </font>
       </Button>
-    <Button fx:id="kunde" layoutX="40.0" layoutY="289.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="294.0" style="-fx-border-color: #919e65;" text="Kunde">
+    <Button fx:id="kunde" layoutX="40.0" layoutY="289.0" mnemonicParsing="false" styleClass="kunde" text="Kunde">
          <font>
             <Font size="24.0" />
          </font>

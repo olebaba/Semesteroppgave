@@ -6,7 +6,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
+<?import java.net.URL?>
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.datavelger.MainController">
+    <stylesheets>
+        <URL value="@styles.css" />
+    </stylesheets>
    <children>
       <ButtonBar layoutX="134.0" layoutY="460.0" prefHeight="40.0" prefWidth="200.0" />
       <Button fx:id="admin" layoutX="466.0" layoutY="289.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="294.0" style="-fx-border-color: #919e65;" text="Admin">

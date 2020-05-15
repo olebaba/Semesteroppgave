@@ -14,7 +14,11 @@
 <?import javafx.scene.text.Font?>
 
 <?import java.lang.String?>
+<?import java.net.URL?>
 <AnchorPane fx:id="anchorPane" prefHeight="732.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.datavelger.AddComponentController">
+    <stylesheets>
+        <URL value="@styles.css" />
+    </stylesheets>
    <children>
       <TabPane prefHeight="556.0" prefWidth="792.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -22,15 +26,15 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="597.0" prefWidth="700.0">
                      <children>
-                        <ChoiceBox fx:id="componentBox" layoutX="136.0" layoutY="286.0" prefWidth="175.0" style="-fx-border-color: #919e65;" />
-                        <TextField fx:id="txt_name" layoutX="136.0" layoutY="336.0" prefHeight="36.0" prefWidth="175.0" promptText="Navn" style="-fx-border-color: #919e65;" />
-                        <TextField fx:id="txt_price" layoutX="136.0" layoutY="396.0" prefHeight="35.0" prefWidth="175.0" promptText="Pris" style="-fx-border-color: #919e65;" />
+                        <ChoiceBox fx:id="componentBox" layoutX="136.0" layoutY="286.0" styleClass="componentbox"/>
+                        <TextField fx:id="txt_name" layoutX="136.0" layoutY="336.0" prefHeight="36.0" promptText="Navn" styleClass="txt_name" />
+                        <TextField fx:id="txt_price" layoutX="136.0" layoutY="396.0" prefHeight="35.0"  promptText="Pris" styleClass="txt_price" />
                         <HBox prefHeight="100.0" prefWidth="200.0" />
-                        <Button fx:id="btnAdd" layoutX="136.0" layoutY="452.0" mnemonicParsing="false" prefWidth="175.0" style="-fx-border-color: #919e65;" text="Add komponent" />
-                        <Button fx:id="btnDeleteComponent" layoutX="349.0" layoutY="322.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="175.0" text="Slett komponent" />
+                        <Button fx:id="btnAdd" layoutX="136.0" layoutY="452.0" mnemonicParsing="false" styleClass="btnAdd" text="Add komponent" />
+                        <Button fx:id="btnDeleteComponent" layoutX="349.0" layoutY="322.0" mnemonicParsing="false" prefHeight="29.0"  styleClass="btnDeleteComp" text="Slett komponent" />
                         <ScrollPane>
                            <content>
-                              <TableView fx:id="table" prefHeight="270.0" prefWidth="792.0" style="-fx-border-color: #919e65;">
+                              <TableView fx:id="table" prefHeight="270.0" prefWidth="792.0" styleClass="tableveiw">
                                 <columns>
                                     <TableColumn fx:id="compCol" prefWidth="75.0" text="Komponent" />
                                   <TableColumn fx:id="namecol" onEditCommit="#changeNameCellEvent" prefWidth="75.0" text="Navn" />
@@ -42,27 +46,27 @@
                               </TableView>
                            </content>
                         </ScrollPane>
-                        <Button fx:id="btnCancel" alignment="CENTER" layoutX="136.0" layoutY="501.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" style="-fx-background-color: #919e65;" text="Tilbake" />
+                        <Button fx:id="btnCancel" alignment="CENTER" layoutX="136.0" layoutY="501.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" styleClass="btnCancel" text="Tilbake" />
                         <Label layoutX="58.0" layoutY="292.0" text="Komponent:" />
                         <Label layoutX="75.0" layoutY="346.0" text="Navn:" />
                         <Label layoutX="79.4" layoutY="405.0" text="Pris:" />
-                        <Button fx:id="btnEditComp" layoutX="349.0" layoutY="357.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="175.0" text="Endre spesifikasjoner" />
-                        <Button fx:id="btnSaveChanges" layoutX="349.0" layoutY="399.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="175.0" text="Lagre endringer" />
-                        <Label fx:id="labInfo" layoutX="364.0" layoutY="299.0" prefHeight="18.0" prefWidth="174.0" wrapText="true" />
-                        <TextField fx:id="filter" layoutX="578.0" layoutY="373.0" prefHeight="27.0" prefWidth="173.0" promptText="Filtrer komponenter" style="-fx-border-color: #919e65;" />
-                        <Label layoutX="587.0" layoutY="290.0" prefHeight="17.0" prefWidth="174.0" text="Filtrering:">
+                        <Button fx:id="btnEditComp" layoutX="349.0" layoutY="357.0" mnemonicParsing="false" prefHeight="29.0" styleClass="btnEditComp" text="Endre spesifikasjoner" />
+                        <Button fx:id="btnSaveChanges" layoutX="349.0" layoutY="399.0" mnemonicParsing="false" prefHeight="29.0"  styleClass="btnSaveComp" text="Lagre endringer" />
+                        <Label fx:id="labInfo" layoutX="364.0" layoutY="299.0" prefHeight="18.0" wrapText="true" />
+                        <TextField fx:id="filter" layoutX="578.0" layoutY="373.0" prefHeight="27.0" promptText="Filtrer komponenter" styleClass="filter_txt" />
+                        <Label layoutX="587.0" layoutY="290.0" prefHeight="17.0" text="Filtrering:">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <ChoiceBox fx:id="filterChooser" layoutX="577.0" layoutY="323.0" prefWidth="175.0" style="-fx-border-color: #919e65;"
+                        <ChoiceBox fx:id="filterChooser" layoutX="577.0" layoutY="323.0" styleClass="filterChooser"
                                    value="Fjern filtrering" >
                             <String fx:value="Komponent"></String>
                             <String fx:value="Navn"></String>
                             <String fx:value="Pris (fra-til)"></String>
                             <String fx:value="Fjern filtrering"></String>
                         </ChoiceBox>
-                        <Button fx:id="filterBtn" layoutX="577.0" layoutY="431.0" mnemonicParsing="false" onAction="#filtering" prefWidth="175.0" style="-fx-border-color: #919e65;" text="Filtrer" />
+                        <Button fx:id="filterBtn" layoutX="577.0" layoutY="431.0" mnemonicParsing="false" onAction="#filtering" styleClass="filterbtn" text="Filtrer" />
                      </children>
                   </AnchorPane>
             </content>
@@ -75,7 +79,7 @@
                            <content>
                               <TableView fx:id="table1" prefHeight="269.0" prefWidth="800.0" style="-fx-border-color: #919e65;">
                                  <columns>
-                                    <TableColumn fx:id="namecol1" prefWidth="75.0" text="Navn" />
+                                    <TableColumn fx:id="namecol1" prefWidth="75.0" text="Brukernavn" />
                                     <TableColumn fx:id="pricecol1" prefWidth="75.0" text="Komponent" />
                                     <TableColumn fx:id="namecol11" prefWidth="175.0" text="Navn" />
                                     <TableColumn fx:id="namecol111" prefWidth="75.0" text="Pris" />

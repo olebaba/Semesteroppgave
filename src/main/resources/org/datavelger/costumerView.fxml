@@ -53,18 +53,18 @@
 
       <RadioButton fx:id="comp8" layoutX="500.0" layoutY="132.0" mnemonicParsing="false" styleClass="radio" text="Mus"/>
 
-      <Button fx:id="btnBack" layoutX="23.0" layoutY="535.0" mnemonicParsing="false" styleClass="btnBack" text="Tilbake til forsiden" textFill="#000000e2">
+      <Button fx:id="btnBack" layoutX="23.0" layoutY="535.0" mnemonicParsing="false" styleClass="btnBack" text="Tilbake til forsiden" >
          <effect>
             <Blend />
          </effect>
       </Button>
-      <Button fx:id="btnChoose" layoutX="634.0" layoutY="103.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="108.0" styleClass="btnChoose" text="Søk" textFill="#000000d4" />
-      <Button layoutX="634.0" layoutY="529.0" mnemonicParsing="false" styleClass="btnVidere" text="Videre til bestilling" textFill="#000000c6">
+      <Button fx:id="btnChoose" layoutX="634.0" layoutY="103.0" mnemonicParsing="false" styleClass="btnChoose" text="Søk"/>
+      <Button layoutX="634.0" layoutY="529.0" mnemonicParsing="false" styleClass="btnVidere" text="Videre til bestilling" >
          <effect>
             <Blend />
          </effect>
       </Button>
-      <Button fx:id="btnPreviousConf" layoutX="20.0" layoutY="496.0" mnemonicParsing="false" styleClass="btnPreviousConf" text="Vis tidligere konfigurerte PC-er" textFill="#000000dc" />
+      <Button fx:id="btnPreviousConf" layoutX="20.0" layoutY="496.0" mnemonicParsing="false" styleClass="btnPreviousConf" text="Vis tidligere konfigurerte PC-er"/>
 
    </children>
 </AnchorPane>

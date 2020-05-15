@@ -1,4 +1,4 @@
-/*CostumerpageController
+/*Costumerview//////////////////////////////
  */
 .Anchorpane {
     -fx-background-color: f2f2f2;
@@ -7,15 +7,68 @@
     -fx-font-size: 18px;
     -fx-font-family: Arial;
     -fx-pref-rows: 150,30;
+
 }
 .radiob,.btnBack,.btnChoose,.btnPreviousConf,.btnVidere{
     -fx-border-color: #919e65;
 }
-/*AdminLoging
+.btnChoose{
+    -fx-pref-width: 108px;
+    -fx-pref-height: 48px;
+    -fx-text-fill: #000000d4;
+}
+.btnPreviousConf{
+    -fx-text-fill:#000000dc;
+}
+.btnVidere{
+    -fx-text-fill: #000000c6;
+}
+.btnBack{
+    -fx-text-fill: #000000e2;
+}
+/*AdminLogin///////////////////////////////////
 
  */
-.username,.password,.btnLogin{
-    -fx-border-color: #919e65;
+.usertxt,.passtxt{
     -fx-font-family: "Book Antiqua";
     -fx-font-size: 17px;
+    -fx-font-weight: bold;
 }
+.passwordfield,.usernamefield{
+     -fx-border-color: #919e65;
+    -fx-pref-height: 40px;
+    -fx-pref-width: 237px;
+ }
+
+.logginn{
+    -fx-font-family: "Book Antiqua";
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-alignment: center;
+
+}
+.btnLogin{
+    -fx-background-color: #919e65;
+    -fx-border-color: #919e65;
+   -fx-pref-height: 30px;
+    -fx-pref-width:237px;
+}
+
+/*addComponent///////////////////////////////////
+
+ */
+.componentbox,.txt_name,.txt_price,.btnDeleteComp,.btnAdd,.tableveiw,.btnCancel,
+.btnEditComp,.btnSaveComp,.filter_txt,.filterChoose, .filterbtn{
+    -fx-border-color: #919e65;
+}
+.componentbox,.txt_name,.txt_price,.btnDeleteComp,.btnAdd,.btnCancel,
+.btnEditComp,.btnSaveComp,.filter_txt,.filterChoose, .filterbtn{
+    -fx-pref-width: 175px;
+}
+/*OrderedConfigs////////////////////////////////////////
+
+ */
+.OrderedConfig,.btnAvbryt,.btnvideretilbestilling{
+    -fx-border-color: #919e65;
+}
+

@@ -12,6 +12,8 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.datavelger.Exceptions.InvalidNameException;
+import org.datavelger.Exceptions.InvalidPriceException;
 import org.datavelger.classes.Component;
 import org.datavelger.classes.ComponentDataCollection;
 import org.datavelger.classes.FileOpenerBinary;
@@ -29,6 +31,8 @@ public class showChooser {
     static ComponentDataCollection collection = new ComponentDataCollection();
     static public Order order = new Order();
     static Scene scene = new Scene(layout);
+    static Button chooseButton = new Button("Velg");
+    static Button closeButton = new Button("Tilbake");
 
     static private void setChosenComp(Component comp){
         chosenComp = comp;
@@ -73,14 +77,14 @@ public class showChooser {
         thread.start();
     }
 
-
     public static void pressedButton(String pressedButton) throws IOException, ClassNotFoundException {
+        chooseButton.setDisable(true);
 
         System.out.println("Velger "+pressedButton+"...");
         Stage window = new Stage();
-        //fjerner children på exit (hindrer duplikate nodes)
+        //fjerner children på exit (hindrer duplikate nodes), og fjerner komponenter fra collection
         window.setOnHiding(windowEvent -> {
-            while (layout.getChildren().size()>=1){
+            while (layout.getChildren().size()> 0){
                 layout.getChildren().removeAll(layout.getChildren().get(layout.getChildren().size()-1));
             }
         });
@@ -102,25 +106,31 @@ public class showChooser {
         readComponentofType(compType);
 
         collection.attachTableView(table);
-        System.out.println(table.getItems()); //viser innhold av liste til type komponent
         table.getColumns().setAll(name, price);
+        System.out.println(table.getItems()); //viser innhold av liste til type komponent
 
         //vise valgt komponent og legger den i order
         Label valgt = new Label();
         table.setOnMouseClicked((MouseEvent event)->{
-            valgt.setText(table.getSelectionModel().getSelectedItem().getName());
-            order.setGraphicsCard(table.getSelectionModel().getSelectedItem().getName());
+            if(table.getSelectionModel().getSelectedItem() != null) {
+                valgt.setText(table.getSelectionModel().getSelectedItem().getName());
+                //order.setGraphicsCard(table.getSelectionModel().getSelectedItem().getName());
+                chooseButton.setDisable(false);
+            }
         });
 
-        Button closeButton = new Button("Tilbake");
         closeButton.setOnAction(e ->{
             window.close();
+            //collection.attachTableView(new TableView<>());
         });
-        Button chooseButton = new Button("Velg");
-        chooseButton.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
-            setChosenComp(table.getSelectionModel().getSelectedItem());
-            System.out.println(getChosenComp());
 
+        chooseButton.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
+            System.out.println((table.getSelectionModel().getSelectedItem()));
+
+            CostumerpageController.addComponent(table.getSelectionModel().getSelectedItem().getName());
+            table.getSelectionModel().clearSelection();
+            window.close();
+            //collection.attachTableView(new TableView<>());
         });
 
         layout.getChildren().addAll(label, valgt, table, chooseButton, closeButton);

@@ -11,17 +11,37 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import org.datavelger.Exceptions.InvalidNameException;
 import org.datavelger.Exceptions.InvalidPriceException;
-import org.datavelger.classes.Component;
+import org.datavelger.classes.*;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class CostumerpageController implements Initializable {
+    String folderpath = "komponenter";
     Stage window;
+    Order order = new Order();
+    static List<String> components = new ArrayList<>();
+
+    public static void addComponent(String comp){
+        components.add(comp);
+    }
+
+    private void createOrder(List<String> orderlist){
+        List<Component> components = new ArrayList<>();
+        for (int i = 1; i<orderlist.size()-1; i++){ //første og siste er ikke komponenter
+            try {
+                components.add(FileOpenerCsv.findComponent(orderlist.get(i)));
+            }catch (IOException | ClassNotFoundException e ){
+                //labInfo.setText(e.getLocalizedMessage());
+                e.printStackTrace();
+            }
+        }
+
+        order = new Order(orderlist.get(0), components.get(0), components.get(1), components.get(2),
+                components.get(3), components.get(4), components.get(5), components.get(6), components.get(7));
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -45,7 +65,9 @@ public class CostumerpageController implements Initializable {
             innerPane.getChildren().clear();
             addChosenComps(checkSelected());
         });
-
+        btnOrder.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
+            createOrder(components);
+        });
 
     }
 
@@ -57,6 +79,32 @@ public class CostumerpageController implements Initializable {
              selectedComps[i++] = rb.isSelected();
         }
         return selectedComps;
+    }
+
+    private void readComponentofType(String compType, ChoiceBox<Component> compChoices){
+        FileOpenerBinary componentFolder = new FileOpenerBinary(folderpath + "/" + compType);
+        componentFolder.setOnSucceeded(event -> {
+            //layout.setDisable(false);
+            List<Component> components = componentFolder.getValue();
+
+            //compChoices.setItems(components);
+        });
+        componentFolder.setOnFailed(event -> {
+            try {
+                throw event.getSource().getException();
+            } catch (Throwable throwable) {
+                throwable.printStackTrace();
+            }
+           // layout.setDisable(false);
+            //labInfo.setText("Fant ikke angitt fil.");
+            System.out.println("Fant ikke angitt fil. Har du lagret componenttypen? Har du valgt riktig path?");
+        });
+
+
+        Thread thread = new Thread(componentFolder);
+        thread.setDaemon(true);
+        //layout.setDisable(true);
+        thread.start();
     }
 
     private void addChosenComps(Boolean[] booleans){ //legger valgte komponenter i programmet
@@ -71,24 +119,28 @@ public class CostumerpageController implements Initializable {
                 Label lblComp = new Label(labelText);
                 lblComp.setLayoutX(positionX);
                 lblComp.setDisable(true);
-                Button add = new Button("Velg " + labelText.toLowerCase());
+
+                //ChoiceBox<Component>
+
+
+
+                /*Button add = new Button("Velg " + labelText.toLowerCase());
                 Button remove = new Button("Fjern valgt " + labelText.toLowerCase());
                 //String chosen = "Du har valgt følgende " + labelText.toLowerCase() + ": ";
 
                 nodes.addAll(Arrays.asList(lblComp, add, remove));
-                /*for (Node node : nodes){
+                for (Node node : nodes){
                     node.setLayoutY(positionY);
-                }*/
+                }
                 lblComp.setLayoutY(positionY);
                 add.setLayoutY(positionY);
                 remove.setLayoutY(positionY);
-
-                //TODO legge dette i css:
 
                 add.setPrefSize(150,30);
                 remove.setPrefSize(200, 30);
                 add.setLayoutX(150);
                 remove.setLayoutX(325);
+
 
 
                 //Kaller på metoden i showChooser med navnet på knappen som er valgt
@@ -98,15 +150,13 @@ public class CostumerpageController implements Initializable {
                         showChooser.pressedButton(finalLabelText);
                         innerPane.getChildren().remove(btnChoose);
                         lblComp.setDisable(false);
-                        lblComp.setText(showChooser.order != null ?
-                                showChooser.order.getGraphicsCard() : "");
+                        lblComp.setText(components.get(components.size()-1));
                         //innerPane.getChildren().addAll(chosencomp);
                     } catch (IOException | ClassNotFoundException e) {
                         e.printStackTrace();
                     }
                 });
-
-
+                */
 
                  /* System.out.println("Du har valgt grafikkort");
                     Button graphics = new Button("Velg grafikkort");
@@ -162,7 +212,7 @@ public class CostumerpageController implements Initializable {
 
 
     @FXML
-    Button btnBack, btnChoose, btnChoose1, btnPreviousConf;
+    Button btnBack, btnChoose, btnChoose1, btnPreviousConf, btnOrder;
     @FXML
     ChoiceBox<String> brand, type, size;
     @FXML

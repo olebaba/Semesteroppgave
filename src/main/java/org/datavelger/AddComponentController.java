@@ -79,27 +79,11 @@ public class AddComponentController implements Initializable {
             }
         });
 
-        btnDeleteComponent.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
-            deleteComponent();
-        });
+        btnDeleteComponent.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> deleteComponent());
 
-        btnEditComp.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
-            editComponent();
-        });
+        btnEditComp.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> editComponent());
 
-        btnSaveChanges.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
-            saveComponents();
-        });
-
-        //vise ekstra info om komponent
-        /*btnComponentInformation.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
-            try {
-                App.setRoot("componentView");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
-         */
+        btnSaveChanges.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> saveComponents());
 
         //gjør klar innlegging av komponenter //////////////////////////////////////////////
         componentBox.getItems().addAll(" ", "Grafikkort", "Harddisk", "Tastatur", "Minne", "Skjerm",

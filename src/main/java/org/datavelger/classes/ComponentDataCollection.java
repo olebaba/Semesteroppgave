@@ -33,7 +33,6 @@ public class ComponentDataCollection {
     public ObservableList<Component> getList(){
         return list;
     }
-    //private ComponentDataCollection collection = new ComponentDataCollection();
 
     public ObservableList<Component> filterByComponent(String component){
         if(component.isBlank()){
@@ -57,7 +56,8 @@ public class ComponentDataCollection {
             ErrorDialog.showErrorDialog("Skriv inn gyldige siffer på formatet \"startverdi-sluttverdi\" (f.eks 1500-2000)");
             return null;
         }else{
-            String split[] = price.split("-");
+            //Deler opp stringen som tilsvarer pris der bindestrek for å hente ut startverdi og sluttverdi
+            String [] split= price.split("-");
             String firstValue = split[0];
             String lastValue = split[1];
             int finalFirstValue = Integer.parseInt(firstValue);
@@ -66,7 +66,7 @@ public class ComponentDataCollection {
                 ErrorDialog.showErrorDialog("Startverdien for søket kan ikke være større enn sluttverdien.");
                 return null;
             }else {
-                //Teste om startverdien og sluttverdien
+                //sjekker om det finnes verdier mellom startverdi og sluttverdi
                 return list.stream().filter(x -> finalFirstValue <= (x.getPrice()) && (x.getPrice() <= finalLastValue)).
                         collect(Collectors.toCollection(FXCollections::observableArrayList));
             }

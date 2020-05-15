@@ -136,6 +136,12 @@ public class CostumerpageController implements Initializable {
                 add.setLayoutY(positionY);
                 remove.setLayoutY(positionY);
 
+                lblComp.setStyle("-fx-font-weight: bold");
+                add.setStyle("-fx-font-weight: bold");
+                remove.setStyle("-fx-font-weight: bold");
+
+                //TODO legge dette i css:
+
                 add.setPrefSize(150,30);
                 remove.setPrefSize(200, 30);
                 add.setLayoutX(150);
